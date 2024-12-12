@@ -1,4 +1,4 @@
-package atm.com.example;
+package today_12_12_24;
 
 public enum Notes {
 

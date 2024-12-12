@@ -1,4 +1,5 @@
-package atm.com.example;
+package today_12_12_24;
+
 
 import java.util.Scanner;
 
@@ -64,3 +65,4 @@ public class AtmApp {
 		System.out.println("Thank You");
 	}
 }
+

@@ -1,4 +1,5 @@
-package atm.com.example;
+package today_12_12_24;
+
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -47,7 +48,7 @@ public class Atm {
 		} else {
 			throw new RuntimeException("Sorry amount value is not correct!");
 		}
-		
+
 	}
 	
 	/**
@@ -103,10 +104,10 @@ public class Atm {
 //		}
 		
 		// Print Result
-		System.out.println("\n\nTotal notes you will collect: ");
-		System.out.println("500 Notes: " + fiveHundred);
-		System.out.println("200 Notes: " + twoHundred);
-		System.out.println("100 Notes: " + oneHundred);
+//		System.out.println("\n\nTotal notes you will collect: ");
+//		System.out.println("500 Notes: " + fiveHundred);
+//		System.out.println("200 Notes: " + twoHundred);
+//		System.out.println("100 Notes: " + oneHundred);
 		totalAmount -= prevwithdrawAmount;
 	}
 	

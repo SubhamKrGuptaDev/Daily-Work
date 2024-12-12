@@ -4,5 +4,5 @@
 /**
  * 
  */
-module traning {
+module DailyTraining {
 }
