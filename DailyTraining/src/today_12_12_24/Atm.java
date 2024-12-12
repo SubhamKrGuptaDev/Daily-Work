@@ -84,11 +84,22 @@ public class Atm {
 		int notesLen = Notes.values().length;
 		Integer[] noteWithdraw = new Integer[notesLen];
 		
-		int count = 0;
+		int index = 0;
 		for(Notes note : Notes.values()) {
 			if(denomination.get(note.getNote()) > 0 && withdrawAmount >= note.getNote()) {
-				noteWithdraw[count++] = withdrawAmount / note.getNote();
+				noteWithdraw[index++] = withdrawAmount / note.getNote();
 				withdrawAmount = withdrawAmount % note.getNote();
+			}
+		}
+		
+		System.out.println("\n\nTotal Notes you will collect");
+		
+		index = 0;
+		for(Notes note : Notes.values()) {
+			if(noteWithdraw[index] != null) {
+				System.out.println(note.getNote() 
+						+ Constrans.WITHDRAW_PRINT.getPrintValue() 
+						+ noteWithdraw[index++]);
 			}
 		}
 		

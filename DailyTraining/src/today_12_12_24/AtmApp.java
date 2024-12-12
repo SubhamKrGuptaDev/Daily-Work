@@ -3,6 +3,9 @@ package today_12_12_24;
 
 import java.util.Scanner;
 
+/**
+ * ATM machine program main class
+ */
 public class AtmApp {
 	
 	public static void main(String[] args) {
