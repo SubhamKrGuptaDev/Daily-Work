@@ -15,9 +15,10 @@ public class Atm {
 	private Integer totalAmount;
 
 	/**
-	 * 
+	 * create object with all the notes default value 0
 	 */
 	public Atm() {
+		totalAmount = 0;
 		denomination = new HashMap<>();
 		for(Notes note : Notes.values()) {
 			denomination.put(note.getNote(), 0);
@@ -25,6 +26,7 @@ public class Atm {
 	}
 	
 	/**
+	 * Deposit the amount they are respective notes
 	 * 
 	 * @param oneHundred
 	 * @param twoHundred
@@ -38,12 +40,23 @@ public class Atm {
 	}
 	
 	/**
+	 * Add amount notes to denomination Map and update the total amount
+	 *  
+	 * @param noteType
+	 * @param amount
+	 */
+	private void addAmount(Integer noteType, Integer amount) {
+		Integer existAmount = denomination.get(noteType);
+		denomination.put(noteType, existAmount + amount);
+		totalAmount += noteType * amount;
+	}
+	
+	/**
 	 * 
 	 * @param withdrawAmount
 	 */
 	public void withdrawAmount(int withdrawAmount) {
 		if(isValidAmount(withdrawAmount)) {
-			// Withdraw Operation
 			withdrawOperation(withdrawAmount);
 		} else {
 			throw new RuntimeException("Sorry amount value is not correct!");
@@ -52,6 +65,7 @@ public class Atm {
 	}
 	
 	/**
+	 * 
 	 * 
 	 * @param withdrawAmount
 	 */
@@ -65,77 +79,37 @@ public class Atm {
 			throw new RuntimeException("Insufficient balance :(\nYour Balance : " + totalAmount);
 		}
 		
-//		int oneHundred = 0;
-//		int twoHundred = 0;
-//		int fiveHundred = 0;
-		
-		// 500, 200, 100
-		Integer[] noteNeed = {0,0,0};
-		
 		Integer prevwithdrawAmount = withdrawAmount;
-		Integer len = Notes.values().length;
 		
-		for(Integer i=len-1; i>=0; i--) {
-			
+		int notesLen = Notes.values().length;
+		Integer[] noteWithdraw = new Integer[notesLen];
+		
+		int count = 0;
+		for(Notes note : Notes.values()) {
+			if(denomination.get(note.getNote()) > 0 && withdrawAmount >= note.getNote()) {
+				noteWithdraw[count++] = withdrawAmount / note.getNote();
+				withdrawAmount = withdrawAmount % note.getNote();
+			}
 		}
 		
-		
-//		// 500
-//		for(int i=n-1; i>=0; i--) {
-//			while(denomination.get(notes[2]) > 0 && withdrawAmount >= notes[i]) {
-//				fiveHundred++;
-//				withdrawAmount -= notes[i];
-//				denomination.put(notes[2], denomination.get(notes[2]) - 1);
-//			}
-//		}
-//		
-//		// 200
-//		while(denomination.get(notes[1]) > 0 && withdrawAmount >= 200) {
-//			twoHundred++;
-//			withdrawAmount -= 200;
-//			denomination.put(notes[1], denomination.get(notes[1]) - 1);
-//		}
-//		
-//		// 100
-//		while(denomination.get(notes[0]) > 0 && withdrawAmount >= 100) {
-//			oneHundred++;
-//			withdrawAmount -= 100;
-//			denomination.put(notes[0], denomination.get(notes[0]) - 1);
-//		}
-		
-		// Print Result
-//		System.out.println("\n\nTotal notes you will collect: ");
-//		System.out.println("500 Notes: " + fiveHundred);
-//		System.out.println("200 Notes: " + twoHundred);
-//		System.out.println("100 Notes: " + oneHundred);
 		totalAmount -= prevwithdrawAmount;
 	}
 	
 	/**
-	 * 
+	 * Check balance in my ATM
 	 */
 	public void printBalance() {
 		System.out.println("\n\nYour balance : " + totalAmount + "\n\n");
 	}
 	
 	/**
+	 * withdraw amount check is valid or not
 	 * 
 	 * @param amount
 	 * @return
 	 */
 	private Boolean isValidAmount(int amount) {
 		return amount % 100 == 0;
-	}
-	
-	/**
-	 * 
-	 * @param noteType
-	 * @param amount
-	 */
-	private void addAmount(Integer noteType, Integer amount) {
-		Integer existAmount = denomination.get(noteType);
-		denomination.put(noteType, existAmount + amount);
-		totalAmount += noteType * amount;
 	}
  
 }
