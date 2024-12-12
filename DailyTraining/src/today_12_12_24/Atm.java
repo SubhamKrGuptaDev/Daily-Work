@@ -11,6 +11,7 @@ import java.util.Map;
  */
 public class Atm {
 	
+	// Denomination how many notes with note type having in ATM 
 	private Map<Integer, Integer> denomination;
 	private Integer totalAmount;
 
@@ -26,7 +27,7 @@ public class Atm {
 	}
 	
 	/**
-	 * Deposit the amount they are respective notes
+	 * Deposit the amount to respective notes and increase count
 	 * 
 	 * @param oneHundred
 	 * @param twoHundred
@@ -52,11 +53,14 @@ public class Atm {
 	}
 	
 	/**
+	 * Withdraw amount if amount is valid
 	 * 
 	 * @param withdrawAmount
 	 */
 	public void withdrawAmount(int withdrawAmount) {
-		if(isValidAmount(withdrawAmount)) {
+		Notes[] listNotes = Notes.values();
+		
+		if(isValidAmount(withdrawAmount, listNotes[listNotes.length - 1].getNote())) {
 			withdrawOperation(withdrawAmount);
 		} else {
 			throw new RuntimeException("Sorry amount value is not correct!");
@@ -65,7 +69,11 @@ public class Atm {
 	}
 	
 	/**
-	 * 
+	 * Withdraw operation logic
+	 * withdrawAmount < 0 or withdrawAmount > totalAmount operation throw exception
+	 * Number of note need = withdrawAmount / Notevalue
+	 * RemeningAmount = withdrawAmount % NoteValue 
+	 * Store number of notes on notwWithdraw DESC order
 	 * 
 	 * @param withdrawAmount
 	 */
@@ -81,10 +89,10 @@ public class Atm {
 		
 		Integer prevwithdrawAmount = withdrawAmount;
 		
-		int notesLen = Notes.values().length;
+		Integer notesLen = Notes.values().length;
 		Integer[] noteWithdraw = new Integer[notesLen];
 		
-		int index = 0;
+		Integer index = 0;
 		for(Notes note : Notes.values()) {
 			if(denomination.get(note.getNote()) > 0 && withdrawAmount >= note.getNote()) {
 				noteWithdraw[index++] = withdrawAmount / note.getNote();
@@ -114,13 +122,13 @@ public class Atm {
 	}
 	
 	/**
-	 * withdraw amount check is valid or not
+	 * Module with the last note if reminder have it's not valid
 	 * 
 	 * @param amount
 	 * @return
 	 */
-	private Boolean isValidAmount(int amount) {
-		return amount % 100 == 0;
+	private Boolean isValidAmount(Integer amount, Integer smallestNote) {
+		return amount % smallestNote == 0;
 	}
  
 }

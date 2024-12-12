@@ -4,7 +4,7 @@ package today_12_12_24;
 import java.util.Scanner;
 
 /**
- * ATM machine program main class
+ * ATM machine main class
  */
 public class AtmApp {
 	
@@ -16,6 +16,10 @@ public class AtmApp {
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Welcome to ATM");
 		
+		/**
+		 * infinity loop for continue running
+		 * loop store if in switch case 4 option select 
+		 */
 		while(inProgress) {
 			
 			System.out.println("""
