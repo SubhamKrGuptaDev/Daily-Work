@@ -9,10 +9,23 @@ import today_12_12_24.enums.com.Notes;
  */
 public class AtmDepositServiceImpl implements AtmDepositService {
 	
+	private static AtmDepositServiceImpl instance = null;
 	private final Map<Integer, Integer> denomination;
 	
-	public AtmDepositServiceImpl(Map<Integer, Integer> denomination) {
+	private AtmDepositServiceImpl(Map<Integer, Integer> denomination) {
 		this.denomination = denomination;
+	}
+	
+	public static AtmDepositServiceImpl getInstance(Map<Integer, Integer> denomination) {
+		if(instance == null) {
+			synchronized (AtmDepositServiceImpl.class) {
+				if(instance == null) {
+					instance = new AtmDepositServiceImpl(denomination);
+				}
+			}
+		}
+		
+		return instance;
 	}
 	
 	/**

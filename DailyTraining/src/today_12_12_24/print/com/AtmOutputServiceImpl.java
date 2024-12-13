@@ -8,6 +8,28 @@ import today_12_12_24.enums.com.Notes;
  */
 public class AtmOutputServiceImpl implements AtmOutputService {
 	
+	private static AtmOutputServiceImpl instance = null;
+	
+	// Private Constructor
+	private AtmOutputServiceImpl() {}
+	
+	/**
+	 * Get Instance as a Singleton Object
+	 * 
+	 * @return
+	 */
+	public static AtmOutputServiceImpl getInstance() {
+		if(instance == null) {
+			synchronized (AtmOutputServiceImpl.class) {
+				if(instance == null) {
+					instance = new AtmOutputServiceImpl();
+				}
+			}
+		}
+		
+		return instance;
+	}
+	
 	/**
 	 * Check balance in my ATM
 	 */

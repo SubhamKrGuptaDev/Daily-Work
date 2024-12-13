@@ -15,11 +15,19 @@ public class WithdrawServiceImpl implements WithdrawService {
 	private final Map<Integer, Integer> denomination;
 	private final AtmOutputServiceImpl print;
 	
+	// Private Constructor 
 	private WithdrawServiceImpl(Map<Integer, Integer> denomination, AtmOutputServiceImpl print) {
 		this.denomination = denomination;
 		this.print = print;
 	}
 	
+	/**
+	 * 
+	 * 
+	 * @param denomination
+	 * @param print
+	 * @return
+	 */
 	public static WithdrawServiceImpl getInstance(Map<Integer, Integer> denomination, AtmOutputServiceImpl print) {
 		if(instance == null) {
 			synchronized (WithdrawServiceImpl.class) {

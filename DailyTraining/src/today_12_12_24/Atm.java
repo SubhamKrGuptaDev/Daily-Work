@@ -27,12 +27,12 @@ public class Atm {
 	 */
 	public Atm() {
 		totalAmount = 0;
-		print = new AtmOutputServiceImpl();
+		print = AtmOutputServiceImpl.getInstance();
 		denomination = new HashMap<>();
 		for(Notes note : Notes.values()) {
 			denomination.put(note.getNote(), 0);
 		}
-		atmDeposit = new AtmDepositServiceImpl(denomination);
+		atmDeposit = AtmDepositServiceImpl.getInstance(denomination);
 		withdraw = WithdrawServiceImpl.getInstance(denomination, print);
 	}
 	
