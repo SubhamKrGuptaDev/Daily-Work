@@ -16,6 +16,12 @@ public class AtmDepositServiceImpl implements AtmDepositService {
 		this.denomination = denomination;
 	}
 	
+	/**
+	 * Get Instance as a Singleton Object
+	 * 
+	 * @param denomination
+	 * @return
+	 */
 	public static AtmDepositServiceImpl getInstance(Map<Integer, Integer> denomination) {
 		if(instance == null) {
 			synchronized (AtmDepositServiceImpl.class) {
@@ -26,6 +32,13 @@ public class AtmDepositServiceImpl implements AtmDepositService {
 		}
 		
 		return instance;
+	}
+	
+	/**
+	 * Clone object restrict
+	 */
+	public Object clone() throws CloneNotSupportedException {
+		throw new CloneNotSupportedException("Restrict Copy Object");		
 	}
 	
 	/**

@@ -22,7 +22,7 @@ public class WithdrawServiceImpl implements WithdrawService {
 	}
 	
 	/**
-	 * 
+	 * Get Instance as a Singleton Object
 	 * 
 	 * @param denomination
 	 * @param print
@@ -37,6 +37,13 @@ public class WithdrawServiceImpl implements WithdrawService {
 			}
 		}
 		return instance;
+	}
+	
+	/**
+	 * Clone object restrict
+	 */
+	public Object clone() throws CloneNotSupportedException {
+		throw new CloneNotSupportedException("Restrict Copy Object");		
 	}
 	
 	/**

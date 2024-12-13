@@ -31,6 +31,13 @@ public class AtmOutputServiceImpl implements AtmOutputService {
 	}
 	
 	/**
+	 * Clone object restrict
+	 */
+	public Object clone() throws CloneNotSupportedException {
+		throw new CloneNotSupportedException("Restrict Copy Object");		
+	}
+	
+	/**
 	 * Check balance in my ATM
 	 */
 	@Override
