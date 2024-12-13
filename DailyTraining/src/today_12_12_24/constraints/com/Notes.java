@@ -1,4 +1,4 @@
-package today_12_12_24;
+package today_12_12_24.constraints.com;
 
 public enum Notes {
 

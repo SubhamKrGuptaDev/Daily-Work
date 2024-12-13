@@ -3,6 +3,9 @@ package today_12_12_24;
 
 import java.util.Scanner;
 
+import today_12_12_24.constraints.com.Constraints;
+import today_12_12_24.constraints.com.Notes;
+
 /**
  * ATM machine main class
  */
@@ -14,7 +17,7 @@ public class AtmApp {
 		Boolean inProgress = true;
 		
 		Scanner sc = new Scanner(System.in);
-		System.out.println("Welcome to ATM");
+		System.out.println(Constraints.WELCOME_PRINT);
 		
 		/**
 		 * infinity loop for continue running
@@ -27,21 +30,28 @@ public class AtmApp {
 					Press 2 for withdraw
 					Press 3 for check balance
 					Press 4 for EXIT
-					Please enter your choice: 
-					""");
+					Please enter your choice: """);
 			Integer choice = sc.nextInt();
 			
 			try {
 				switch (choice) {
 					case 1: {
-						System.out.println("Enter how many 100 note you have : ");
+						System.out.println(Constraints.ENTER_HOW_MANY_PRINT.getPrintValue() 
+								+ Notes.ONE_HUNDRED.getNote() 
+								+ Constraints.NOTE_YOU_HAVE_PRINT.getPrintValue());
 						Integer oneHundredAmount = sc.nextInt();
-						System.out.println("Enter how many 200 note you have : ");
-						Integer twoHundredAmount = sc.nextInt();
-						System.out.println("Enter how many 500 note you have : ");
-						Integer threeHundredAmount = sc.nextInt();
 						
-						atm.depositCash(oneHundredAmount, twoHundredAmount, threeHundredAmount);
+						System.out.println(Constraints.ENTER_HOW_MANY_PRINT.getPrintValue() 
+								+ Notes.TWO_HUNDRED.getNote() 
+								+ Constraints.NOTE_YOU_HAVE_PRINT.getPrintValue());
+						Integer twoHundredAmount = sc.nextInt();
+						
+						System.out.println(Constraints.ENTER_HOW_MANY_PRINT.getPrintValue() 
+								+ Notes.FIVE_HUNDRED.getNote() 
+								+ Constraints.NOTE_YOU_HAVE_PRINT.getPrintValue());
+						Integer fiveHundredAmount = sc.nextInt();
+						
+						atm.depositCash(oneHundredAmount, twoHundredAmount, fiveHundredAmount);
 						break;
 					}
 					case 2: {
