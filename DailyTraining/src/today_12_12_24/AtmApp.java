@@ -3,8 +3,8 @@ package today_12_12_24;
 
 import java.util.Scanner;
 
-import today_12_12_24.constraints.com.Constraints;
-import today_12_12_24.constraints.com.Notes;
+import today_12_12_24.enums.com.Constraints;
+import today_12_12_24.enums.com.Notes;
 
 /**
  * ATM machine main class
@@ -51,7 +51,7 @@ public class AtmApp {
 								+ Constraints.NOTE_YOU_HAVE_PRINT.getPrintValue());
 						Integer fiveHundredAmount = sc.nextInt();
 						
-						atm.depositCash(oneHundredAmount, twoHundredAmount, fiveHundredAmount);
+						atm.depositCash(fiveHundredAmount, twoHundredAmount, oneHundredAmount);
 						break;
 					}
 					case 2: {

@@ -2,13 +2,16 @@ package today_12_12_24.deposit.com;
 
 import java.util.Map;
 
-import today_12_12_24.constraints.com.Notes;
+import today_12_12_24.enums.com.Notes;
 
-public class AtmDeposit {
+/**
+ * ATM Deposit Service Implementation class
+ */
+public class AtmDepositServiceImpl implements AtmDepositService {
 	
 	private final Map<Integer, Integer> denomination;
 	
-	public AtmDeposit(Map<Integer, Integer> denomination) {
+	public AtmDepositServiceImpl(Map<Integer, Integer> denomination) {
 		this.denomination = denomination;
 	}
 	
@@ -18,11 +21,14 @@ public class AtmDeposit {
 	 * @param totalNotes
 	 * @param totalAmount
 	 */
-	public void depositCash(Integer[] totalNotes, Integer totalAmount) {
+	@Override
+	public Integer depositCash(Integer[] totalNotes, Integer totalAmount) {
+		Integer[] totalAmountObj = {totalAmount};
 		Integer i=0;
 		for(Notes note : Notes.values()) {
-			addAmount(note.getNote(), totalNotes[i++], totalAmount);
+			addAmount(note.getNote(), totalNotes[i++], totalAmountObj);
 		}
+		return totalAmountObj[0];
 	}
 	
 	/**
@@ -31,10 +37,10 @@ public class AtmDeposit {
 	 * @param noteType
 	 * @param amount
 	 */
-	private void addAmount(Integer noteType, Integer amount, Integer totalAmount) {
+	private void addAmount(Integer noteType, Integer amount, Integer[] totalAmountObj) {
 		Integer existAmount = denomination.get(noteType);
 		denomination.put(noteType, existAmount + amount);
-		totalAmount += noteType * amount;
+		totalAmountObj[0] += noteType * amount;
 	}
 	
 }

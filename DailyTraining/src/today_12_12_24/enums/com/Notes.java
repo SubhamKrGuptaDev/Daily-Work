@@ -1,5 +1,10 @@
-package today_12_12_24.constraints.com;
+package today_12_12_24.enums.com;
 
+
+/**
+ * Store notes type on DESC order
+ * DESC order required for calculate remove notes and add notes
+ */
 public enum Notes {
 
 	FIVE_HUNDRED(500),

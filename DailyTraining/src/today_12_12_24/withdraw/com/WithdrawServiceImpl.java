@@ -2,18 +2,33 @@ package today_12_12_24.withdraw.com;
 
 import java.util.Map;
 
-import today_12_12_24.constraints.com.Constraints;
-import today_12_12_24.constraints.com.Notes;
-import today_12_12_24.print.com.Print;
+import today_12_12_24.enums.com.Constraints;
+import today_12_12_24.enums.com.Notes;
+import today_12_12_24.print.com.AtmOutputServiceImpl;
 
-public class Withdraw {
+/**
+ * ATM Withdraw Service Implementation
+ */
+public class WithdrawServiceImpl implements WithdrawService {
 
+	private static WithdrawServiceImpl instance = null;
 	private final Map<Integer, Integer> denomination;
-	private final Print print;
+	private final AtmOutputServiceImpl print;
 	
-	public Withdraw(Map<Integer, Integer> denomination, Print print) {
+	private WithdrawServiceImpl(Map<Integer, Integer> denomination, AtmOutputServiceImpl print) {
 		this.denomination = denomination;
 		this.print = print;
+	}
+	
+	public static WithdrawServiceImpl getInstance(Map<Integer, Integer> denomination, AtmOutputServiceImpl print) {
+		if(instance == null) {
+			synchronized (WithdrawServiceImpl.class) {
+				if(instance == null) {
+					instance = new WithdrawServiceImpl(denomination, print);
+				}
+			}
+		}
+		return instance;
 	}
 	
 	/**
@@ -21,7 +36,8 @@ public class Withdraw {
 	 * 
 	 * @param withdrawAmount
 	 */
-	public Integer withdrawAmount(int withdrawAmount, Integer totalAmount) {
+	@Override
+	public Integer withdrawAmount(Integer withdrawAmount, Integer totalAmount) {
 		Notes[] listNotes = Notes.values();
 		
 		if(isValidAmount(withdrawAmount, listNotes[listNotes.length - 1].getNote())) {
@@ -34,14 +50,13 @@ public class Withdraw {
 	
 	/**
 	 * Withdraw operation logic
-	 * withdrawAmount < 0 or withdrawAmount > totalAmount operation throw exception
-	 * Number of note need = withdrawAmount / Notevalue
+	 * Number of note need = withdrawAmount / Note value
 	 * RemeningAmount = withdrawAmount % NoteValue 
 	 * Store number of notes on notwWithdraw DESC order
 	 * 
 	 * @param withdrawAmount
 	 */
-	private Integer withdrawOperation(int withdrawAmount, Integer totalAmount) {
+	private Integer withdrawOperation(Integer withdrawAmount, Integer totalAmount) {
 		validation(withdrawAmount, totalAmount);
 		
 		Integer prevwithdrawAmount = withdrawAmount;
@@ -52,10 +67,13 @@ public class Withdraw {
 		Integer index = 0;
 		for(Notes note : Notes.values()) {
 			if(denomination.get(note.getNote()) > 0 && withdrawAmount >= note.getNote()) {
-				noteWithdraw[index++] = withdrawAmount / note.getNote();
-				withdrawAmount = withdrawAmount % note.getNote();
+				Integer reminder = withdrawAmount / note.getNote();
+				Integer minValue = Math.min(reminder, denomination.get(note.getNote()));
+				withdrawAmount -= minValue * note.getNote(); 
 				denomination.put(note.getNote(), denomination.get(note.getNote()) - 1);
+				noteWithdraw[index] = minValue;
 			}
+			index++;
 		}
 		
 		print.afterWithdraw(noteWithdraw);
@@ -65,6 +83,7 @@ public class Withdraw {
 	
 	/**
 	 * Withdraw Amount valid check
+	 * withdrawAmount < 0 or withdrawAmount > totalAmount operation throw exception
 	 * 
 	 * @param withdrawAmount
 	 * @param totalAmount
@@ -81,6 +100,7 @@ public class Withdraw {
 	
 	/**
 	 * Module with the last note if reminder have it's not valid
+	 * reminder = amount % smallestNote | if reminder have it's not valid no or else valid
 	 * 
 	 * @param amount
 	 * @return

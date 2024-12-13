@@ -1,20 +1,25 @@
 package today_12_12_24.print.com;
 
-import today_12_12_24.constraints.com.Constraints;
-import today_12_12_24.constraints.com.Notes;
+import today_12_12_24.enums.com.Constraints;
+import today_12_12_24.enums.com.Notes;
 
 /**
  * Print Input and Output transactions
  */
-public class Print {
+public class AtmOutputServiceImpl implements AtmOutputService {
 	
 	/**
 	 * Check balance in my ATM
 	 */
+	@Override
 	public void printBalance(Integer totalAmount) {
 		System.out.println("\n\nYour balance : " + totalAmount + "\n\n");
 	}
 
+	/**
+	 * Print output after complete the withdraw transaction
+	 */
+	@Override
 	public void afterWithdraw(Integer[] noteWithdraw) {
 		System.out.println("\n\nTotal Notes you will collect");
 		

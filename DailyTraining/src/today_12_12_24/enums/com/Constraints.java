@@ -1,5 +1,8 @@
-package today_12_12_24.constraints.com;
+package today_12_12_24.enums.com;
 
+/**
+ * Constants for message and \output
+ */
 public enum Constraints {
 
 	WITHDRAW_PRINT(" Notes: "),
@@ -16,6 +19,5 @@ public enum Constraints {
 	public String getPrintValue() {
 		return printValue;
 	}
-	
 	
 }

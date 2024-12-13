@@ -1,15 +1,13 @@
 package today_12_12_24;
 
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
-import today_12_12_24.constraints.com.Notes;
-import today_12_12_24.deposit.com.AtmDeposit;
-import today_12_12_24.print.com.Print;
-import today_12_12_24.withdraw.com.Withdraw;
+import today_12_12_24.deposit.com.AtmDepositServiceImpl;
+import today_12_12_24.enums.com.Notes;
+import today_12_12_24.print.com.AtmOutputServiceImpl;
+import today_12_12_24.withdraw.com.WithdrawService;
+import today_12_12_24.withdraw.com.WithdrawServiceImpl;
 /**
  * ATM Machine Operation Class 
  * ATM operations deposit/withdraw/check balance
@@ -19,9 +17,9 @@ public class Atm {
 	// Denomination for track Notes count with noteType
 	private Map<Integer, Integer> denomination;
 	private Integer totalAmount;
-	private AtmDeposit atmDeposit;
-	private Print print;
-	private Withdraw withdraw;
+	private AtmDepositServiceImpl atmDeposit;
+	private AtmOutputServiceImpl print;
+	private WithdrawService withdraw;
 
 	/**
 	 * create object with all the notes default value 0
@@ -29,13 +27,13 @@ public class Atm {
 	 */
 	public Atm() {
 		totalAmount = 0;
-		print = new Print();
+		print = new AtmOutputServiceImpl();
 		denomination = new HashMap<>();
 		for(Notes note : Notes.values()) {
 			denomination.put(note.getNote(), 0);
 		}
-		atmDeposit = new AtmDeposit(denomination);
-		withdraw = new Withdraw(denomination, print);
+		atmDeposit = new AtmDepositServiceImpl(denomination);
+		withdraw = WithdrawServiceImpl.getInstance(denomination, print);
 	}
 	
 	/**
@@ -44,7 +42,7 @@ public class Atm {
 	 * @param totalNotes
 	 */
 	public void depositCash(Integer... totalNotes) {
-		atmDeposit.depositCash(totalNotes, totalAmount);
+		totalAmount += atmDeposit.depositCash(totalNotes, totalAmount);
 	}
 	
 	/**
@@ -52,7 +50,7 @@ public class Atm {
 	 * 
 	 * @param withdrawAmount
 	 */
-	public void withdrawAmount(int withdrawAmount) {
+	public void withdrawAmount(Integer withdrawAmount) {
 		totalAmount -= withdraw.withdrawAmount(withdrawAmount, totalAmount);
 	}
 	
