@@ -85,7 +85,7 @@ public class WithdrawServiceImpl implements WithdrawService {
 				Integer reminder = withdrawAmount / note.getNote();
 				Integer minValue = Math.min(reminder, denomination.get(note.getNote()));
 				withdrawAmount -= minValue * note.getNote(); 
-				denomination.put(note.getNote(), denomination.get(note.getNote()) - 1);
+				denomination.put(note.getNote(), denomination.get(note.getNote()) - minValue);
 				noteWithdraw[index] = minValue;
 			}
 			index++;

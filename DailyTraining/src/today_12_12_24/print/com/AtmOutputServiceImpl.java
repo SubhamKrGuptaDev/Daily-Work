@@ -57,8 +57,9 @@ public class AtmOutputServiceImpl implements AtmOutputService {
 			if(noteWithdraw[index] != null) {
 				System.out.println(note.getNote() 
 						+ Constraints.WITHDRAW_PRINT.getPrintValue() 
-						+ noteWithdraw[index++]);
+						+ noteWithdraw[index]);
 			}
+			index++;
 		}
 	}
 	
