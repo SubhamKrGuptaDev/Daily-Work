@@ -11,12 +11,34 @@ import today_12_12_24.withdraw.com.WithdrawServiceImpl;
  */
 public class AtmOperationFactoryImpl<T> implements AtmOperationFactory<T> {
 
+	private static AtmOperationFactoryImpl instance = null;
+	
 	private Map<Integer, Integer> denomination;
 	private AtmOutputServiceImpl print;
 	
-	public AtmOperationFactoryImpl(Map<Integer, Integer> denomination) {
+	private AtmOperationFactoryImpl(Map<Integer, Integer> denomination) {
 		this.denomination = denomination;
 		this.print = AtmOutputServiceImpl.getInstance();
+	}
+	
+	/**
+	 * Singleton Object
+	 * 
+	 * @param denomination
+	 * @return
+	 */
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	public static AtmOperationFactoryImpl getInstance(Map<Integer, Integer> denomination) {
+		
+		if(instance == null) {
+			synchronized (AtmOperationFactoryImpl.class) {
+				if(instance == null) {
+					instance = new AtmOperationFactoryImpl(denomination);
+				}
+			}
+		}
+		
+		return instance;
 	}
 	
 	/**

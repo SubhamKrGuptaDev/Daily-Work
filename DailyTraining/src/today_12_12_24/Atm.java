@@ -40,7 +40,7 @@ public class Atm {
 		}
 		
 		// factory class initialize
-		atmOperationFactory = new AtmOperationFactoryImpl(denomination);
+		atmOperationFactory = AtmOperationFactoryImpl.getInstance(denomination);
 		totalAmount = 0;
 		
 		// Operation class object injection
