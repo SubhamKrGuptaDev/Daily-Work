@@ -42,7 +42,9 @@ public class AtmOperationFactoryImpl<T> implements AtmOperationFactory<T> {
 	}
 	
 	/**
+	 * Factory method to get object
 	 * 
+	 * @param object
 	 */
 	@Override
 	public Object getFactoryObject(T object) {
