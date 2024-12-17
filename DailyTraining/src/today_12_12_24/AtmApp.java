@@ -3,7 +3,7 @@ package today_12_12_24;
 
 import java.util.Scanner;
 
-import today_12_12_24.enums.com.Constraints;
+import today_12_12_24.enums.com.Constants;
 import today_12_12_24.enums.com.Notes;
 
 /**
@@ -17,7 +17,7 @@ public class AtmApp {
 		Boolean inProgress = true;
 		
 		Scanner sc = new Scanner(System.in);
-		System.out.println(Constraints.WELCOME_PRINT);
+		System.out.println(Constants.WELCOME_PRINT);
 		
 		/**
 		 * infinity loop for continue running
@@ -36,19 +36,19 @@ public class AtmApp {
 			try {
 				switch (choice) {
 					case 1: {
-						System.out.println(Constraints.ENTER_HOW_MANY_PRINT.getPrintValue() 
+						System.out.println(Constants.ENTER_HOW_MANY_PRINT.getPrintValue() 
 								+ Notes.ONE_HUNDRED.getNote() 
-								+ Constraints.NOTE_YOU_HAVE_PRINT.getPrintValue());
+								+ Constants.NOTE_YOU_HAVE_PRINT.getPrintValue());
 						Integer oneHundredAmount = sc.nextInt();
 						
-						System.out.println(Constraints.ENTER_HOW_MANY_PRINT.getPrintValue() 
+						System.out.println(Constants.ENTER_HOW_MANY_PRINT.getPrintValue() 
 								+ Notes.TWO_HUNDRED.getNote() 
-								+ Constraints.NOTE_YOU_HAVE_PRINT.getPrintValue());
+								+ Constants.NOTE_YOU_HAVE_PRINT.getPrintValue());
 						Integer twoHundredAmount = sc.nextInt();
 						
-						System.out.println(Constraints.ENTER_HOW_MANY_PRINT.getPrintValue() 
+						System.out.println(Constants.ENTER_HOW_MANY_PRINT.getPrintValue() 
 								+ Notes.FIVE_HUNDRED.getNote() 
-								+ Constraints.NOTE_YOU_HAVE_PRINT.getPrintValue());
+								+ Constants.NOTE_YOU_HAVE_PRINT.getPrintValue());
 						Integer fiveHundredAmount = sc.nextInt();
 						
 						atm.depositCash(fiveHundredAmount, twoHundredAmount, oneHundredAmount);

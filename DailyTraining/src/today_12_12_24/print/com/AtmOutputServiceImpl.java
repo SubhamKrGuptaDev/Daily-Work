@@ -1,6 +1,6 @@
 package today_12_12_24.print.com;
 
-import today_12_12_24.enums.com.Constraints;
+import today_12_12_24.enums.com.Constants;
 import today_12_12_24.enums.com.Notes;
 
 /**
@@ -56,7 +56,7 @@ public class AtmOutputServiceImpl implements AtmOutputService {
 		for(Notes note : Notes.values()) {
 			if(noteWithdraw[index] != null) {
 				System.out.println(note.getNote() 
-						+ Constraints.WITHDRAW_PRINT.getPrintValue() 
+						+ Constants.WITHDRAW_PRINT.getPrintValue() 
 						+ noteWithdraw[index]);
 			}
 			index++;

@@ -3,7 +3,7 @@ package today_12_12_24.enums.com;
 /**
  * Constants for message and \output
  */
-public enum Constraints {
+public enum Constants {
 
 	WITHDRAW_PRINT(" Notes: "),
 	ENTER_HOW_MANY_PRINT("Enter how many "),
@@ -12,7 +12,7 @@ public enum Constraints {
 	
 	private final String printValue;
 	
-	private Constraints(String printValue) {
+	private Constants(String printValue) {
 		this.printValue = printValue;
 	}
 	
