@@ -2,13 +2,14 @@ package parking_lot.parking.com.repository;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 import parking_lot.parking.com.exception.GlobalException;
 import parking_lot.parking.com.model.ParkingLot;
 
 public class ParkingLotRepository {
 
-	private Map<Integer, ParkingLot> parkingLotMap;
+	private Map<UUID, ParkingLot> parkingLotMap;
 
 	public ParkingLotRepository() {
 		this.parkingLotMap = new HashMap<>();
