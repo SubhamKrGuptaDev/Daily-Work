@@ -1,17 +1,19 @@
 package parking_lot.parking.com.model;
 
+import java.util.UUID;
+
 /**
  * 
  */
 public abstract class BaseModel {
 
-	private Integer id;
+	private UUID id;
 
-	public Integer getId() {
+	public UUID getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(UUID id) {
 		this.id = id;
 	}
 	
