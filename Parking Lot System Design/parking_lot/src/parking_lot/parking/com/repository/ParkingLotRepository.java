@@ -9,32 +9,36 @@ import parking_lot.parking.com.model.ParkingLot;
 
 public class ParkingLotRepository {
 
-	private final Map<UUID, ParkingLot> parkingLotMap;
+	private final Map<String, ParkingLot> parkingLotMap;
 
 	public ParkingLotRepository() {
 		this.parkingLotMap = new HashMap<>();
 	}
 	
 	public ParkingLot save(ParkingLot parkingLot) {
-		if(parkingLotMap.containsKey(parkingLot.getId())) {
+		if(isPresent(parkingLot.getName())) {
 			throw new GlobalException("ParkingLot already present");
 		}
 		
-		return parkingLotMap.put(parkingLot.getId(), parkingLot);
+		return parkingLotMap.put(parkingLot.getName(), parkingLot);
 	}
 	
-	public ParkingLot get(UUID id) {
-		if(parkingLotMap.containsKey(id)) {
-			throw new GlobalException("ParkingLot not found | Id : " + id);
+	public ParkingLot get(String name) {
+		if(!isPresent(name)) {
+			throw new GlobalException("ParkingLot not found | Name : " + name);
 		}
-		return parkingLotMap.get(id);
+		return parkingLotMap.get(name);
 	}
 	
 	public ParkingLot update(ParkingLot parkingLot) {
-		if(!parkingLotMap.containsKey(parkingLot.getId())) {
+		if(!isPresent(parkingLot.getName())) {
 			throw new GlobalException("ParkingLot not found");
 		}
-		return parkingLotMap.put(parkingLot.getId(), parkingLot);
+		return parkingLotMap.put(parkingLot.getName(), parkingLot);
 	}
-	
+
+	public Boolean isPresent(String name) {
+		return parkingLotMap.containsKey(name);
+	}
+
 }

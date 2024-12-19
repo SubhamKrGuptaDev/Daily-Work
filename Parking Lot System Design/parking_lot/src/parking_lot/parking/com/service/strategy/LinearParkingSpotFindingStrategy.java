@@ -7,24 +7,21 @@ import parking_lot.parking.com.model.ParkingSpot;
 import parking_lot.parking.com.model.enums.ParkingSpotStatus;
 import parking_lot.parking.com.model.enums.VehicleType;
 
-public class RandomParkingSpotFindingStrategy implements ParkingSpotFindStrategy {
+public class LinearParkingSpotFindingStrategy implements ParkingSpotFindStrategy {
 
-	private ParkingSpotVehicleTypeMatchingService vehicleMatchingService;
+	private final ParkingSpotVehicleTypeMatchingService vehicleMatchingService;
 	
-	public RandomParkingSpotFindingStrategy(ParkingSpotVehicleTypeMatchingService vehicleMatchingService) {
+	public LinearParkingSpotFindingStrategy(ParkingSpotVehicleTypeMatchingService vehicleMatchingService) {
 		this.vehicleMatchingService = vehicleMatchingService;
 	}
-
-	// Using Counter we can direct check spot available or not
 	
 	@Override
 	public ParkingSpot getAvailableSpot(VehicleType vehicleType, ParkingLot parkingLot) {
-		
+
 		for(ParkingFloor floor : parkingLot.getFloors()) {
 			for(ParkingSpot spot : floor.getSpots()) {
-				if(spot.getParkingSpotStatus().equals(ParkingSpotStatus.AVAILABLE) && 
-						vehicleMatchingService.matches(spot.getSpotType(), vehicleType )) {
-					// get Spot available
+				if(spot.getParkingSpotStatus().equals(ParkingSpotStatus.AVAILABLE) &&
+						vehicleMatchingService.matches(spot.getSpotType(), vehicleType)) {
 					return spot;
 				}
 			}

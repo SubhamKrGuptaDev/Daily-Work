@@ -17,12 +17,16 @@ public class ParkingLotService {
 		return lotRepository.save(parkingLot);
 	}
 	
-	public ParkingLot get(UUID id) {
-		return lotRepository.get(id);
+	public ParkingLot get(String name) {
+		return lotRepository.get(name);
 	}
 	
 	public ParkingLot update(ParkingLot lot) {
 		return lotRepository.update(lot);
 	}
-	
+
+	public Boolean isPresent(String name) {
+		return lotRepository.isPresent(name);
+	}
+
 }

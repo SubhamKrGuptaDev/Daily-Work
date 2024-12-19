@@ -10,7 +10,7 @@ public class ParkingSpotVehicleTypeMatchingService {
 		return switch (spotType) {
 			case SMALL -> vehicleType.equals(VehicleType.BIKE);
 			case MEDIUM -> vehicleType.equals(VehicleType.CAR);
-			case LARGE -> vehicleType.equals(VehicleType.CAR);
+			case LARGE -> vehicleType.equals(VehicleType.TRUCK);
 		};
 	}
 	
