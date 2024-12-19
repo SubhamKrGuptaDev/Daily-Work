@@ -13,7 +13,7 @@ import parking_lot.parking.com.service.strategy.ParkingSpotVehicleTypeMatchingSe
 import java.util.Scanner;
 
 /**
- * 
+ * Parking Lot App
  */
 public class ParkingLotApp {
 
@@ -26,14 +26,14 @@ public class ParkingLotApp {
         DisplayService displayService = new DisplayService();
 
         System.out.println("Welcome to ParkingLot :)\n");
-        Boolean isEntry = true;
+        boolean isEntry = true;
 
         while(isEntry) {
             System.out.println("Enter your ParkingLot Name : ");
             String name = sc.nextLine();
 
             if(parkingLotController.isPresent(name)) {
-                Boolean inProgress = true;
+                boolean inProgress = true;
                 ParkingLot parkingLot = parkingLotController.get(name);
                 VehicleController vehicleController = new VehicleController(parkingLot,
                             new LinearParkingSpotFindingStrategy(
@@ -53,11 +53,13 @@ public class ParkingLotApp {
                         switch (userInput) {
                             case 1:
                                 Vehicle newVehicle = vehicleOperator.getVehicleData(sc);
-                                ParkingSpot parkingSpot = vehicleController.addVehicleFromParkingLot(newVehicle);
+                                ParkingSpot parkingSpot = vehicleController.addVehicleInParkingLot(newVehicle);
                                 displayService.addVehicleOutput(parkingSpot);
                                 break;
                             case 2:
-                                // TODO: Remove Vehicle
+                                Vehicle vehicle = vehicleOperator.getVehicleData(sc);
+                                ParkingSpot updateSpot = vehicleController.removeVehicleFromParkingLot(vehicle);
+                                displayService.removeSpot(updateSpot);
                                 break;
                             case 3:
                                 inProgress = false;

@@ -16,7 +16,7 @@ public class VehicleController {
         this.spotFindStrategy = spotFindStrategy;
     }
 
-    public ParkingSpot addVehicleFromParkingLot(Vehicle vehicle) {
+    public ParkingSpot addVehicleInParkingLot(Vehicle vehicle) {
         /**
          * Step1: find spot
          * Step2: add vehicle
@@ -30,11 +30,15 @@ public class VehicleController {
 
     public ParkingSpot removeVehicleFromParkingLot(Vehicle vehicle) {
         /**
-         *
+         * Step1: Find vehicle by number
+         * Step2: set as null
+         * Step3: set SpotType to Available
          */
+        ParkingSpot findSpot = spotFindStrategy.getSpot(vehicle.getNumber(), parkingLot);
+        findSpot.setVehicle(null);
+        findSpot.setParkingSpotStatus(ParkingSpotStatus.AVAILABLE);
 
-
-        return null;
+        return findSpot;
     }
 
 }

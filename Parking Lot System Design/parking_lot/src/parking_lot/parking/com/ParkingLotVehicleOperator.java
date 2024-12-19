@@ -13,6 +13,7 @@ public class ParkingLotVehicleOperator {
 
         System.out.println("Enter vehicle number  : ");
         String vehicleNumber = sc.nextLine();
+        newVehicle.setNumber(vehicleNumber);
 
         System.out.println("Enter vehicle Type (BIKE/CAR/TRUCK): ");
         String vehicleType = sc.nextLine().toLowerCase();

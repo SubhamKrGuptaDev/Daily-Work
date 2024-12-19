@@ -11,4 +11,9 @@ public class DisplayService {
         System.out.println("Vehicle number : "+spot.getVehicle().getNumber());
     }
 
+    public void removeSpot(ParkingSpot updateSpot) {
+        System.out.println("Parking SpotType : " + updateSpot.getSpotType());
+        System.out.println("Floor Number : "+updateSpot.getFloorNumber());
+        System.out.println("Spot Number : "+updateSpot.getSpotNumber());
+    }
 }
