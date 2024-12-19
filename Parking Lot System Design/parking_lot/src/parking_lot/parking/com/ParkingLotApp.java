@@ -29,7 +29,7 @@ public class ParkingLotApp {
         Boolean isEntry = true;
 
         while(isEntry) {
-            System.out.println("Enter your ParkingLot ID or Name : ");
+            System.out.println("Enter your ParkingLot Name : ");
             String name = sc.nextLine();
 
             if(parkingLotController.isPresent(name)) {
@@ -78,8 +78,9 @@ public class ParkingLotApp {
                 System.out.println("Parking Lot not Present with this name : " + name);
                 System.out.println("Do you want to create New Parking Lot (YES/NO) : ");
                 String ans = sc.nextLine();
-                if(ans.equals("YES")) {
+                if(ans.equalsIgnoreCase("YES")) {
                     createParkingLot.createParkingLot(sc);
+                    System.out.println("\nSuccessfully You have added Your ParkingLot data to Application\n");
                 }
             }
         }

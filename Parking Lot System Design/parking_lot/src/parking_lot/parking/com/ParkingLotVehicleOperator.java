@@ -15,9 +15,9 @@ public class ParkingLotVehicleOperator {
         String vehicleNumber = sc.nextLine();
 
         System.out.println("Enter vehicle Type (BIKE/CAR/TRUCK): ");
-        String vehicleType = sc.nextLine();
+        String vehicleType = sc.nextLine().toLowerCase();
 
-        switch (vehicleNumber.toLowerCase()) {
+        switch (vehicleType) {
             case "bike":
                 newVehicle.setVehicleType(VehicleType.BIKE);
                 break;

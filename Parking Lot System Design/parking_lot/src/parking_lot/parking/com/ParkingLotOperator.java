@@ -24,7 +24,7 @@ public class ParkingLotOperator {
          * User input for Parking Lot Object
          */
         System.out.println("Enter ParkingLot Name : ");
-        String lotName = sc.nextLine();
+        String lotName = sc.nextLine().toLowerCase();
         System.out.println("Enter Number of Floors : ");
         int numFloor = sc.nextInt();
         sc.nextLine();
