@@ -25,11 +25,11 @@ public class ParkingLotOperator {
          */
         System.out.println("Enter ParkingLot Name : ");
         String lotName = sc.nextLine().toLowerCase();
+        System.out.println("Enter ParkingLot Address : ");
+        String address = sc.nextLine();
         System.out.println("Enter Number of Floors : ");
         int numFloor = sc.nextInt();
         sc.nextLine();
-        System.out.println("Enter ParkingLot Address : ");
-        String address = sc.nextLine();
 
         ParkingLot parkingLot = new ParkingLot();
         parkingLot.setName(lotName);

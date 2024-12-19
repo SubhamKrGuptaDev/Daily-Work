@@ -35,10 +35,26 @@ public class VehicleController {
          * Step3: set SpotType to Available
          */
         ParkingSpot findSpot = spotFindStrategy.getSpot(vehicle.getNumber(), parkingLot);
-        findSpot.setVehicle(null);
-        findSpot.setParkingSpotStatus(ParkingSpotStatus.AVAILABLE);
+        setSpotFieldNull(findSpot);
 
         return findSpot;
+    }
+
+    public ParkingSpot removeVehicleFromParkingLot(Integer floor, Integer spot) {
+        /**
+         * Step1: Find vehicle by number
+         * Step2: set as null
+         * Step3: set SpotType to Available
+         */
+        ParkingSpot findSpot = spotFindStrategy.getSpot(floor, spot, parkingLot);
+        setSpotFieldNull(findSpot);
+
+        return findSpot;
+    }
+
+    private void setSpotFieldNull(ParkingSpot spot) {
+        spot.setVehicle(null);
+        spot.setParkingSpotStatus(ParkingSpotStatus.AVAILABLE);
     }
 
 }

@@ -13,5 +13,5 @@ public interface ParkingSpotFindStrategy {
 	ParkingSpot getAvailableSpot(VehicleType vehicleType, ParkingLot parkingLot);
 
 	ParkingSpot getSpot(String vehicleNumber, ParkingLot parkingLot);
-
+	ParkingSpot getSpot(Integer floor, Integer spotNumber, ParkingLot parkingLot);
 }

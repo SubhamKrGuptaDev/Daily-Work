@@ -8,6 +8,8 @@ import parking_lot.parking.com.model.Vehicle;
 import parking_lot.parking.com.model.enums.ParkingSpotStatus;
 import parking_lot.parking.com.model.enums.VehicleType;
 
+import java.util.List;
+
 public class LinearParkingSpotFindingStrategy implements ParkingSpotFindStrategy {
 
 	private final ParkingSpotVehicleTypeMatchingService vehicleMatchingService;
@@ -58,6 +60,29 @@ public class LinearParkingSpotFindingStrategy implements ParkingSpotFindStrategy
 			}
 		}
 		throw new GlobalException("Vehicle Number not found");
+	}
+
+	@Override
+	public ParkingSpot getSpot(Integer floor, Integer spotNumber, ParkingLot parkingLot) {
+		if(!isFloorValid(floor, parkingLot)) {
+			throw new GlobalException("Floor not found");
+		}
+		ParkingFloor existingFloor = parkingLot.getFloors().get(floor);
+		if(!isSpotValid(spotNumber, existingFloor)) {
+			throw new GlobalException("Spot not found");
+		}
+
+		return existingFloor.getSpots().get(spotNumber);
+	}
+
+	private Boolean isFloorValid(Integer floor, ParkingLot parkingLot) {
+		List<ParkingFloor> floors = parkingLot.getFloors();
+		return floor <= floors.size();
+	}
+
+	private Boolean isSpotValid(Integer spot, ParkingFloor floors) {
+		List<ParkingSpot> spots = floors.getSpots();
+		return spot <= spots.size();
 	}
 
 }
