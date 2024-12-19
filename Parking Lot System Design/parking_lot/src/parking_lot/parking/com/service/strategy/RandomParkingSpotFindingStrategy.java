@@ -12,7 +12,6 @@ public class RandomParkingSpotFindingStrategy implements ParkingSpotFindStrategy
 	private ParkingSpotVehicleTypeMatchingService vehicleMatchingService;
 	
 	public RandomParkingSpotFindingStrategy(ParkingSpotVehicleTypeMatchingService vehicleMatchingService) {
-		super();
 		this.vehicleMatchingService = vehicleMatchingService;
 	}
 

@@ -5,9 +5,12 @@ import java.util.List;
 import parking_lot.parking.com.exception.GlobalException;
 import parking_lot.parking.com.model.ParkingFloor;
 
+/**
+ *
+ */
 public class ParkingFloorRepository {
 
-	List<ParkingFloor> floors;
+	private final List<ParkingFloor> floors;
 	
 	public ParkingFloorRepository(List<ParkingFloor> floors) {
 		this.floors = floors;
@@ -23,9 +26,9 @@ public class ParkingFloorRepository {
 		return newFloor;
 	}
 	
-	public ParkingFloor get(ParkingFloor existingFloor) {
+	public ParkingFloor get(Integer existingFloor) {
 		for(ParkingFloor floor : floors) {
-			if(floor.getFloorNumber().equals(existingFloor.getFloorNumber())) {
+			if(floor.getFloorNumber().equals(existingFloor)) {
 				return floor;
 			}
 		}

@@ -4,21 +4,12 @@ import parking_lot.parking.com.model.enums.ParkingSpotStatus;
 import parking_lot.parking.com.model.enums.SpotType;
 
 public class ParkingSpot extends BaseModel {
-	
-	private Integer spotNumber;
+
 	private SpotType spotType;
 	private ParkingSpotStatus parkingSpotStatus;
 	
 	private Vehicle vehicle;
-	
-	public Integer getSpotNumber() {
-		return spotNumber;
-	}
-	
-	public void setSpotNumber(Integer spotNumber) {
-		this.spotNumber = spotNumber;
-	}
-	
+
 	public SpotType getSpotType() {
 		return spotType;
 	}

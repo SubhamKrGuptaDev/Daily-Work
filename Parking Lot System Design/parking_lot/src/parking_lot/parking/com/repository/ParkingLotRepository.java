@@ -9,7 +9,7 @@ import parking_lot.parking.com.model.ParkingLot;
 
 public class ParkingLotRepository {
 
-	private Map<UUID, ParkingLot> parkingLotMap;
+	private final Map<UUID, ParkingLot> parkingLotMap;
 
 	public ParkingLotRepository() {
 		this.parkingLotMap = new HashMap<>();
