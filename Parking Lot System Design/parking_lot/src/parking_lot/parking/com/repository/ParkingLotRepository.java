@@ -23,7 +23,7 @@ public class ParkingLotRepository {
 		return parkingLotMap.put(parkingLot.getId(), parkingLot);
 	}
 	
-	public ParkingLot get(Integer id) {
+	public ParkingLot get(UUID id) {
 		if(parkingLotMap.containsKey(id)) {
 			throw new GlobalException("ParkingLot not found | Id : " + id);
 		}

@@ -20,6 +20,4 @@ public class ParkingFloor extends BaseModel {
 		this.floorNumber = floorNumber;
 	}
 	
-	
-	
 }
