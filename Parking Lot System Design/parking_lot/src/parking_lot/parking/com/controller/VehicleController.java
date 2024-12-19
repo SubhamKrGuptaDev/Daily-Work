@@ -1,5 +1,6 @@
 package parking_lot.parking.com.controller;
 
+import parking_lot.parking.com.exception.GlobalException;
 import parking_lot.parking.com.model.ParkingLot;
 import parking_lot.parking.com.model.ParkingSpot;
 import parking_lot.parking.com.model.Vehicle;
@@ -21,6 +22,10 @@ public class VehicleController {
          * Step1: find spot
          * Step2: add vehicle
          */
+        if(!parkingLot.getIsSpotAvailable()) {
+            throw new GlobalException("Parking Lot is full");
+        }
+
         ParkingSpot availableSpot = spotFindStrategy.getAvailableSpot(vehicle.getVehicleType(), parkingLot);
         availableSpot.setParkingSpotStatus(ParkingSpotStatus.UNAVAILABLE);
         availableSpot.setVehicle(vehicle);
