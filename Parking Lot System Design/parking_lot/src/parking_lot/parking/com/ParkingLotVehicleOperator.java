@@ -5,11 +5,22 @@ import parking_lot.parking.com.model.Vehicle;
 import parking_lot.parking.com.model.enums.VehicleType;
 
 import java.util.Scanner;
+import java.util.UUID;
 
+/**
+ * Parking Lot Vehicle Operator
+ */
 public class ParkingLotVehicleOperator {
 
+    /**
+     * Get new vehicle object
+     *
+     * @param sc
+     * @return
+     */
     public Vehicle getVehicleData(Scanner sc) {
         Vehicle newVehicle = new Vehicle();
+        newVehicle.setId(UUID.randomUUID());
 
         System.out.println("Enter vehicle number  : ");
         String vehicleNumber = sc.nextLine();

@@ -6,7 +6,7 @@ import parking_lot.parking.com.exception.GlobalException;
 import parking_lot.parking.com.model.ParkingFloor;
 
 /**
- *
+ * Parking Floor Repository
  */
 public class ParkingFloorRepository {
 
@@ -15,7 +15,13 @@ public class ParkingFloorRepository {
 	public ParkingFloorRepository(List<ParkingFloor> floors) {
 		this.floors = floors;
 	}
-	
+
+	/**
+	 * create new Parking Floor into parking lot
+	 *
+	 * @param newFloor
+	 * @return
+	 */
 	public ParkingFloor save(ParkingFloor newFloor) {
 		for(ParkingFloor floor : floors) {
 			if(floor.getFloorNumber().equals(newFloor.getFloorNumber())) {
@@ -25,7 +31,13 @@ public class ParkingFloorRepository {
 		floors.add(newFloor);
 		return newFloor;
 	}
-	
+
+	/**
+	 * get existing parking floor from parking lot
+	 *
+	 * @param existingFloor
+	 * @return
+	 */
 	public ParkingFloor get(Integer existingFloor) {
 		for(ParkingFloor floor : floors) {
 			if(floor.getFloorNumber().equals(existingFloor)) {
@@ -34,7 +46,13 @@ public class ParkingFloorRepository {
 		}
 		throw new GlobalException("Floor not found");
 	}
-	
+
+	/**
+	 * update parking floor
+	 *
+	 * @param newFloor
+	 * @return
+	 */
 	public ParkingFloor update(ParkingFloor newFloor) {
 		for(int index = 0; index < floors.size(); index++) {
 			ParkingFloor curFloor = floors.get(index);

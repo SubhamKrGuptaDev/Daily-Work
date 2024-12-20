@@ -3,7 +3,7 @@ package parking_lot.parking.com.model;
 import java.util.List;
 
 /**
- *
+ * Parking Lot details
  */
 public class ParkingLot extends BaseModel {
 

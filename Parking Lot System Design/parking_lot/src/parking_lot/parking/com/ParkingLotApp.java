@@ -63,6 +63,12 @@ public class ParkingLotApp {
                                 sc.nextLine();
                                 ParkingSpot updateSpot = null;
 
+                                /**
+                                 * Find vehicle have 2 feature
+                                 * 1. find by vehicle number
+                                 * 2. find by floorNo | spotNo
+                                 */
+
                                 switch(choice) {
                                     case 1:
                                         Vehicle vehicle = vehicleOperator.getVehicleData(sc);

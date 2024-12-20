@@ -7,6 +7,9 @@ import parking_lot.parking.com.model.Vehicle;
 import parking_lot.parking.com.model.enums.ParkingSpotStatus;
 import parking_lot.parking.com.service.strategy.ParkingSpotFindStrategy;
 
+/**
+ * Vehicle manage controller
+ */
 public class VehicleController {
 
     private final ParkingLot parkingLot;
@@ -17,6 +20,12 @@ public class VehicleController {
         this.spotFindStrategy = spotFindStrategy;
     }
 
+    /**
+     * add vehicle in parking lot
+     *
+     * @param vehicle
+     * @return
+     */
     public ParkingSpot addVehicleInParkingLot(Vehicle vehicle) {
         /**
          * Step1: find spot
@@ -33,6 +42,12 @@ public class VehicleController {
         return availableSpot;
     }
 
+    /**
+     * remove vehicle from parking lot using vehicle number
+     *
+     * @param vehicle
+     * @return
+     */
     public ParkingSpot removeVehicleFromParkingLot(Vehicle vehicle) {
         /**
          * Step1: Find vehicle by number
@@ -45,6 +60,13 @@ public class VehicleController {
         return findSpot;
     }
 
+    /**
+     * remove vehicle from parking lot using floor and spot number
+     *
+     * @param floor
+     * @param spot
+     * @return
+     */
     public ParkingSpot removeVehicleFromParkingLot(Integer floor, Integer spot) {
         /**
          * Step1: Find vehicle by number
@@ -57,6 +79,11 @@ public class VehicleController {
         return findSpot;
     }
 
+    /**
+     * set spot field null after remove vehicle
+     *
+     * @param spot
+     */
     private void setSpotFieldNull(ParkingSpot spot) {
         spot.setVehicle(null);
         spot.setParkingSpotStatus(ParkingSpotStatus.AVAILABLE);

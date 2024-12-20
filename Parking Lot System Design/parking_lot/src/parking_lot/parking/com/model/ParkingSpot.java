@@ -4,7 +4,7 @@ import parking_lot.parking.com.model.enums.ParkingSpotStatus;
 import parking_lot.parking.com.model.enums.SpotType;
 
 /**
- *
+ * Parking Spot details
  */
 public class ParkingSpot extends BaseModel {
 

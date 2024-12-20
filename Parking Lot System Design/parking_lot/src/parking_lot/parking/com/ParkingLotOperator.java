@@ -10,7 +10,11 @@ import parking_lot.parking.com.model.enums.SpotType;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.UUID;
 
+/**
+ * Parking Lot related work
+ */
 public class ParkingLotOperator {
 
     private final ParkingLotController parkingLotController;
@@ -19,6 +23,11 @@ public class ParkingLotOperator {
         this.parkingLotController = parkingLotController;
     }
 
+    /**
+     * Create new Parking Lot
+     *
+     * @param sc
+     */
     public void createParkingLot(Scanner sc) {
         /**
          * User input for Parking Lot Object
@@ -32,6 +41,7 @@ public class ParkingLotOperator {
         sc.nextLine();
 
         ParkingLot parkingLot = new ParkingLot();
+        parkingLot.setId(UUID.randomUUID());
         parkingLot.setName(lotName);
         parkingLot.setAddress(address);
 
@@ -41,6 +51,7 @@ public class ParkingLotOperator {
         List<ParkingFloor> floors = new ArrayList<>();
         for(int floor=0; floor<numFloor; floor++) {
             ParkingFloor floorObj = new ParkingFloor();
+            floorObj.setId(UUID.randomUUID());
             floorObj.setFloorNumber(floor+1);
 
             System.out.println("Enter Floor B"+(floor+1) + " Number of Spots for BIKE : ");
@@ -73,11 +84,21 @@ public class ParkingLotOperator {
         parkingLotController.save(parkingLot);
     }
 
+    /**
+     * Create Spots depend on floor
+     *
+     * @param spotSize
+     * @param spotType
+     * @param i
+     * @param floor
+     * @return
+     */
     private List<ParkingSpot> createSpots(Integer spotSize, SpotType spotType, Integer[] i, Integer floor) {
         List<ParkingSpot> parkingSpots = new ArrayList<>();
 
         for(int index=0; index<spotSize; index++) {
             ParkingSpot spot = new ParkingSpot();
+            spot.setId(UUID.randomUUID());
 
             spot.setFloorNumber(floor);
             spot.setSpotNumber(i[0]++);

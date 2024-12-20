@@ -2,6 +2,9 @@ package parking_lot.parking.com.model;
 
 import parking_lot.parking.com.model.enums.VehicleType;
 
+/**
+ * Vehicle details
+ */
 public class Vehicle extends BaseModel {
 
 	private String number;
