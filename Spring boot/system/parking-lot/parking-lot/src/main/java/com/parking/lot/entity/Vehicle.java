@@ -4,6 +4,7 @@ import com.parking.lot.entity.enums.VehicleType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.OneToOne;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,9 +15,12 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Vehicle extends BaseModel{
+public class Vehicle extends BaseModel {
     private String number;
 
     @Enumerated(EnumType.ORDINAL)
     private VehicleType vehicleType;
+
+    @OneToOne(mappedBy = "vehicle")
+    private ParkingSpot spot;
 }

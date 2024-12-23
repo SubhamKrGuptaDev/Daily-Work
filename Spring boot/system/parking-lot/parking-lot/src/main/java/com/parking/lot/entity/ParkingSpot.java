@@ -2,9 +2,7 @@ package com.parking.lot.entity;
 
 import com.parking.lot.entity.enums.ParkingSpotStatus;
 import com.parking.lot.entity.enums.SpotType;
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -20,6 +18,13 @@ public class ParkingSpot extends BaseModel {
     private SpotType spotType;
     @Enumerated(EnumType.ORDINAL)
     private ParkingSpotStatus parkingSpotStatus;
+
+    @ManyToOne
+    @JoinColumn(name = "parking_floor_id")
+    private ParkingFloor floor;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "vehicle_id", referencedColumnName = "id")
     private Vehicle vehicle;
     private Integer spotNumber;
     private Integer floorNumber;

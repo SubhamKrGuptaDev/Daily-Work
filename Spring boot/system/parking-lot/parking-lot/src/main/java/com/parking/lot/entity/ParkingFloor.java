@@ -1,6 +1,6 @@
 package com.parking.lot.entity;
 
-import jakarta.persistence.Entity;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,8 +14,13 @@ import java.util.List;
 @Getter
 @Setter
 public class ParkingFloor extends BaseModel {
+    @OneToMany(mappedBy = "floor", cascade = CascadeType.ALL)
     private List<ParkingSpot> spots;
     private Integer floorNumber;
+
+    @ManyToOne
+    @JoinColumn(name = "parking_lot_id")
+    private ParkingLot parkingLot;
 
     private Integer bikeTotalSpots;
     private Integer carTotalSpots;
