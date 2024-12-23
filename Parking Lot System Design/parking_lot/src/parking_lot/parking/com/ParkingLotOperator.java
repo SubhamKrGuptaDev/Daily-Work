@@ -44,6 +44,7 @@ public class ParkingLotOperator {
         parkingLot.setId(UUID.randomUUID());
         parkingLot.setName(lotName);
         parkingLot.setAddress(address);
+        parkingLot.setIsSpotAvailable(true);
 
         /**
          * User Input for Floor spots
