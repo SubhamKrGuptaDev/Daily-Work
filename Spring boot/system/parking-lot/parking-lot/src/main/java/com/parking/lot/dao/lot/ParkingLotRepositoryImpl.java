@@ -5,6 +5,8 @@ import com.parking.lot.exception.GlobalException;
 import com.parking.lot.repository.ParkingLotRepo;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 /**
  * Parking Lot repository
  */
@@ -15,6 +17,16 @@ public class ParkingLotRepositoryImpl implements ParkingLotRepository {
 
     public ParkingLotRepositoryImpl(ParkingLotRepo repository) {
         this.repository = repository;
+    }
+
+    /**
+     * find all the Parking lot
+     *
+     * @return
+     */
+    @Override
+    public List<ParkingLot> getAll() {
+        return repository.findAll();
     }
 
     /**

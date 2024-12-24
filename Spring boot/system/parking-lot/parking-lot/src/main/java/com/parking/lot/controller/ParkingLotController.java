@@ -1,9 +1,14 @@
 package com.parking.lot.controller;
 
 
+import com.parking.lot.dto.ParkingLotRequest;
 import com.parking.lot.entity.ParkingLot;
 import com.parking.lot.service.lot.ParkingLotService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.Map;
 
 /**
  * Parking Lot Controller
@@ -19,14 +24,24 @@ public class ParkingLotController {
     }
 
     /**
+     * find all the Parking lot
+     *
+     * @return
+     */
+    @GetMapping
+    public List<ParkingLot> getAll() {
+        return lotService.getAll();
+    }
+
+    /**
      * create new Parking lot
      *
-     * @param lot
+     * @param lotRequest
      * @return
      */
     @PostMapping
-    public ParkingLot save(@RequestBody ParkingLot lot) {
-        return lotService.save(lot);
+    public Map<String, String> save(@RequestBody ParkingLotRequest lotRequest) {
+        return lotService.save(lotRequest);
     }
 
     /**
@@ -35,8 +50,8 @@ public class ParkingLotController {
      * @param name
      * @return
      */
-    @GetMapping
-    public ParkingLot getByName(@RequestParam String name) {
+    @GetMapping(params = "name")
+    public ParkingLot getByName(@RequestParam(name = "name") String name) {
         return lotService.getByName(name);
     }
 
@@ -57,8 +72,8 @@ public class ParkingLotController {
      * @param name
      * @return
      */
-    @GetMapping(name = "/checker", params = "name")
-    public Boolean isPresent(String name) {
+    @GetMapping(path = "/checker", params = "name")
+    public Boolean isPresent(@RequestParam(name = "name") String name) {
         return lotService.isPresent(name);
     }
 

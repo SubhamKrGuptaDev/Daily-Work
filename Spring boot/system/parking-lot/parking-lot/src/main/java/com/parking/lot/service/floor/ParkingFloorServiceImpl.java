@@ -1,8 +1,16 @@
 package com.parking.lot.service.floor;
 
 import com.parking.lot.dao.floor.ParkingFloorRepository;
+import com.parking.lot.dto.ParkingLotRequest;
 import com.parking.lot.entity.ParkingFloor;
+import com.parking.lot.entity.ParkingLot;
+import com.parking.lot.entity.ParkingSpot;
+import com.parking.lot.entity.enums.SpotType;
+import com.parking.lot.service.spot.ParkingSpotService;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Parking floor service
@@ -11,9 +19,11 @@ import org.springframework.stereotype.Service;
 public class ParkingFloorServiceImpl implements ParkingFloorService {
 
     private final ParkingFloorRepository repository;
+    private final ParkingSpotService spotService;
 
-    public ParkingFloorServiceImpl(ParkingFloorRepository repository) {
+    public ParkingFloorServiceImpl(ParkingFloorRepository repository, ParkingSpotService spotService) {
         this.repository = repository;
+        this.spotService = spotService;
     }
 
     /**
@@ -30,12 +40,41 @@ public class ParkingFloorServiceImpl implements ParkingFloorService {
     /**
      * create new floor in parking lot
      *
-     * @param floor
+     * @param request
+     * @param newParkingLot
+     * @param floorNumber
      * @return
      */
     @Override
-    public ParkingFloor save(ParkingFloor floor) {
-        return repository.save(floor);
+    public ParkingFloor createWithParkingLot(ParkingLotRequest request, ParkingLot newParkingLot, Integer floorNumber) {
+        ParkingFloor newFloor = new ParkingFloor();
+        newFloor.setFloorNumber(floorNumber);
+        newFloor.setBikeTotalSpots(request.getTotalBikeSpots());
+        newFloor.setCarTotalSpots(request.getTotalCarSpots());
+        newFloor.setTruckTotalSpots(request.getTotalTruckSpots());
+        newFloor.setParkingLot(newParkingLot);
+
+
+        // Parking Spot for bike
+        List<ParkingSpot> listSpots = new ArrayList<>();
+        Integer[] spotNumber = {1};
+        for(int i=0; i<newFloor.getBikeTotalSpots(); i++) {
+            listSpots.add(spotService.getParkingSpotObject(SpotType.SMALL, spotNumber, newFloor));
+        }
+
+        // Parking Spot for car
+        for(int i=0; i<newFloor.getCarTotalSpots(); i++) {
+            listSpots.add(spotService.getParkingSpotObject(SpotType.MEDIUM, spotNumber, newFloor));
+        }
+
+        // Parking Spot for truck
+        for(int i=0; i<newFloor.getTruckTotalSpots(); i++) {
+            listSpots.add(spotService.getParkingSpotObject(SpotType.LARGE, spotNumber, newFloor));
+        }
+
+        newFloor.setSpots(listSpots);
+
+        return newFloor;
     }
 
     /**

@@ -2,7 +2,10 @@ package com.parking.lot.service.spot;
 
 
 import com.parking.lot.dao.spot.ParkingSpotRepository;
+import com.parking.lot.entity.ParkingFloor;
 import com.parking.lot.entity.ParkingSpot;
+import com.parking.lot.entity.enums.ParkingSpotStatus;
+import com.parking.lot.entity.enums.SpotType;
 import org.springframework.stereotype.Service;
 
 /**
@@ -37,6 +40,19 @@ public class ParkingSpotServiceImpl implements ParkingSpotService {
     @Override
     public ParkingSpot save(ParkingSpot spot) {
         return repository.save(spot);
+    }
+
+    @Override
+    public ParkingSpot getParkingSpotObject(SpotType spotType, Integer[] spotNumber, ParkingFloor floor) {
+        ParkingSpot spot = new ParkingSpot();
+
+        spot.setSpotType(spotType);
+        spot.setParkingSpotStatus(ParkingSpotStatus.AVAILABLE);
+        spot.setFloor(floor);
+        spot.setSpotNumber(spotNumber[0]++);
+        spot.setFloorNumber(floor.getFloorNumber());
+
+        return spot;
     }
 
     /**

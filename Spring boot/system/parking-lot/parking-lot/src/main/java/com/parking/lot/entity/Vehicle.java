@@ -18,7 +18,7 @@ import lombok.Setter;
 public class Vehicle extends BaseModel {
     private String number;
 
-    @Enumerated(EnumType.ORDINAL)
+    @Enumerated(EnumType.STRING)
     private VehicleType vehicleType;
 
     @OneToOne(mappedBy = "vehicle")
