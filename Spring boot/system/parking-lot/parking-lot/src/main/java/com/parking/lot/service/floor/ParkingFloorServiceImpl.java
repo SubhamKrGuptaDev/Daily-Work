@@ -22,6 +22,7 @@ public class ParkingFloorServiceImpl implements ParkingFloorService {
      * @param floor
      * @return
      */
+    @Override
     public ParkingFloor get(Integer floor) {
         return repository.get(floor);
     }
@@ -32,6 +33,7 @@ public class ParkingFloorServiceImpl implements ParkingFloorService {
      * @param floor
      * @return
      */
+    @Override
     public ParkingFloor save(ParkingFloor floor) {
         return repository.save(floor);
     }
@@ -42,6 +44,7 @@ public class ParkingFloorServiceImpl implements ParkingFloorService {
      * @param floor
      * @return
      */
+    @Override
     public ParkingFloor update(ParkingFloor floor) {
         return repository.update(floor);
     }

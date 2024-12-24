@@ -1,6 +1,7 @@
 package com.parking.lot.service.spot;
 
 
+import com.parking.lot.dao.spot.ParkingSpotRepository;
 import com.parking.lot.entity.ParkingSpot;
 import org.springframework.stereotype.Service;
 
@@ -10,7 +11,11 @@ import org.springframework.stereotype.Service;
 @Service
 public class ParkingSpotServiceImpl implements ParkingSpotService {
 
+    private final ParkingSpotRepository repository;
 
+    public ParkingSpotServiceImpl(ParkingSpotRepository repository) {
+        this.repository = repository;
+    }
 
     /**
      * Get Spot based on spotNumber
@@ -18,8 +23,9 @@ public class ParkingSpotServiceImpl implements ParkingSpotService {
      * @param spotNumber
      * @return
      */
+    @Override
     public ParkingSpot get(Integer spotNumber) {
-        return repository.get(spotNumber);
+        return repository.getBySpotNumber(spotNumber);
     }
 
     /**
@@ -28,6 +34,7 @@ public class ParkingSpotServiceImpl implements ParkingSpotService {
      * @param spot
      * @return
      */
+    @Override
     public ParkingSpot save(ParkingSpot spot) {
         return repository.save(spot);
     }
@@ -35,12 +42,12 @@ public class ParkingSpotServiceImpl implements ParkingSpotService {
     /**
      * Update spot
      *
-     * @param spotNumber
      * @param spot
      * @return
      */
-    public ParkingSpot update(Integer spotNumber, ParkingSpot spot) {
-        return repository.update(spotNumber, spot);
+    @Override
+    public ParkingSpot update(ParkingSpot spot) {
+        return repository.update(spot);
     }
 
 }

@@ -23,6 +23,7 @@ public class ParkingLotRepositoryImpl implements ParkingLotRepository {
      * @param parkingLot
      * @return
      */
+    @Override
     public ParkingLot save(ParkingLot parkingLot) {
         return repository.save(parkingLot);
     }
@@ -33,6 +34,7 @@ public class ParkingLotRepositoryImpl implements ParkingLotRepository {
      * @param name
      * @return
      */
+    @Override
     public ParkingLot getByName(String name) {
         return repository.findByName(name)
                 .orElseThrow(() -> new GlobalException("ParkingLot not find by name"));
@@ -44,6 +46,7 @@ public class ParkingLotRepositoryImpl implements ParkingLotRepository {
      * @param parkingLot
      * @return
      */
+    @Override
     public ParkingLot update(ParkingLot parkingLot) {
         ParkingLot existingObject = getByName(parkingLot.getName());
         return null;
@@ -55,6 +58,7 @@ public class ParkingLotRepositoryImpl implements ParkingLotRepository {
      * @param name
      * @return
      */
+    @Override
     public Boolean isPresent(String name) {
         return repository.existsByName(name);
     }

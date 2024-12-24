@@ -1,5 +1,6 @@
 package com.parking.lot.service.lot;
 
+import com.parking.lot.dao.lot.ParkingLotRepository;
 import com.parking.lot.entity.ParkingLot;
 import org.springframework.stereotype.Service;
 
@@ -7,9 +8,13 @@ import org.springframework.stereotype.Service;
  * Parking Lot Service
  */
 @Service
-public class ParkingLotServiceImpl implements ParkingFloorService {
+public class ParkingLotServiceImpl implements ParkingLotService {
 
+    private final ParkingLotRepository repository;
 
+    public ParkingLotServiceImpl(ParkingLotRepository repository) {
+        this.repository = repository;
+    }
 
     /**
      * Create new Parking Lot
@@ -17,8 +22,9 @@ public class ParkingLotServiceImpl implements ParkingFloorService {
      * @param parkingLot
      * @return
      */
+    @Override
     public ParkingLot save(ParkingLot parkingLot) {
-        return lotRepository.save(parkingLot);
+        return repository.save(parkingLot);
     }
 
     /**
@@ -27,8 +33,9 @@ public class ParkingLotServiceImpl implements ParkingFloorService {
      * @param name
      * @return
      */
-    public ParkingLot get(String name) {
-        return lotRepository.get(name);
+    @Override
+    public ParkingLot getByName(String name) {
+        return repository.getByName(name);
     }
 
     /**
@@ -37,8 +44,9 @@ public class ParkingLotServiceImpl implements ParkingFloorService {
      * @param lot
      * @return
      */
+    @Override
     public ParkingLot update(ParkingLot lot) {
-        return lotRepository.update(lot);
+        return repository.update(lot);
     }
 
     /**
@@ -47,8 +55,9 @@ public class ParkingLotServiceImpl implements ParkingFloorService {
      * @param name
      * @return
      */
+    @Override
     public Boolean isPresent(String name) {
-        return lotRepository.isPresent(name);
+        return repository.isPresent(name);
     }
 
 }

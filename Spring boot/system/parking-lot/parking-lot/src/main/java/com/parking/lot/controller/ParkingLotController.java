@@ -2,17 +2,20 @@ package com.parking.lot.controller;
 
 
 import com.parking.lot.entity.ParkingLot;
-import com.parking.lot.service.lot.ParkingLotServiceImpl;
+import com.parking.lot.service.lot.ParkingLotService;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * Parking Lot Controller
  */
+@RestController
+@RequestMapping("/parking-lot")
 public class ParkingLotController {
 
-    private ParkingLotServiceImpl lotService;
+    private final ParkingLotService lotService;
 
-    public ParkingLotController() {
-        lotService = new ParkingLotServiceImpl();
+    public ParkingLotController(ParkingLotService lotService) {
+        this.lotService = lotService;
     }
 
     /**
@@ -21,7 +24,8 @@ public class ParkingLotController {
      * @param lot
      * @return
      */
-    public ParkingLot save(ParkingLot lot) {
+    @PostMapping
+    public ParkingLot save(@RequestBody ParkingLot lot) {
         return lotService.save(lot);
     }
 
@@ -31,8 +35,9 @@ public class ParkingLotController {
      * @param name
      * @return
      */
-    public ParkingLot get(String name) {
-        return lotService.get(name);
+    @GetMapping
+    public ParkingLot getByName(@RequestParam String name) {
+        return lotService.getByName(name);
     }
 
     /**
@@ -41,7 +46,8 @@ public class ParkingLotController {
      * @param lot
      * @return
      */
-    public ParkingLot update(ParkingLot lot) {
+    @PutMapping
+    public ParkingLot update(@RequestBody ParkingLot lot) {
         return lotService.update(lot);
     }
 
@@ -51,6 +57,7 @@ public class ParkingLotController {
      * @param name
      * @return
      */
+    @GetMapping(name = "/checker", params = "name")
     public Boolean isPresent(String name) {
         return lotService.isPresent(name);
     }
