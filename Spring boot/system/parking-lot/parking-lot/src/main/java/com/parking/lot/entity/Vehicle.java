@@ -8,10 +8,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Getter
-@Setter
-@AllArgsConstructor
-@NoArgsConstructor
 public class Vehicle extends BaseModel {
     @Column(unique = true)
     private String number;
@@ -21,4 +17,28 @@ public class Vehicle extends BaseModel {
 
     @OneToOne(mappedBy = "vehicle")
     private ParkingSpot spot;
+
+    public String getNumber() {
+        return number;
+    }
+
+    public void setNumber(String number) {
+        this.number = number;
+    }
+
+    public VehicleType getVehicleType() {
+        return vehicleType;
+    }
+
+    public void setVehicleType(VehicleType vehicleType) {
+        this.vehicleType = vehicleType;
+    }
+
+    public ParkingSpot getSpot() {
+        return spot;
+    }
+
+    public void setSpot(ParkingSpot spot) {
+        this.spot = spot;
+    }
 }

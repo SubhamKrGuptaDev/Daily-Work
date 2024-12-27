@@ -9,8 +9,8 @@ import java.util.Optional;
 public interface ParkingSpotRepo extends JpaRepository<ParkingSpot, Integer> {
     Optional<ParkingSpot> findBySpotNumber(Integer spotNumber);
 
-    @Query(value = "", nativeQuery = true)
-    Integer getAvailableSpotId(String email);
+//    @Query(value = "", nativeQuery = true)
+//    Integer getAvailableSpotId(String email);
 
     Optional<ParkingSpot> findByVehicleId(Integer id);
 }

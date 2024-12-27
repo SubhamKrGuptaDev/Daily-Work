@@ -17,6 +17,12 @@ public class ParkingSpotRepositoryImpl implements ParkingSpotRepository {
         this.repository = repository;
     }
 
+    /**
+     *
+     *
+     * @param id
+     * @return
+     */
     @Override
     public ParkingSpot getById(Integer id) {
         return repository.findById(id)
@@ -66,7 +72,8 @@ public class ParkingSpotRepositoryImpl implements ParkingSpotRepository {
      */
     @Override
     public Integer findByVehicleNullOrderById(String email) {
-        return repository.getAvailableSpotId(email);
+//        return repository.getAvailableSpotId(email);
+        return null;
     }
 
     /**

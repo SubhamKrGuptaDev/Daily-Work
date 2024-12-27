@@ -22,12 +22,26 @@ public class VehicleController {
         this.responseService = responseService;
     }
 
+    /**
+     *
+     *
+     * @param email
+     * @param request
+     * @return
+     */
     @PostMapping(value = "/add", params = "email")
     public VehicleResponse addVehicle(@RequestParam("email") String email, @RequestBody VehicleRequest request) {
         ParkingSpot parkingSpot = vehicleService.addVehicleInParkingLot(email, request);
         return responseService.addVehicleResponse(parkingSpot);
     }
 
+    /**
+     *
+     *
+     * @param email
+     * @param request
+     * @return
+     */
     @PostMapping(value = "/remove", params = "email")
     public String removeVehicle(@RequestParam("email") String email, @RequestBody VehicleRequest request) {
         return vehicleService.removeVehicle(email, request);

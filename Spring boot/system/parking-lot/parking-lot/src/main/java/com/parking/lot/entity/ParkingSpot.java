@@ -1,5 +1,6 @@
 package com.parking.lot.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.parking.lot.entity.enums.ParkingSpotStatus;
 import com.parking.lot.entity.enums.SpotType;
 import jakarta.persistence.*;
@@ -13,6 +14,7 @@ public class ParkingSpot extends BaseModel {
 
     @ManyToOne
     @JoinColumn(name = "parking_floor_id")
+    @JsonBackReference
     private ParkingFloor floor;
 
     @OneToOne(cascade = CascadeType.ALL)

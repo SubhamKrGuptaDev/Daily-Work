@@ -1,9 +1,12 @@
 package com.parking.lot.dto;
 
 import com.parking.lot.dto.models.VehicleResponse;
+import com.parking.lot.entity.ParkingLot;
 import com.parking.lot.entity.ParkingSpot;
 import com.parking.lot.exception.GlobalException;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class DataResponseService {
@@ -23,4 +26,9 @@ public class DataResponseService {
 
         return response;
     }
+
+//    public List<ParkingLot> convertListOfParkingLot(List<ParkingLot> parkingLots) {
+//
+//    }
+
 }

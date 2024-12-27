@@ -3,6 +3,7 @@ package com.parking.lot.controller;
 import com.parking.lot.dto.models.ParkingLotRequest;
 import com.parking.lot.entity.ParkingLot;
 import com.parking.lot.service.lot.ParkingLotService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -27,8 +28,8 @@ public class ParkingLotController {
      * @return
      */
     @GetMapping
-    public List<ParkingLot> getAll() {
-        return lotService.getAll();
+    public ResponseEntity<List<ParkingLot>> getAll() {
+        return ResponseEntity.ok(lotService.getAll());
     }
 
     /**
