@@ -16,7 +16,7 @@ public class VehicleRepositoryImpl implements VehicleRepository {
     }
 
     /**
-     *
+     * Get Vehicle by vehicle id
      *
      * @param id
      * @return
@@ -28,7 +28,7 @@ public class VehicleRepositoryImpl implements VehicleRepository {
     }
 
     /**
-     *
+     * Get vehicle by vehicle number
      *
      * @param vehicleNumber
      * @return
@@ -40,57 +40,73 @@ public class VehicleRepositoryImpl implements VehicleRepository {
     }
 
     /**
-     *
+     * create vehicle
      *
      * @param vehicle
      * @return
      */
     @Override
     public Vehicle save(Vehicle vehicle) {
-        return repo.save(vehicle);
+        try {
+            return repo.save(vehicle);
+        } catch (Exception ex) {
+            throw new GlobalException(ex.getMessage());
+        }
     }
 
     /**
-     *
+     * update vehicle
      *
      * @param vehicle
      * @return
      */
     @Override
     public Vehicle update(Vehicle vehicle) {
-        Vehicle existingObj = get(vehicle.getId());
-        setVehicle(existingObj, vehicle);
+        try {
+            Vehicle existingObj = get(vehicle.getId());
+            setVehicle(existingObj, vehicle);
 
-        return save(existingObj);
+            return save(existingObj);
+        } catch(Exception ex) {
+            throw new GlobalException(ex.getMessage());
+        }
     }
 
     /**
-     *
+     * set vehicle newVehicle -> existingVehicle
      *
      * @param existingVehicle
      * @param newVehicle
      */
     private void setVehicle(Vehicle existingVehicle, Vehicle newVehicle) {
-        existingVehicle.setNumber(newVehicle.getNumber());
-        existingVehicle.setVehicleType(newVehicle.getVehicleType());
+        try {
+            existingVehicle.setNumber(newVehicle.getNumber());
+            existingVehicle.setVehicleType(newVehicle.getVehicleType());
+        } catch(Exception ex) {
+            throw new GlobalException(ex.getMessage());
+        }
     }
 
     /**
-     *
+     * Add Vehicle
      *
      * @param request
      * @return
      */
     @Override
     public Vehicle addVehicle(VehicleRequest request) {
-        Vehicle newVehicle = new Vehicle();
-        newVehicle.setNumber(request.getVehicleNumber());
-        newVehicle.setVehicleType(request.getType());
-        return save(newVehicle);
+        try {
+            Vehicle newVehicle = new Vehicle();
+            newVehicle.setNumber(request.getVehicleNumber());
+            newVehicle.setVehicleType(request.getType());
+            return save(newVehicle);
+        } catch(Exception ex) {
+            throw new GlobalException(ex.getMessage());
+        }
     }
 
     /**
-     *
+     * Remove Vehicle from parking lot
      *
      * @param email
      * @param request
@@ -102,13 +118,17 @@ public class VehicleRepositoryImpl implements VehicleRepository {
     }
 
     /**
-     *
+     * Vehicle present or not
      *
      * @param vehicleNumber
      * @return
      */
     @Override
     public Boolean existsByNumber(String vehicleNumber) {
-        return repo.existsByNumber(vehicleNumber);
+        try {
+            return repo.existsByNumber(vehicleNumber);
+        } catch (Exception ex) {
+            throw new GlobalException(ex.getMessage());
+        }
     }
 }

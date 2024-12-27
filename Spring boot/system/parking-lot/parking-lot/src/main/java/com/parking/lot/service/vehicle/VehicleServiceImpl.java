@@ -7,6 +7,7 @@ import com.parking.lot.dto.models.VehicleRequest;
 import com.parking.lot.entity.ParkingLot;
 import com.parking.lot.entity.ParkingSpot;
 import com.parking.lot.entity.Vehicle;
+import com.parking.lot.entity.enums.ParkingSpotStatus;
 import com.parking.lot.service.strategy.LinearParkingSpotFindingStrategy;
 import com.parking.lot.service.strategy.ParkingSpotFindStrategy;
 import com.parking.lot.service.strategy.ParkingSpotVehicleTypeMatchingService;
@@ -52,6 +53,8 @@ public class VehicleServiceImpl implements VehicleService {
 
         ParkingSpot availableSpot = findStrategy.getAvailableSpot(request.getType(), existingParking);
         availableSpot.setVehicle(vehicleObj);
+        availableSpot.setParkingSpotStatus(ParkingSpotStatus.UNAVAILABLE);
+
         return spotRepository.save(availableSpot);
     }
 
@@ -67,6 +70,8 @@ public class VehicleServiceImpl implements VehicleService {
         Vehicle existingVehicle = vehicleRepository.get(request.getVehicleNumber());
         ParkingSpot existingSpot = spotRepository.findByVehicleId(existingVehicle.getId());
         existingSpot.setVehicle(null);
+        existingSpot.setParkingSpotStatus(ParkingSpotStatus.AVAILABLE);
+
         spotRepository.save(existingSpot);
         return SUCCESSFULLY_REMOVE;
     }

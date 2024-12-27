@@ -26,7 +26,11 @@ public class ParkingLotRepositoryImpl implements ParkingLotRepository {
      */
     @Override
     public List<ParkingLot> getAll() {
-        return repository.findAll();
+         try {
+             return repository.findAll();
+         } catch (Exception ex) {
+             throw new GlobalException(ex.getMessage());
+         }
     }
 
     /**
@@ -37,7 +41,11 @@ public class ParkingLotRepositoryImpl implements ParkingLotRepository {
      */
     @Override
     public ParkingLot save(ParkingLot parkingLot) {
-        return repository.save(parkingLot);
+        try {
+            return repository.save(parkingLot);
+        } catch (Exception ex) {
+            throw new GlobalException(ex.getMessage());
+        }
     }
 
     /**
@@ -66,7 +74,7 @@ public class ParkingLotRepositoryImpl implements ParkingLotRepository {
      */
     @Override
     public ParkingLot update(ParkingLot parkingLot) {
-        ParkingLot existingObject = getByName(parkingLot.getName());
+//        ParkingLot existingObject = getByName(parkingLot.getName());
         return null;
     }
 
@@ -78,7 +86,11 @@ public class ParkingLotRepositoryImpl implements ParkingLotRepository {
      */
     @Override
     public Boolean isPresent(String email) {
-        return repository.existsByEmail(email);
+        try {
+            return repository.existsByEmail(email);
+        } catch(Exception ex) {
+            throw new GlobalException(ex.getMessage());
+        }
     }
 
 }

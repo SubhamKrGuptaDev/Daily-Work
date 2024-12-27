@@ -49,7 +49,11 @@ public class ParkingSpotRepositoryImpl implements ParkingSpotRepository {
      */
     @Override
     public ParkingSpot save(ParkingSpot spot) {
-        return repository.save(spot);
+        try {
+            return repository.save(spot);
+        } catch (Exception ex) {
+            throw new GlobalException(ex.getMessage());
+        }
     }
 
     /**
@@ -60,8 +64,12 @@ public class ParkingSpotRepositoryImpl implements ParkingSpotRepository {
      */
     @Override
     public ParkingSpot update(ParkingSpot spot) {
-        ParkingSpot existingSpot = getById(spot.getId());
-        return save(existingSpot);
+        try {
+            ParkingSpot existingSpot = getById(spot.getId());
+            return save(existingSpot);
+        } catch(Exception ex) {
+            throw new GlobalException(ex.getMessage());
+        }
     }
 
     /**
@@ -95,11 +103,15 @@ public class ParkingSpotRepositoryImpl implements ParkingSpotRepository {
      * @param newSpot
      */
     private void setParkingSpot(ParkingSpot existingSpot, ParkingSpot newSpot) {
-        existingSpot.setSpotType(newSpot.getSpotType());
-        existingSpot.setSpotNumber(newSpot.getSpotNumber());
-        existingSpot.setParkingSpotStatus(newSpot.getParkingSpotStatus());
-        existingSpot.setVehicle(newSpot.getVehicle());
-        existingSpot.setFloorNumber(newSpot.getFloorNumber());
+        try {
+            existingSpot.setSpotType(newSpot.getSpotType());
+            existingSpot.setSpotNumber(newSpot.getSpotNumber());
+            existingSpot.setParkingSpotStatus(newSpot.getParkingSpotStatus());
+            existingSpot.setVehicle(newSpot.getVehicle());
+            existingSpot.setFloorNumber(newSpot.getFloorNumber());
+        } catch(Exception ex) {
+            throw new GlobalException(ex.getMessage());
+        }
     }
 
 }

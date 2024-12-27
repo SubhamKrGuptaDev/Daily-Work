@@ -1,11 +1,8 @@
 package com.parking.lot.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.parking.lot.entity.enums.VehicleType;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 @Entity
 public class Vehicle extends BaseModel {
@@ -16,6 +13,7 @@ public class Vehicle extends BaseModel {
     private VehicleType vehicleType;
 
     @OneToOne(mappedBy = "vehicle")
+    @JsonBackReference
     private ParkingSpot spot;
 
     public String getNumber() {

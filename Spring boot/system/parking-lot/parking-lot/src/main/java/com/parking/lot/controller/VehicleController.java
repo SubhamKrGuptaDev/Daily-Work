@@ -23,7 +23,7 @@ public class VehicleController {
     }
 
     /**
-     *
+     * Add Vehicle in parking lot
      *
      * @param email
      * @param request
@@ -36,7 +36,7 @@ public class VehicleController {
     }
 
     /**
-     *
+     * Remove vehicle from parking lot
      *
      * @param email
      * @param request

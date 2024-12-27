@@ -25,7 +25,11 @@ public class ParkingFloorRepositoryImpl implements ParkingFloorRepository {
      */
     @Override
     public ParkingFloor save(ParkingFloor newFloor) {
-        return repo.save(newFloor);
+        try {
+            return repo.save(newFloor);
+        } catch(Exception ex) {
+            throw new GlobalException(ex.getMessage());
+        }
     }
 
     /**
@@ -48,16 +52,24 @@ public class ParkingFloorRepositoryImpl implements ParkingFloorRepository {
      */
     @Override
     public ParkingFloor update(ParkingFloor newFloor) {
-        ParkingFloor existingFloor = get(newFloor.getId());
-        setParkingFloorObject(existingFloor, newFloor);
-        return save(existingFloor);
+        try {
+            ParkingFloor existingFloor = get(newFloor.getId());
+            setParkingFloorObject(existingFloor, newFloor);
+            return save(existingFloor);
+        } catch(Exception ex) {
+            throw new GlobalException(ex.getMessage());
+        }
     }
 
     private void setParkingFloorObject(ParkingFloor oldFloor, ParkingFloor newFloor) {
-        oldFloor.setFloorNumber(newFloor.getFloorNumber());
-        oldFloor.setBikeTotalSpots(newFloor.getBikeTotalSpots());
-        oldFloor.setCarTotalSpots(newFloor.getCarTotalSpots());
-        oldFloor.setTruckTotalSpots(newFloor.getTruckTotalSpots());
+        try {
+            oldFloor.setFloorNumber(newFloor.getFloorNumber());
+            oldFloor.setBikeTotalSpots(newFloor.getBikeTotalSpots());
+            oldFloor.setCarTotalSpots(newFloor.getCarTotalSpots());
+            oldFloor.setTruckTotalSpots(newFloor.getTruckTotalSpots());
+        } catch (Exception ex) {
+            throw new GlobalException(ex.getMessage());
+        }
     }
 
 }

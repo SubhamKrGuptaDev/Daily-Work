@@ -43,7 +43,7 @@ public class ParkingSpotServiceImpl implements ParkingSpotService {
     }
 
     /**
-     *
+     * Get parking lot Object
      *
      * @param spotType
      * @param spotNumber
