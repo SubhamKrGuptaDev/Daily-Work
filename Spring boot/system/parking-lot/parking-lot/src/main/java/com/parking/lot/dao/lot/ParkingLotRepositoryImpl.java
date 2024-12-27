@@ -52,6 +52,12 @@ public class ParkingLotRepositoryImpl implements ParkingLotRepository {
                 .orElseThrow(() -> new GlobalException("ParkingLot not find by name"));
     }
 
+    @Override
+    public ParkingLot getByEmail(String email) {
+        return repository.findByEmail(email)
+                .orElseThrow(() -> new GlobalException("Parking lot not found by email"));
+    }
+
     /**
      * update parking lot
      *
@@ -67,12 +73,12 @@ public class ParkingLotRepositoryImpl implements ParkingLotRepository {
     /**
      * check parking lot already present or not
      *
-     * @param name
+     * @param email
      * @return
      */
     @Override
-    public Boolean isPresent(String name) {
-        return repository.existsByName(name);
+    public Boolean isPresent(String email) {
+        return repository.existsByEmail(email);
     }
 
 }

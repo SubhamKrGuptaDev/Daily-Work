@@ -42,6 +42,14 @@ public class ParkingSpotServiceImpl implements ParkingSpotService {
         return repository.save(spot);
     }
 
+    /**
+     *
+     *
+     * @param spotType
+     * @param spotNumber
+     * @param floor
+     * @return
+     */
     @Override
     public ParkingSpot getParkingSpotObject(SpotType spotType, Integer[] spotNumber, ParkingFloor floor) {
         ParkingSpot spot = new ParkingSpot();

@@ -9,4 +9,7 @@ public interface ParkingSpotRepository {
     ParkingSpot save(ParkingSpot spot);
     ParkingSpot update(ParkingSpot spot);
 
+    Integer findByVehicleNullOrderById(String email);
+
+    ParkingSpot findByVehicleId(Integer id);
 }

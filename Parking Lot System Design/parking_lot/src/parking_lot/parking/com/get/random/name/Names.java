@@ -6,5 +6,7 @@ public enum Names {
     RAMANATHAN,
     ABHISHEK,
     SUSHREE,
-    NISHI
+    NISHI,
+    RAVI,
+    ASHUTOSH
 }

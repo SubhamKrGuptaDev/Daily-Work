@@ -12,10 +12,6 @@ import lombok.Setter;
 import java.util.List;
 
 @Entity
-//@AllArgsConstructor
-//@NoArgsConstructor
-//@Getter
-//@Setter
 public class ParkingLot extends BaseModel {
     private String name;
 

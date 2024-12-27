@@ -1,7 +1,7 @@
 package com.parking.lot.service.floor;
 
 import com.parking.lot.dao.floor.ParkingFloorRepository;
-import com.parking.lot.dto.ParkingLotRequest;
+import com.parking.lot.dto.models.ParkingLotRequest;
 import com.parking.lot.entity.ParkingFloor;
 import com.parking.lot.entity.ParkingLot;
 import com.parking.lot.entity.ParkingSpot;

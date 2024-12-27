@@ -9,4 +9,8 @@ public interface ParkingLotRepo extends JpaRepository<ParkingLot, Integer> {
     Boolean existsByName(String name);
 
     Optional<ParkingLot> findByName(String name);
+
+    Boolean existsByEmail(String email);
+
+    Optional<ParkingLot> findByEmail(String email);
 }

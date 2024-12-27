@@ -1,10 +1,8 @@
 package com.parking.lot.controller;
 
-
-import com.parking.lot.dto.ParkingLotRequest;
+import com.parking.lot.dto.models.ParkingLotRequest;
 import com.parking.lot.entity.ParkingLot;
 import com.parking.lot.service.lot.ParkingLotService;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

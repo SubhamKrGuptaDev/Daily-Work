@@ -1,6 +1,6 @@
 package com.parking.lot.exception;
 
-import com.parking.lot.dto.ErrorResponse;
+import com.parking.lot.dto.models.ErrorResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;

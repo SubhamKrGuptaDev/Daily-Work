@@ -1,6 +1,6 @@
 package com.parking.lot.service.lot;
 
-import com.parking.lot.dto.ParkingLotRequest;
+import com.parking.lot.dto.models.ParkingLotRequest;
 import com.parking.lot.entity.ParkingLot;
 
 import java.util.List;

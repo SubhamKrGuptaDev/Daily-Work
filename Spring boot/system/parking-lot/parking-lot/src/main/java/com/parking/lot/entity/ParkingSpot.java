@@ -18,6 +18,7 @@ public class ParkingSpot extends BaseModel {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "vehicle_id", referencedColumnName = "id")
     private Vehicle vehicle;
+
     private Integer spotNumber;
     private Integer floorNumber;
 

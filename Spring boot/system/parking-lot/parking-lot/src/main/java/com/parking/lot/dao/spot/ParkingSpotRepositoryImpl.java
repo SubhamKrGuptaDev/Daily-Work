@@ -58,6 +58,35 @@ public class ParkingSpotRepositoryImpl implements ParkingSpotRepository {
         return save(existingSpot);
     }
 
+    /**
+     *
+     *
+     * @param email
+     * @return
+     */
+    @Override
+    public Integer findByVehicleNullOrderById(String email) {
+        return repository.getAvailableSpotId(email);
+    }
+
+    /**
+     *
+     *
+     * @param id
+     * @return
+     */
+    @Override
+    public ParkingSpot findByVehicleId(Integer id) {
+        return repository.findByVehicleId(id)
+                .orElseThrow(() -> new GlobalException("Vehicle not present in this floor"));
+    }
+
+    /**
+     *
+     *
+     * @param existingSpot
+     * @param newSpot
+     */
     private void setParkingSpot(ParkingSpot existingSpot, ParkingSpot newSpot) {
         existingSpot.setSpotType(newSpot.getSpotType());
         existingSpot.setSpotNumber(newSpot.getSpotNumber());
