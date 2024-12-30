@@ -2,15 +2,23 @@ package com.parking.lot.repository;
 
 import com.parking.lot.entity.ParkingSpot;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
 
 import java.util.Optional;
 
 public interface ParkingSpotRepo extends JpaRepository<ParkingSpot, Integer> {
+    /**
+     * find parking spot using spot number
+     *
+     * @param spotNumber
+     * @return
+     */
     Optional<ParkingSpot> findBySpotNumber(Integer spotNumber);
 
-//    @Query(value = "", nativeQuery = true)
-//    Integer getAvailableSpotId(String email);
-
+    /**
+     * find Parking spot using vehicle id
+     *
+     * @param id
+     * @return
+     */
     Optional<ParkingSpot> findByVehicleId(Integer id);
 }

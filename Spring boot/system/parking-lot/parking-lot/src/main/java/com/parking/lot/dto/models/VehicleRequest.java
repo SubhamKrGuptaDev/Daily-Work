@@ -3,6 +3,9 @@ package com.parking.lot.dto.models;
 
 import com.parking.lot.entity.enums.VehicleType;
 
+/**
+ * Vehicle Request Object to collect data from client
+ */
 public class VehicleRequest {
 
     private String vehicleNumber;

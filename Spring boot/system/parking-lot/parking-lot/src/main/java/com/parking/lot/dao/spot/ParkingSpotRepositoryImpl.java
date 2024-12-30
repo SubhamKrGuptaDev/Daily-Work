@@ -18,7 +18,7 @@ public class ParkingSpotRepositoryImpl implements ParkingSpotRepository {
     }
 
     /**
-     *
+     * get parking spot object using pk id
      *
      * @param id
      * @return
@@ -30,7 +30,7 @@ public class ParkingSpotRepositoryImpl implements ParkingSpotRepository {
     }
 
     /**
-     * Get Spot from floor
+     * Get Spot using parking spot number
      *
      * @param spotNumber
      * @return
@@ -42,7 +42,7 @@ public class ParkingSpotRepositoryImpl implements ParkingSpotRepository {
     }
 
     /**
-     * create new spot
+     * create new parking spot
      *
      * @param spot
      * @return
@@ -57,7 +57,7 @@ public class ParkingSpotRepositoryImpl implements ParkingSpotRepository {
     }
 
     /**
-     * update spot
+     * update existing spot
      *
      * @param spot
      * @return
@@ -73,7 +73,7 @@ public class ParkingSpotRepositoryImpl implements ParkingSpotRepository {
     }
 
     /**
-     *
+     * Implementation pending
      *
      * @param email
      * @return
@@ -85,7 +85,7 @@ public class ParkingSpotRepositoryImpl implements ParkingSpotRepository {
     }
 
     /**
-     *
+     * find parking spot using vehicle id
      *
      * @param id
      * @return
@@ -97,7 +97,7 @@ public class ParkingSpotRepositoryImpl implements ParkingSpotRepository {
     }
 
     /**
-     *
+     * Set parking spot object new Spot - Existing Spot
      *
      * @param existingSpot
      * @param newSpot

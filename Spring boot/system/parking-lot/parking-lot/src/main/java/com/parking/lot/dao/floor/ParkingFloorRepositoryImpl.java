@@ -45,7 +45,7 @@ public class ParkingFloorRepositoryImpl implements ParkingFloorRepository {
     }
 
     /**
-     * update parking floor
+     * update existing parking floor
      *
      * @param newFloor
      * @return
@@ -61,6 +61,12 @@ public class ParkingFloorRepositoryImpl implements ParkingFloorRepository {
         }
     }
 
+    /**
+     * Set parking floor object new object -> old object
+     *
+     * @param oldFloor
+     * @param newFloor
+     */
     private void setParkingFloorObject(ParkingFloor oldFloor, ParkingFloor newFloor) {
         try {
             oldFloor.setFloorNumber(newFloor.getFloorNumber());

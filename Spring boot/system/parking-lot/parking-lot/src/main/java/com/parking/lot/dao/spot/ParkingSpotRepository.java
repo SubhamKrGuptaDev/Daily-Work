@@ -2,6 +2,9 @@ package com.parking.lot.dao.spot;
 
 import com.parking.lot.entity.ParkingSpot;
 
+/**
+ * Parking Spot repository abstraction layer
+ */
 public interface ParkingSpotRepository {
 
     ParkingSpot getById(Integer id);

@@ -3,6 +3,9 @@ package com.parking.lot;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+/**
+ * Parking lot Application main method class
+ */
 @SpringBootApplication
 public class ParkingLotApplication {
 

@@ -10,7 +10,7 @@ import com.parking.lot.entity.enums.VehicleType;
 public class ParkingSpotVehicleTypeMatchingService {
 
     /**
-     *
+     * matches SpotType with Vehicle Type
      *
      * @param spotType
      * @param vehicleType
@@ -26,7 +26,7 @@ public class ParkingSpotVehicleTypeMatchingService {
     }
 
     /**
-     * floor checker is spot available or not
+     * Vehicle type with floor vehicle type storage is present or not
      *
      * @param vehicleType
      * @param floor

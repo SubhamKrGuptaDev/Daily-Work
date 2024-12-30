@@ -1,17 +1,23 @@
 package com.parking.lot.dto;
 
 import com.parking.lot.dto.models.VehicleResponse;
-import com.parking.lot.entity.ParkingLot;
 import com.parking.lot.entity.ParkingSpot;
 import com.parking.lot.exception.GlobalException;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 
+/**
+ * Data Response Service
+ */
 @Service
 public class DataResponseService {
 
-
+    /**
+     * Vehicle Response ParkingSpot and vehicle details data transfer object
+     *
+     * @param parkingSpot
+     * @return
+     */
     public VehicleResponse addVehicleResponse(ParkingSpot parkingSpot) {
         VehicleResponse response = new VehicleResponse();
 

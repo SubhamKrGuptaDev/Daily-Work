@@ -11,6 +11,7 @@ import com.parking.lot.entity.enums.ParkingSpotStatus;
 import com.parking.lot.service.strategy.LinearParkingSpotFindingStrategy;
 import com.parking.lot.service.strategy.ParkingSpotFindStrategy;
 import com.parking.lot.service.strategy.ParkingSpotVehicleTypeMatchingService;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import static com.parking.lot.constants.MessageConstants.SUCCESSFULLY_REMOVE;
@@ -24,15 +25,25 @@ public class VehicleServiceImpl implements VehicleService {
     private final ParkingLotRepository parkingLotRepository;
     private final VehicleRepository vehicleRepository;
     private final ParkingSpotRepository spotRepository;
+    private final ParkingSpotFindStrategy findStrategy;
 
-    public VehicleServiceImpl(ParkingLotRepository parkingLotRepository, VehicleRepository repository, ParkingSpotRepository spotRepository) {
+    public VehicleServiceImpl(ParkingLotRepository parkingLotRepository,
+                              VehicleRepository repository,
+                              ParkingSpotRepository spotRepository,
+                              @Qualifier("LinearParkingSpotFindingStrategy") ParkingSpotFindStrategy findStrategy) {
         this.parkingLotRepository = parkingLotRepository;
         this.vehicleRepository = repository;
         this.spotRepository = spotRepository;
+        this.findStrategy = findStrategy;
     }
 
     /**
      * Add Vehicle in this parking lot
+     * Step 1. Check vehicle present or not and get the object
+     * Step 2. Get ParkingLot Object
+     * Step 3. Get Available Spot from parking lot object
+     * Step 4. Set vehicle Object and Spot unavailable in available spot
+     * Step 5. Save Parking Spot object
      *
      * @param email
      * @param request
@@ -60,6 +71,11 @@ public class VehicleServiceImpl implements VehicleService {
 
     /**
      * remove vehicle from parking spot
+     * Step 1. Get vehicle object
+     * Step 2. find spot with vehicle id
+     * Step 3. set null fk_id
+     * Step 4. Set ParkingSpot available
+     * Step 5. save object
      *
      * @param email
      * @param request

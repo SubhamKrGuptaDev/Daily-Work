@@ -6,7 +6,20 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.Optional;
 
 public interface VehicleRepo extends JpaRepository<Vehicle, Integer> {
+
+    /**
+     * find by vehicle using vehicle number
+     *
+     * @param vehicleNumber
+     * @return
+     */
     Optional<Vehicle> findByNumber(String vehicleNumber);
 
+    /**
+     * check vehicle by vehicle number
+     *
+     * @param vehicleNumber
+     * @return
+     */
     Boolean existsByNumber(String vehicleNumber);
 }

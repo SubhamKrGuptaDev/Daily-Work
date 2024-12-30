@@ -4,6 +4,9 @@ import com.parking.lot.entity.ParkingLot;
 
 import java.util.List;
 
+/**
+ * Parking Lot repository abstraction layer
+ */
 public interface ParkingLotRepository {
     ParkingLot save(ParkingLot parkingLot);
     ParkingLot getByName(String name);

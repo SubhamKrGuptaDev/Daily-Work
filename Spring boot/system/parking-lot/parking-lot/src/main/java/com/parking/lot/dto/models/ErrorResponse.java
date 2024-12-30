@@ -3,6 +3,9 @@ package com.parking.lot.dto.models;
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * Error Response object
+ */
 @Getter
 @Setter
 public class ErrorResponse {

@@ -6,7 +6,7 @@ package com.parking.lot.exception;
 public class GlobalException extends RuntimeException {
 
     /**
-     *
+     * Message param with param constructor
      *
      * @param message
      */

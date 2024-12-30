@@ -28,7 +28,7 @@ public class VehicleRepositoryImpl implements VehicleRepository {
     }
 
     /**
-     * Get vehicle by vehicle number
+     * Get vehicle by vehicle registration number
      *
      * @param vehicleNumber
      * @return
@@ -40,7 +40,7 @@ public class VehicleRepositoryImpl implements VehicleRepository {
     }
 
     /**
-     * create vehicle
+     * create new vehicle
      *
      * @param vehicle
      * @return
@@ -55,7 +55,7 @@ public class VehicleRepositoryImpl implements VehicleRepository {
     }
 
     /**
-     * update vehicle
+     * update existing vehicle
      *
      * @param vehicle
      * @return
@@ -88,7 +88,7 @@ public class VehicleRepositoryImpl implements VehicleRepository {
     }
 
     /**
-     * Add Vehicle
+     * Add Vehicle (Create vehicle)
      *
      * @param request
      * @return
@@ -106,7 +106,7 @@ public class VehicleRepositoryImpl implements VehicleRepository {
     }
 
     /**
-     * Remove Vehicle from parking lot
+     * Implementation pending
      *
      * @param email
      * @param request
@@ -118,7 +118,7 @@ public class VehicleRepositoryImpl implements VehicleRepository {
     }
 
     /**
-     * Vehicle present or not
+     * Check vehicle existing or not
      *
      * @param vehicleNumber
      * @return

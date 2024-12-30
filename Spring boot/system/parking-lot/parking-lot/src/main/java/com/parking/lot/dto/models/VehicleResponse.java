@@ -2,6 +2,9 @@ package com.parking.lot.dto.models;
 
 import com.parking.lot.entity.enums.VehicleType;
 
+/**
+ * Vehicle Response to return minimum data to client
+ */
 public class VehicleResponse {
 
     private String vehicleNumber;

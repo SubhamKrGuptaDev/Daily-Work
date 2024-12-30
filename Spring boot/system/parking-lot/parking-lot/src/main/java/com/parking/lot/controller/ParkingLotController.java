@@ -55,7 +55,7 @@ public class ParkingLotController {
     }
 
     /**
-     * update parking lot
+     * update parking lot with new object
      *
      * @param lot
      * @return

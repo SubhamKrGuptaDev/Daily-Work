@@ -1,6 +1,9 @@
 package com.parking.lot.dto.models;
 
 
+/**
+ * Parking Lot Request Object collect data from client
+ */
 public class ParkingLotRequest {
 
     private String name;
