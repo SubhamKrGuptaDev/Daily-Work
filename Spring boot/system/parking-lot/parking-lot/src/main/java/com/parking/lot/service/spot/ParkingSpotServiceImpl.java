@@ -14,9 +14,9 @@ import org.springframework.stereotype.Service;
 @Service
 public class ParkingSpotServiceImpl implements ParkingSpotService {
 
-    private final ParkingSpotDao spotDao;
+    private final ParkingSpotDao<ParkingSpot,ParkingSpot> spotDao;
 
-    public ParkingSpotServiceImpl(ParkingSpotDao repository) {
+    public ParkingSpotServiceImpl(ParkingSpotDao<ParkingSpot,ParkingSpot> repository) {
         this.spotDao = repository;
     }
 

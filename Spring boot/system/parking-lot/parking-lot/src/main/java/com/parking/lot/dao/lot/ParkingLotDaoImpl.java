@@ -11,7 +11,7 @@ import java.util.List;
  * Parking Lot repository
  */
 @Repository
-public class ParkingLotDaoImpl implements ParkingLotDao {
+public class ParkingLotDaoImpl implements ParkingLotDao<ParkingLot, ParkingLot> {
 
     private final ParkingLotRepository repository;
 
@@ -48,6 +48,12 @@ public class ParkingLotDaoImpl implements ParkingLotDao {
         }
     }
 
+    @Override
+    public ParkingLot getById(Integer id) {
+        return repository.findById(id)
+                .orElseThrow(() -> new GlobalException("Parking lot not found"));
+    }
+
     /**
      * get parking lot using name
      *
@@ -74,7 +80,6 @@ public class ParkingLotDaoImpl implements ParkingLotDao {
      */
     @Override
     public ParkingLot update(ParkingLot parkingLot) {
-//        ParkingLot existingObject = getByName(parkingLot.getName());
         return null;
     }
 

@@ -8,12 +8,14 @@ import com.parking.lot.entity.Vehicle;
 import com.parking.lot.entity.enums.ParkingSpotStatus;
 import com.parking.lot.entity.enums.VehicleType;
 import com.parking.lot.exception.GlobalException;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 /**
  * Linear Search parking lot strategy
  */
+@Service
 public class LinearParkingSpotFindingStrategy implements ParkingSpotFindStrategy {
 
     private final ParkingSpotVehicleTypeMatchingService vehicleMatchingService;

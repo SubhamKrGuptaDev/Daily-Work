@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
  * Parking Spot Repository
  */
 @Repository
-public class ParkingSpotDaoImpl implements ParkingSpotDao {
+public class ParkingSpotDaoImpl implements ParkingSpotDao<ParkingSpot, ParkingSpot> {
 
     private final ParkingSpotRepository repository;
 

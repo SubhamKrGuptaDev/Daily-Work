@@ -8,9 +8,7 @@ import com.parking.lot.entity.ParkingLot;
 import com.parking.lot.entity.ParkingSpot;
 import com.parking.lot.entity.Vehicle;
 import com.parking.lot.entity.enums.ParkingSpotStatus;
-import com.parking.lot.service.strategy.LinearParkingSpotFindingStrategy;
 import com.parking.lot.service.strategy.ParkingSpotFindStrategy;
-import com.parking.lot.service.strategy.ParkingSpotVehicleTypeMatchingService;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
@@ -22,15 +20,15 @@ import static com.parking.lot.constants.MessageConstants.SUCCESSFULLY_REMOVE;
 @Service
 public class VehicleServiceImpl implements VehicleService {
 
-    private final ParkingLotDao parkingLotDao;
-    private final VehicleDao vehicleDao;
-    private final ParkingSpotDao spotDao;
+    private final ParkingLotDao<ParkingLot,ParkingLot> parkingLotDao;
+    private final VehicleDao<Vehicle,Vehicle> vehicleDao;
+    private final ParkingSpotDao<ParkingSpot,ParkingSpot> spotDao;
     private final ParkingSpotFindStrategy findStrategy;
 
-    public VehicleServiceImpl(ParkingLotDao parkingLotRepository,
-                              VehicleDao repository,
-                              ParkingSpotDao spotRepository,
-                              @Qualifier("LinearParkingSpotFindingStrategy") ParkingSpotFindStrategy findStrategy) {
+    public VehicleServiceImpl(ParkingLotDao<ParkingLot,ParkingLot> parkingLotRepository,
+                              VehicleDao<Vehicle,Vehicle> repository,
+                              ParkingSpotDao<ParkingSpot,ParkingSpot> spotRepository,
+                              @Qualifier("linearParkingSpotFindingStrategy") ParkingSpotFindStrategy findStrategy) {
         this.parkingLotDao = parkingLotRepository;
         this.vehicleDao = repository;
         this.spotDao = spotRepository;
@@ -59,8 +57,6 @@ public class VehicleServiceImpl implements VehicleService {
         }
 
         ParkingLot existingParking = parkingLotDao.getByEmail(email);
-
-        ParkingSpotFindStrategy findStrategy = new LinearParkingSpotFindingStrategy(new ParkingSpotVehicleTypeMatchingService());
 
         ParkingSpot availableSpot = findStrategy.getAvailableSpot(request.getType(), existingParking);
         availableSpot.setVehicle(vehicleObj);

@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
  * Parking Floor Repository
  */
 @Repository
-public class ParkingFloorDaoImpl implements ParkingFloorDao {
+public class ParkingFloorDaoImpl implements ParkingFloorDao<ParkingFloor, ParkingFloor> {
 
     private final ParkingFloorRepository repo;
 
@@ -39,7 +39,7 @@ public class ParkingFloorDaoImpl implements ParkingFloorDao {
      * @return
      */
     @Override
-    public ParkingFloor get(Integer existingFloor) {
+    public ParkingFloor getById(Integer existingFloor) {
         return repo.findById(existingFloor)
                 .orElseThrow(() -> new GlobalException("ParkingFloor id not found"));
     }
@@ -53,7 +53,7 @@ public class ParkingFloorDaoImpl implements ParkingFloorDao {
     @Override
     public ParkingFloor update(ParkingFloor newFloor) {
         try {
-            ParkingFloor existingFloor = get(newFloor.getId());
+            ParkingFloor existingFloor = getById(newFloor.getId());
             setParkingFloorObject(existingFloor, newFloor);
             return save(existingFloor);
         } catch(Exception ex) {

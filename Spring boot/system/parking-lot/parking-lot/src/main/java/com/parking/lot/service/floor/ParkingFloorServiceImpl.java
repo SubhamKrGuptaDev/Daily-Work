@@ -18,10 +18,11 @@ import java.util.List;
 @Service
 public class ParkingFloorServiceImpl implements ParkingFloorService {
 
-    private final ParkingFloorDao floorDao;
+    private final ParkingFloorDao<ParkingFloor,ParkingFloor> floorDao;
     private final ParkingSpotService spotService;
 
-    public ParkingFloorServiceImpl(ParkingFloorDao repository, ParkingSpotService spotService) {
+    public ParkingFloorServiceImpl(ParkingFloorDao<ParkingFloor,ParkingFloor> repository,
+                                   ParkingSpotService spotService) {
         this.floorDao = repository;
         this.spotService = spotService;
     }
@@ -34,7 +35,7 @@ public class ParkingFloorServiceImpl implements ParkingFloorService {
      */
     @Override
     public ParkingFloor get(Integer floor) {
-        return floorDao.get(floor);
+        return floorDao.getById(floor);
     }
 
     /**

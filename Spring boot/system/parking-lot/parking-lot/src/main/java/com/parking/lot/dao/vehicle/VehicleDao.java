@@ -1,17 +1,15 @@
 package com.parking.lot.dao.vehicle;
 
+import com.parking.lot.dao.CrudOperation;
 import com.parking.lot.dto.models.VehicleRequest;
 import com.parking.lot.entity.Vehicle;
 
 /**
  * Vehicle repository abstraction layer
  */
-public interface VehicleDao {
+public interface VehicleDao<R,T> extends CrudOperation<R,T> {
 
-    Vehicle get(Integer id);
     Vehicle get(String vehicleNumber);
-    Vehicle save(Vehicle vehicle);
-    Vehicle update(Vehicle vehicle);
     Vehicle addVehicle(VehicleRequest request);
     String removeVehicle(String email, VehicleRequest request);
     Boolean existsByNumber(String vehicleNumber);

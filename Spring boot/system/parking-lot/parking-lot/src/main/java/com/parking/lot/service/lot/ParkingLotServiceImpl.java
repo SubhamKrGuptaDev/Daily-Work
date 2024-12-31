@@ -19,10 +19,11 @@ import java.util.Map;
 @Service
 public class ParkingLotServiceImpl implements ParkingLotService {
 
-    private final ParkingLotDao parkingLotDao;
+    private final ParkingLotDao<ParkingLot,ParkingLot> parkingLotDao;
     private final ParkingFloorService floorService;
 
-    public ParkingLotServiceImpl(ParkingLotDao repository, ParkingFloorService floorService) {
+    public ParkingLotServiceImpl(ParkingLotDao<ParkingLot,ParkingLot> repository,
+                                 ParkingFloorService floorService) {
         this.parkingLotDao = repository;
         this.floorService = floorService;
     }

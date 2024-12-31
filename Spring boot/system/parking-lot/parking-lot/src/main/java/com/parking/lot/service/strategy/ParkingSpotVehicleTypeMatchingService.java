@@ -3,10 +3,12 @@ package com.parking.lot.service.strategy;
 import com.parking.lot.entity.ParkingFloor;
 import com.parking.lot.entity.enums.SpotType;
 import com.parking.lot.entity.enums.VehicleType;
+import org.springframework.stereotype.Service;
 
 /**
  * Parking Spot Vehicle Type Matching Service
  */
+@Service
 public class ParkingSpotVehicleTypeMatchingService {
 
     /**

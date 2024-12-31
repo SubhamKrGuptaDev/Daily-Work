@@ -7,7 +7,7 @@ import com.parking.lot.repository.VehicleRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class VehicleDaoImpl implements VehicleDao {
+public class VehicleDaoImpl implements VehicleDao<Vehicle,Vehicle> {
 
     private final VehicleRepository repo;
 
@@ -22,7 +22,7 @@ public class VehicleDaoImpl implements VehicleDao {
      * @return
      */
     @Override
-    public Vehicle get(Integer id) {
+    public Vehicle getById(Integer id) {
         return repo.findById(id)
                 .orElseThrow(() -> new GlobalException("Vehicle not found"));
     }
@@ -63,7 +63,7 @@ public class VehicleDaoImpl implements VehicleDao {
     @Override
     public Vehicle update(Vehicle vehicle) {
         try {
-            Vehicle existingObj = get(vehicle.getId());
+            Vehicle existingObj = getById(vehicle.getId());
             setVehicle(existingObj, vehicle);
 
             return save(existingObj);

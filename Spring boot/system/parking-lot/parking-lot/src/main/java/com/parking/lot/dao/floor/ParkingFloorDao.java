@@ -1,12 +1,10 @@
 package com.parking.lot.dao.floor;
 
-import com.parking.lot.entity.ParkingFloor;
+import com.parking.lot.dao.CrudOperation;
 
 /**
  * Parking Floor repository abstraction layer
  */
-public interface ParkingFloorDao {
-    ParkingFloor save(ParkingFloor newFloor);
-    ParkingFloor get(Integer existingFloor);
-    ParkingFloor update(ParkingFloor newFloor);
+public interface ParkingFloorDao<R,T> extends CrudOperation<R,T> {
+
 }
