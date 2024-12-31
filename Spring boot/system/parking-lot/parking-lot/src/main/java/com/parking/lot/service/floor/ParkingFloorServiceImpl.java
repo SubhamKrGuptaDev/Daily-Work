@@ -1,6 +1,6 @@
 package com.parking.lot.service.floor;
 
-import com.parking.lot.dao.floor.ParkingFloorRepository;
+import com.parking.lot.dao.floor.ParkingFloorDao;
 import com.parking.lot.dto.models.ParkingLotRequest;
 import com.parking.lot.entity.ParkingFloor;
 import com.parking.lot.entity.ParkingLot;
@@ -18,11 +18,11 @@ import java.util.List;
 @Service
 public class ParkingFloorServiceImpl implements ParkingFloorService {
 
-    private final ParkingFloorRepository repository;
+    private final ParkingFloorDao floorDao;
     private final ParkingSpotService spotService;
 
-    public ParkingFloorServiceImpl(ParkingFloorRepository repository, ParkingSpotService spotService) {
-        this.repository = repository;
+    public ParkingFloorServiceImpl(ParkingFloorDao repository, ParkingSpotService spotService) {
+        this.floorDao = repository;
         this.spotService = spotService;
     }
 
@@ -34,7 +34,7 @@ public class ParkingFloorServiceImpl implements ParkingFloorService {
      */
     @Override
     public ParkingFloor get(Integer floor) {
-        return repository.get(floor);
+        return floorDao.get(floor);
     }
 
     /**
@@ -85,7 +85,7 @@ public class ParkingFloorServiceImpl implements ParkingFloorService {
      */
     @Override
     public ParkingFloor update(ParkingFloor floor) {
-        return repository.update(floor);
+        return floorDao.update(floor);
     }
 
 }

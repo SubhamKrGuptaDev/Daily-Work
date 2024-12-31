@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * Parking Lot repository abstraction layer
  */
-public interface ParkingLotRepository {
+public interface ParkingLotDao {
     ParkingLot save(ParkingLot parkingLot);
     ParkingLot getByName(String name);
     ParkingLot getByEmail(String email);

@@ -5,7 +5,7 @@ import com.parking.lot.entity.ParkingSpot;
 /**
  * Parking Spot repository abstraction layer
  */
-public interface ParkingSpotRepository {
+public interface ParkingSpotDao {
 
     ParkingSpot getById(Integer id);
     ParkingSpot getBySpotNumber(Integer spotNumber);

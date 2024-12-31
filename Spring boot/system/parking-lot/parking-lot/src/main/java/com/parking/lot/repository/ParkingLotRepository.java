@@ -5,7 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;
 
-public interface ParkingLotRepo extends JpaRepository<ParkingLot, Integer> {
+public interface ParkingLotRepository extends JpaRepository<ParkingLot, Integer> {
 
     /**
      * check parking lot by name

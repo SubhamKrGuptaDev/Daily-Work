@@ -1,8 +1,8 @@
 package com.parking.lot.service.vehicle;
 
-import com.parking.lot.dao.lot.ParkingLotRepository;
-import com.parking.lot.dao.spot.ParkingSpotRepository;
-import com.parking.lot.dao.vehicle.VehicleRepository;
+import com.parking.lot.dao.lot.ParkingLotDao;
+import com.parking.lot.dao.spot.ParkingSpotDao;
+import com.parking.lot.dao.vehicle.VehicleDao;
 import com.parking.lot.dto.models.VehicleRequest;
 import com.parking.lot.entity.ParkingLot;
 import com.parking.lot.entity.ParkingSpot;
@@ -22,18 +22,18 @@ import static com.parking.lot.constants.MessageConstants.SUCCESSFULLY_REMOVE;
 @Service
 public class VehicleServiceImpl implements VehicleService {
 
-    private final ParkingLotRepository parkingLotRepository;
-    private final VehicleRepository vehicleRepository;
-    private final ParkingSpotRepository spotRepository;
+    private final ParkingLotDao parkingLotDao;
+    private final VehicleDao vehicleDao;
+    private final ParkingSpotDao spotDao;
     private final ParkingSpotFindStrategy findStrategy;
 
-    public VehicleServiceImpl(ParkingLotRepository parkingLotRepository,
-                              VehicleRepository repository,
-                              ParkingSpotRepository spotRepository,
+    public VehicleServiceImpl(ParkingLotDao parkingLotRepository,
+                              VehicleDao repository,
+                              ParkingSpotDao spotRepository,
                               @Qualifier("LinearParkingSpotFindingStrategy") ParkingSpotFindStrategy findStrategy) {
-        this.parkingLotRepository = parkingLotRepository;
-        this.vehicleRepository = repository;
-        this.spotRepository = spotRepository;
+        this.parkingLotDao = parkingLotRepository;
+        this.vehicleDao = repository;
+        this.spotDao = spotRepository;
         this.findStrategy = findStrategy;
     }
 
@@ -52,13 +52,13 @@ public class VehicleServiceImpl implements VehicleService {
     @Override
     public ParkingSpot addVehicleInParkingLot(String email, VehicleRequest request) {
         Vehicle vehicleObj = null;
-        if(vehicleRepository.existsByNumber(request.getVehicleNumber())) {
-            vehicleObj = vehicleRepository.get(request.getVehicleNumber());
+        if(vehicleDao.existsByNumber(request.getVehicleNumber())) {
+            vehicleObj = vehicleDao.get(request.getVehicleNumber());
         } else {
-            vehicleObj = vehicleRepository.addVehicle(request);
+            vehicleObj = vehicleDao.addVehicle(request);
         }
 
-        ParkingLot existingParking = parkingLotRepository.getByEmail(email);
+        ParkingLot existingParking = parkingLotDao.getByEmail(email);
 
         ParkingSpotFindStrategy findStrategy = new LinearParkingSpotFindingStrategy(new ParkingSpotVehicleTypeMatchingService());
 
@@ -66,7 +66,7 @@ public class VehicleServiceImpl implements VehicleService {
         availableSpot.setVehicle(vehicleObj);
         availableSpot.setParkingSpotStatus(ParkingSpotStatus.UNAVAILABLE);
 
-        return spotRepository.save(availableSpot);
+        return spotDao.save(availableSpot);
     }
 
     /**
@@ -83,12 +83,12 @@ public class VehicleServiceImpl implements VehicleService {
      */
     @Override
     public String removeVehicle(String email, VehicleRequest request) {
-        Vehicle existingVehicle = vehicleRepository.get(request.getVehicleNumber());
-        ParkingSpot existingSpot = spotRepository.findByVehicleId(existingVehicle.getId());
+        Vehicle existingVehicle = vehicleDao.get(request.getVehicleNumber());
+        ParkingSpot existingSpot = spotDao.findByVehicleId(existingVehicle.getId());
         existingSpot.setVehicle(null);
         existingSpot.setParkingSpotStatus(ParkingSpotStatus.AVAILABLE);
 
-        spotRepository.save(existingSpot);
+        spotDao.save(existingSpot);
         return SUCCESSFULLY_REMOVE;
     }
 }

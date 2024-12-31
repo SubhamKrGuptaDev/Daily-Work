@@ -5,7 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;
 
-public interface ParkingSpotRepo extends JpaRepository<ParkingSpot, Integer> {
+public interface ParkingSpotRepository extends JpaRepository<ParkingSpot, Integer> {
     /**
      * find parking spot using spot number
      *

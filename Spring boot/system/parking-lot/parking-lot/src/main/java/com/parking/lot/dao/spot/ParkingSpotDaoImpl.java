@@ -2,18 +2,18 @@ package com.parking.lot.dao.spot;
 
 import com.parking.lot.entity.ParkingSpot;
 import com.parking.lot.exception.GlobalException;
-import com.parking.lot.repository.ParkingSpotRepo;
+import com.parking.lot.repository.ParkingSpotRepository;
 import org.springframework.stereotype.Repository;
 
 /**
  * Parking Spot Repository
  */
 @Repository
-public class ParkingSpotRepositoryImpl implements ParkingSpotRepository {
+public class ParkingSpotDaoImpl implements ParkingSpotDao {
 
-    private final ParkingSpotRepo repository;
+    private final ParkingSpotRepository repository;
 
-    public ParkingSpotRepositoryImpl(ParkingSpotRepo repository) {
+    public ParkingSpotDaoImpl(ParkingSpotRepository repository) {
         this.repository = repository;
     }
 

@@ -3,15 +3,15 @@ package com.parking.lot.dao.vehicle;
 import com.parking.lot.dto.models.VehicleRequest;
 import com.parking.lot.entity.Vehicle;
 import com.parking.lot.exception.GlobalException;
-import com.parking.lot.repository.VehicleRepo;
+import com.parking.lot.repository.VehicleRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class VehicleRepositoryImpl implements VehicleRepository {
+public class VehicleDaoImpl implements VehicleDao {
 
-    private final VehicleRepo repo;
+    private final VehicleRepository repo;
 
-    public VehicleRepositoryImpl(VehicleRepo repo) {
+    public VehicleDaoImpl(VehicleRepository repo) {
         this.repo = repo;
     }
 

@@ -2,18 +2,18 @@ package com.parking.lot.dao.floor;
 
 import com.parking.lot.entity.ParkingFloor;
 import com.parking.lot.exception.GlobalException;
-import com.parking.lot.repository.ParkingFloorRepo;
+import com.parking.lot.repository.ParkingFloorRepository;
 import org.springframework.stereotype.Repository;
 
 /**
  * Parking Floor Repository
  */
 @Repository
-public class ParkingFloorRepositoryImpl implements ParkingFloorRepository {
+public class ParkingFloorDaoImpl implements ParkingFloorDao {
 
-    private final ParkingFloorRepo repo;
+    private final ParkingFloorRepository repo;
 
-    public ParkingFloorRepositoryImpl(ParkingFloorRepo repo) {
+    public ParkingFloorDaoImpl(ParkingFloorRepository repo) {
         this.repo = repo;
     }
 

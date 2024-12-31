@@ -24,6 +24,11 @@ public class LinearParkingSpotFindingStrategy implements ParkingSpotFindStrategy
 
     /**
      * Get available Spot using vehicle type in parking lot
+     * Step 1. List of Floor check
+     * Step 2. List of Spot check
+     * Step 3. if spot available and match vehicle type
+     * Step 4. decrease available spot in that floor and return the spot
+     * If spot not present then throw exception
      *
      * @param vehicleType
      * @param parkingLot
@@ -52,6 +57,11 @@ public class LinearParkingSpotFindingStrategy implements ParkingSpotFindStrategy
 
     /**
      * Get vehicle Spot using vehicle Number in Parking Lot
+     * Step 1. List of floor check
+     * Step 2. List of spot check
+     * Step 3. spot unavailable and vehicle number is same
+     * Step 4. increase storage in that floor and return the spot
+     * otherwise throw the exception
      *
      * @param vehicleNumber
      * @param parkingLot
@@ -75,6 +85,10 @@ public class LinearParkingSpotFindingStrategy implements ParkingSpotFindStrategy
 
     /**
      * get spot based on floorNumber and spotNumber from Parking Lot
+     * Step 1. check floor is valid
+     * Step 2. get the floor object
+     * Step 3. check spot is valid
+     * Step 4. return direct that spot based on the number
      *
      * @param floor
      * @param spotNumber

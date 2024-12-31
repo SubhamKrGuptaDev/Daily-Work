@@ -1,6 +1,6 @@
 package com.parking.lot.service.lot;
 
-import com.parking.lot.dao.lot.ParkingLotRepository;
+import com.parking.lot.dao.lot.ParkingLotDao;
 import com.parking.lot.dto.models.ParkingLotRequest;
 import com.parking.lot.entity.ParkingFloor;
 import com.parking.lot.entity.ParkingLot;
@@ -19,11 +19,11 @@ import java.util.Map;
 @Service
 public class ParkingLotServiceImpl implements ParkingLotService {
 
-    private final ParkingLotRepository repository;
+    private final ParkingLotDao parkingLotDao;
     private final ParkingFloorService floorService;
 
-    public ParkingLotServiceImpl(ParkingLotRepository repository, ParkingFloorService floorService) {
-        this.repository = repository;
+    public ParkingLotServiceImpl(ParkingLotDao repository, ParkingFloorService floorService) {
+        this.parkingLotDao = repository;
         this.floorService = floorService;
     }
 
@@ -34,7 +34,7 @@ public class ParkingLotServiceImpl implements ParkingLotService {
      */
     @Override
     public List<ParkingLot> getAll() {
-        return repository.getAll();
+        return parkingLotDao.getAll();
     }
 
     /**
@@ -68,7 +68,7 @@ public class ParkingLotServiceImpl implements ParkingLotService {
             // Save Parking Lot
             newParkingLot.setFloors(floorList);
 
-            repository.save(newParkingLot);
+            parkingLotDao.save(newParkingLot);
         } catch (Exception ex) {
             throw new GlobalException(ex.getMessage());
         }
@@ -86,7 +86,7 @@ public class ParkingLotServiceImpl implements ParkingLotService {
      */
     @Override
     public ParkingLot getByName(String name) {
-        return repository.getByName(name);
+        return parkingLotDao.getByName(name);
     }
 
     /**
@@ -97,7 +97,7 @@ public class ParkingLotServiceImpl implements ParkingLotService {
      */
     @Override
     public ParkingLot update(ParkingLot lot) {
-        return repository.update(lot);
+        return parkingLotDao.update(lot);
     }
 
     /**
@@ -108,7 +108,7 @@ public class ParkingLotServiceImpl implements ParkingLotService {
      */
     @Override
     public Boolean isPresent(String name) {
-        return repository.isPresent(name);
+        return parkingLotDao.isPresent(name);
     }
 
 }

@@ -6,7 +6,7 @@ import com.parking.lot.entity.Vehicle;
 /**
  * Vehicle repository abstraction layer
  */
-public interface VehicleRepository {
+public interface VehicleDao {
 
     Vehicle get(Integer id);
     Vehicle get(String vehicleNumber);
