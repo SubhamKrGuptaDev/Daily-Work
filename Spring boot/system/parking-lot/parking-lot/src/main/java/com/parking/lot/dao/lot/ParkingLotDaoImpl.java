@@ -1,11 +1,14 @@
 package com.parking.lot.dao.lot;
 
 import com.parking.lot.entity.ParkingLot;
-import com.parking.lot.exception.GlobalException;
+import com.parking.lot.exception.ParkingLotNotFoundException;
 import com.parking.lot.repository.ParkingLotRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+
+import static com.parking.lot.constants.ExceptionMessageConstants.PARKING_LOT_NOT_FOUND_USING_EMAIL_MESSAGE;
+import static com.parking.lot.constants.ExceptionMessageConstants.PARKING_LOT_NOT_FOUND_USING_NAME_MESSAGE;
 
 /**
  * Parking Lot repository
@@ -26,11 +29,7 @@ public class ParkingLotDaoImpl implements ParkingLotDao<ParkingLot, ParkingLot> 
      */
     @Override
     public List<ParkingLot> getAll() {
-         try {
-             return repository.findAll();
-         } catch (Exception ex) {
-             throw new GlobalException(ex.getMessage());
-         }
+         return repository.findAll();
     }
 
     /**
@@ -41,17 +40,13 @@ public class ParkingLotDaoImpl implements ParkingLotDao<ParkingLot, ParkingLot> 
      */
     @Override
     public ParkingLot save(ParkingLot parkingLot) {
-        try {
-            return repository.save(parkingLot);
-        } catch (Exception ex) {
-            throw new GlobalException(ex.getMessage());
-        }
+        return repository.save(parkingLot);
     }
 
     @Override
     public ParkingLot getById(Integer id) {
         return repository.findById(id)
-                .orElseThrow(() -> new GlobalException("Parking lot not found"));
+                .orElseThrow(ParkingLotNotFoundException::new);
     }
 
     /**
@@ -63,13 +58,13 @@ public class ParkingLotDaoImpl implements ParkingLotDao<ParkingLot, ParkingLot> 
     @Override
     public ParkingLot getByName(String name) {
         return repository.findByName(name)
-                .orElseThrow(() -> new GlobalException("ParkingLot not find by name"));
+                .orElseThrow(() -> new ParkingLotNotFoundException(PARKING_LOT_NOT_FOUND_USING_NAME_MESSAGE));
     }
 
     @Override
     public ParkingLot getByEmail(String email) {
         return repository.findByEmail(email)
-                .orElseThrow(() -> new GlobalException("Parking lot not found by email"));
+                .orElseThrow(() -> new ParkingLotNotFoundException(PARKING_LOT_NOT_FOUND_USING_EMAIL_MESSAGE));
     }
 
     /**
@@ -91,11 +86,7 @@ public class ParkingLotDaoImpl implements ParkingLotDao<ParkingLot, ParkingLot> 
      */
     @Override
     public Boolean isPresent(String email) {
-        try {
-            return repository.existsByEmail(email);
-        } catch(Exception ex) {
-            throw new GlobalException(ex.getMessage());
-        }
+        return repository.existsByEmail(email);
     }
 
 }

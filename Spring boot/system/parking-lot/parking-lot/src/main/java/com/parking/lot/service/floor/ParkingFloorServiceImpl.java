@@ -56,6 +56,7 @@ public class ParkingFloorServiceImpl implements ParkingFloorService {
         newFloor.setParkingLot(newParkingLot);
 
 
+        // TODO
         // Parking Spot for bike
         List<ParkingSpot> listSpots = new ArrayList<>();
         Integer[] spotNumber = {1};

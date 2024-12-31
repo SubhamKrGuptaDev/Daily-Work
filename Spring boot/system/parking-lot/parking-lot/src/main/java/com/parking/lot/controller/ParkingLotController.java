@@ -9,17 +9,20 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Map;
 
+import static com.parking.lot.constants.ApiConstants.PARKING_LOT_API_CHECK;
+import static com.parking.lot.constants.ApiConstants.PARKING_LOT_API;
+
 /**
  * Parking Lot Controller
  */
 @RestController
-@RequestMapping("/parking-lot")
+@RequestMapping(PARKING_LOT_API)
 public class ParkingLotController {
 
-    private final ParkingLotService lotService;
+    private final ParkingLotService parkingLotService;
 
     public ParkingLotController(ParkingLotService lotService) {
-        this.lotService = lotService;
+        this.parkingLotService = lotService;
     }
 
     /**
@@ -29,7 +32,7 @@ public class ParkingLotController {
      */
     @GetMapping
     public ResponseEntity<List<ParkingLot>> getAll() {
-        return ResponseEntity.ok(lotService.getAll());
+        return ResponseEntity.ok(parkingLotService.getAll());
     }
 
     /**
@@ -40,7 +43,7 @@ public class ParkingLotController {
      */
     @PostMapping
     public Map<String, String> save(@RequestBody ParkingLotRequest lotRequest) {
-        return lotService.save(lotRequest);
+        return parkingLotService.save(lotRequest);
     }
 
     /**
@@ -51,7 +54,7 @@ public class ParkingLotController {
      */
     @GetMapping(params = "name")
     public ParkingLot getByName(@RequestParam(name = "name") String name) {
-        return lotService.getByName(name);
+        return parkingLotService.getByName(name);
     }
 
     /**
@@ -62,7 +65,7 @@ public class ParkingLotController {
      */
     @PutMapping
     public ParkingLot update(@RequestBody ParkingLot lot) {
-        return lotService.update(lot);
+        return parkingLotService.update(lot);
     }
 
     /**
@@ -71,9 +74,9 @@ public class ParkingLotController {
      * @param name
      * @return
      */
-    @GetMapping(path = "/checker", params = "name")
+    @GetMapping(value = PARKING_LOT_API_CHECK, params = "name")
     public Boolean isPresent(@RequestParam(name = "name") String name) {
-        return lotService.isPresent(name);
+        return parkingLotService.isPresent(name);
     }
 
 }

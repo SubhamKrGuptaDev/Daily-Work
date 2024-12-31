@@ -1,7 +1,8 @@
 package com.parking.lot.dao.floor;
 
 import com.parking.lot.entity.ParkingFloor;
-import com.parking.lot.exception.GlobalException;
+import com.parking.lot.exception.BusinessException;
+import com.parking.lot.exception.FloorNotFoundException;
 import com.parking.lot.repository.ParkingFloorRepository;
 import org.springframework.stereotype.Repository;
 
@@ -28,7 +29,7 @@ public class ParkingFloorDaoImpl implements ParkingFloorDao<ParkingFloor, Parkin
         try {
             return repo.save(newFloor);
         } catch(Exception ex) {
-            throw new GlobalException(ex.getMessage());
+            throw new BusinessException(ex.getMessage());
         }
     }
 
@@ -41,7 +42,7 @@ public class ParkingFloorDaoImpl implements ParkingFloorDao<ParkingFloor, Parkin
     @Override
     public ParkingFloor getById(Integer existingFloor) {
         return repo.findById(existingFloor)
-                .orElseThrow(() -> new GlobalException("ParkingFloor id not found"));
+                .orElseThrow(FloorNotFoundException::new);
     }
 
     /**
@@ -57,7 +58,7 @@ public class ParkingFloorDaoImpl implements ParkingFloorDao<ParkingFloor, Parkin
             setParkingFloorObject(existingFloor, newFloor);
             return save(existingFloor);
         } catch(Exception ex) {
-            throw new GlobalException(ex.getMessage());
+            throw new BusinessException(ex.getMessage());
         }
     }
 
@@ -74,7 +75,7 @@ public class ParkingFloorDaoImpl implements ParkingFloorDao<ParkingFloor, Parkin
             oldFloor.setCarTotalSpots(newFloor.getCarTotalSpots());
             oldFloor.setTruckTotalSpots(newFloor.getTruckTotalSpots());
         } catch (Exception ex) {
-            throw new GlobalException(ex.getMessage());
+            throw new BusinessException(ex.getMessage());
         }
     }
 

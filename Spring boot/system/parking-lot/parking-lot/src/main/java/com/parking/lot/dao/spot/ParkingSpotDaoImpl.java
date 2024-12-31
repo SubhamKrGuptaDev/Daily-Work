@@ -1,9 +1,13 @@
 package com.parking.lot.dao.spot;
 
 import com.parking.lot.entity.ParkingSpot;
-import com.parking.lot.exception.GlobalException;
+import com.parking.lot.exception.BusinessException;
+import com.parking.lot.exception.ParkingLotNotFoundException;
+import com.parking.lot.exception.SpotNotFoundException;
 import com.parking.lot.repository.ParkingSpotRepository;
 import org.springframework.stereotype.Repository;
+
+import static com.parking.lot.constants.ExceptionMessageConstants.ID_NOT_FOUND_EXCEPTION_MESSAGE;
 
 /**
  * Parking Spot Repository
@@ -26,7 +30,7 @@ public class ParkingSpotDaoImpl implements ParkingSpotDao<ParkingSpot, ParkingSp
     @Override
     public ParkingSpot getById(Integer id) {
         return repository.findById(id)
-                .orElseThrow(() -> new GlobalException("Id not found"));
+                .orElseThrow(() -> new SpotNotFoundException(ID_NOT_FOUND_EXCEPTION_MESSAGE));
     }
 
     /**
@@ -38,7 +42,7 @@ public class ParkingSpotDaoImpl implements ParkingSpotDao<ParkingSpot, ParkingSp
     @Override
     public ParkingSpot getBySpotNumber(Integer spotNumber) {
         return repository.findBySpotNumber(spotNumber)
-                .orElseThrow(() -> new GlobalException("Spot not found Exception"));
+                .orElseThrow(SpotNotFoundException::new);
     }
 
     /**
@@ -49,11 +53,7 @@ public class ParkingSpotDaoImpl implements ParkingSpotDao<ParkingSpot, ParkingSp
      */
     @Override
     public ParkingSpot save(ParkingSpot spot) {
-        try {
-            return repository.save(spot);
-        } catch (Exception ex) {
-            throw new GlobalException(ex.getMessage());
-        }
+        return repository.save(spot);
     }
 
     /**
@@ -64,12 +64,8 @@ public class ParkingSpotDaoImpl implements ParkingSpotDao<ParkingSpot, ParkingSp
      */
     @Override
     public ParkingSpot update(ParkingSpot spot) {
-        try {
-            ParkingSpot existingSpot = getById(spot.getId());
-            return save(existingSpot);
-        } catch(Exception ex) {
-            throw new GlobalException(ex.getMessage());
-        }
+        ParkingSpot existingSpot = getById(spot.getId());
+        return save(existingSpot);
     }
 
     /**
@@ -80,7 +76,6 @@ public class ParkingSpotDaoImpl implements ParkingSpotDao<ParkingSpot, ParkingSp
      */
     @Override
     public Integer findByVehicleNullOrderById(String email) {
-//        return repository.getAvailableSpotId(email);
         return null;
     }
 
@@ -93,7 +88,7 @@ public class ParkingSpotDaoImpl implements ParkingSpotDao<ParkingSpot, ParkingSp
     @Override
     public ParkingSpot findByVehicleId(Integer id) {
         return repository.findByVehicleId(id)
-                .orElseThrow(() -> new GlobalException("Vehicle not present in this floor"));
+                .orElseThrow(() -> new BusinessException("Vehicle not present in this floor"));
     }
 
     /**
@@ -103,15 +98,11 @@ public class ParkingSpotDaoImpl implements ParkingSpotDao<ParkingSpot, ParkingSp
      * @param newSpot
      */
     private void setParkingSpot(ParkingSpot existingSpot, ParkingSpot newSpot) {
-        try {
-            existingSpot.setSpotType(newSpot.getSpotType());
-            existingSpot.setSpotNumber(newSpot.getSpotNumber());
-            existingSpot.setParkingSpotStatus(newSpot.getParkingSpotStatus());
-            existingSpot.setVehicle(newSpot.getVehicle());
-            existingSpot.setFloorNumber(newSpot.getFloorNumber());
-        } catch(Exception ex) {
-            throw new GlobalException(ex.getMessage());
-        }
+        existingSpot.setSpotType(newSpot.getSpotType());
+        existingSpot.setSpotNumber(newSpot.getSpotNumber());
+        existingSpot.setParkingSpotStatus(newSpot.getParkingSpotStatus());
+        existingSpot.setVehicle(newSpot.getVehicle());
+        existingSpot.setFloorNumber(newSpot.getFloorNumber());
     }
 
 }

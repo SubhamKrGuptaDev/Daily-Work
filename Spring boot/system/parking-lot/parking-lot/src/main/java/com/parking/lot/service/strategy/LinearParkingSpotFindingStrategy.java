@@ -7,7 +7,7 @@ import com.parking.lot.entity.ParkingSpot;
 import com.parking.lot.entity.Vehicle;
 import com.parking.lot.entity.enums.ParkingSpotStatus;
 import com.parking.lot.entity.enums.VehicleType;
-import com.parking.lot.exception.GlobalException;
+import com.parking.lot.exception.*;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -54,7 +54,7 @@ public class LinearParkingSpotFindingStrategy implements ParkingSpotFindStrategy
             }
         }
 
-        throw new GlobalException("Parking Spot not available for Vehicle : " + vehicleType.toString());
+        throw new SpotUnavailableException();
     }
 
     /**
@@ -82,7 +82,7 @@ public class LinearParkingSpotFindingStrategy implements ParkingSpotFindStrategy
                 }
             }
         }
-        throw new GlobalException("Vehicle Number not found");
+        throw new VehicleNotFoundException();
     }
 
     /**
@@ -100,11 +100,11 @@ public class LinearParkingSpotFindingStrategy implements ParkingSpotFindStrategy
     @Override
     public ParkingSpot getSpot(Integer floor, Integer spotNumber, ParkingLot parkingLot) {
         if(!isFloorValid(floor, parkingLot)) {
-            throw new GlobalException("Floor not found");
+            throw new FloorNotFoundException();
         }
         ParkingFloor existingFloor = parkingLot.getFloors().get(floor);
         if(!isSpotValid(spotNumber, existingFloor)) {
-            throw new GlobalException("Spot not found");
+            throw new SpotNotFoundException();
         }
 
         return existingFloor.getSpots().get(spotNumber);

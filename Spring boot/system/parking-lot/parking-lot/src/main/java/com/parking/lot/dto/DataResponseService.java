@@ -2,7 +2,7 @@ package com.parking.lot.dto;
 
 import com.parking.lot.dto.models.VehicleResponse;
 import com.parking.lot.entity.ParkingSpot;
-import com.parking.lot.exception.GlobalException;
+import com.parking.lot.exception.BusinessException;
 import org.springframework.stereotype.Service;
 
 
@@ -22,7 +22,7 @@ public class DataResponseService {
         VehicleResponse response = new VehicleResponse();
 
         if(parkingSpot.getVehicle() == null) {
-            throw new GlobalException("Vehicle is null");
+            throw new BusinessException("Vehicle is null");
         }
 
         response.setType(parkingSpot.getVehicle().getVehicleType());

@@ -7,11 +7,13 @@ import com.parking.lot.entity.ParkingSpot;
 import com.parking.lot.service.vehicle.VehicleService;
 import org.springframework.web.bind.annotation.*;
 
+import static com.parking.lot.constants.ApiConstants.*;
+
 /**
  * Vehicle manage controller
  */
 @RestController
-@RequestMapping("/vehicle")
+@RequestMapping(VEHICLE_PARENT_API)
 public class VehicleController {
 
     private final VehicleService vehicleService;
@@ -29,7 +31,7 @@ public class VehicleController {
      * @param request
      * @return
      */
-    @PostMapping(value = "/add", params = "email")
+    @PostMapping(value = VEHICLE_PARENT_API_ADD, params = "email")
     public VehicleResponse addVehicle(@RequestParam("email") String email, @RequestBody VehicleRequest request) {
         ParkingSpot parkingSpot = vehicleService.addVehicleInParkingLot(email, request);
         return responseService.addVehicleResponse(parkingSpot);
@@ -42,7 +44,7 @@ public class VehicleController {
      * @param request
      * @return
      */
-    @PostMapping(value = "/remove", params = "email")
+    @PostMapping(value = VEHICLE_PARENT_API_REMOVE, params = "email")
     public String removeVehicle(@RequestParam("email") String email, @RequestBody VehicleRequest request) {
         return vehicleService.removeVehicle(email, request);
     }

@@ -18,8 +18,8 @@ public class GlobalHandlerException {
      * @param ex
      * @return
      */
-    @ExceptionHandler(GlobalException.class)
-    public ResponseEntity<ErrorResponse> exceptionHandler(GlobalException ex) {
+    @ExceptionHandler(BusinessException.class)
+    public ResponseEntity<ErrorResponse> exceptionHandler(BusinessException ex) {
         return new ResponseEntity<>(setErrorMessage(ex.getMessage(), 401),
                 HttpStatus.UNAUTHORIZED);
     }

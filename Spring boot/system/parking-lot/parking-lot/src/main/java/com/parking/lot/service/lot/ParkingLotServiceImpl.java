@@ -4,7 +4,7 @@ import com.parking.lot.dao.lot.ParkingLotDao;
 import com.parking.lot.dto.models.ParkingLotRequest;
 import com.parking.lot.entity.ParkingFloor;
 import com.parking.lot.entity.ParkingLot;
-import com.parking.lot.exception.GlobalException;
+import com.parking.lot.exception.BusinessException;
 import com.parking.lot.service.floor.ParkingFloorService;
 import org.springframework.stereotype.Service;
 
@@ -71,7 +71,7 @@ public class ParkingLotServiceImpl implements ParkingLotService {
 
             parkingLotDao.save(newParkingLot);
         } catch (Exception ex) {
-            throw new GlobalException(ex.getMessage());
+            throw new BusinessException(ex.getMessage());
         }
 
         Map<String, String> messageMap = new HashMap<>();

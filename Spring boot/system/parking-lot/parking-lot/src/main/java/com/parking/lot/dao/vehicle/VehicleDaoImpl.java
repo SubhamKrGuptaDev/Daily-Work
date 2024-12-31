@@ -2,7 +2,8 @@ package com.parking.lot.dao.vehicle;
 
 import com.parking.lot.dto.models.VehicleRequest;
 import com.parking.lot.entity.Vehicle;
-import com.parking.lot.exception.GlobalException;
+import com.parking.lot.exception.BusinessException;
+import com.parking.lot.exception.VehicleNotFoundException;
 import com.parking.lot.repository.VehicleRepository;
 import org.springframework.stereotype.Repository;
 
@@ -24,7 +25,7 @@ public class VehicleDaoImpl implements VehicleDao<Vehicle,Vehicle> {
     @Override
     public Vehicle getById(Integer id) {
         return repo.findById(id)
-                .orElseThrow(() -> new GlobalException("Vehicle not found"));
+                .orElseThrow(() -> new VehicleNotFoundException("Vehicle not found"));
     }
 
     /**
@@ -36,7 +37,7 @@ public class VehicleDaoImpl implements VehicleDao<Vehicle,Vehicle> {
     @Override
     public Vehicle get(String vehicleNumber) {
         return repo.findByNumber(vehicleNumber)
-                .orElseThrow(() -> new GlobalException("Vehicle Number not found"));
+                .orElseThrow(() -> new BusinessException("Vehicle Number not found"));
     }
 
     /**
@@ -50,7 +51,7 @@ public class VehicleDaoImpl implements VehicleDao<Vehicle,Vehicle> {
         try {
             return repo.save(vehicle);
         } catch (Exception ex) {
-            throw new GlobalException(ex.getMessage());
+            throw new BusinessException(ex.getMessage());
         }
     }
 
@@ -68,7 +69,7 @@ public class VehicleDaoImpl implements VehicleDao<Vehicle,Vehicle> {
 
             return save(existingObj);
         } catch(Exception ex) {
-            throw new GlobalException(ex.getMessage());
+            throw new BusinessException(ex.getMessage());
         }
     }
 
@@ -83,7 +84,7 @@ public class VehicleDaoImpl implements VehicleDao<Vehicle,Vehicle> {
             existingVehicle.setNumber(newVehicle.getNumber());
             existingVehicle.setVehicleType(newVehicle.getVehicleType());
         } catch(Exception ex) {
-            throw new GlobalException(ex.getMessage());
+            throw new BusinessException(ex.getMessage());
         }
     }
 
@@ -101,7 +102,7 @@ public class VehicleDaoImpl implements VehicleDao<Vehicle,Vehicle> {
             newVehicle.setVehicleType(request.getType());
             return save(newVehicle);
         } catch(Exception ex) {
-            throw new GlobalException(ex.getMessage());
+            throw new BusinessException(ex.getMessage());
         }
     }
 
@@ -128,7 +129,7 @@ public class VehicleDaoImpl implements VehicleDao<Vehicle,Vehicle> {
         try {
             return repo.existsByNumber(vehicleNumber);
         } catch (Exception ex) {
-            throw new GlobalException(ex.getMessage());
+            throw new BusinessException(ex.getMessage());
         }
     }
 }
