@@ -2,7 +2,6 @@ package com.parking.lot.dao.vehicle;
 
 import com.parking.lot.dto.models.VehicleRequest;
 import com.parking.lot.entity.Vehicle;
-import com.parking.lot.exception.BusinessException;
 import com.parking.lot.exception.VehicleNotFoundException;
 import com.parking.lot.repository.VehicleRepository;
 import org.springframework.stereotype.Repository;
@@ -37,7 +36,7 @@ public class VehicleDaoImpl implements VehicleDao<Vehicle,Vehicle> {
     @Override
     public Vehicle get(String vehicleNumber) {
         return repo.findByNumber(vehicleNumber)
-                .orElseThrow(() -> new BusinessException("Vehicle Number not found"));
+                .orElseThrow(VehicleNotFoundException::new);
     }
 
     /**
@@ -48,11 +47,7 @@ public class VehicleDaoImpl implements VehicleDao<Vehicle,Vehicle> {
      */
     @Override
     public Vehicle save(Vehicle vehicle) {
-        try {
-            return repo.save(vehicle);
-        } catch (Exception ex) {
-            throw new BusinessException(ex.getMessage());
-        }
+        return repo.save(vehicle);
     }
 
     /**
@@ -63,14 +58,9 @@ public class VehicleDaoImpl implements VehicleDao<Vehicle,Vehicle> {
      */
     @Override
     public Vehicle update(Vehicle vehicle) {
-        try {
-            Vehicle existingObj = getById(vehicle.getId());
-            setVehicle(existingObj, vehicle);
-
-            return save(existingObj);
-        } catch(Exception ex) {
-            throw new BusinessException(ex.getMessage());
-        }
+        Vehicle existingObj = getById(vehicle.getId());
+        setVehicle(existingObj, vehicle);
+        return save(existingObj);
     }
 
     /**
@@ -80,12 +70,8 @@ public class VehicleDaoImpl implements VehicleDao<Vehicle,Vehicle> {
      * @param newVehicle
      */
     private void setVehicle(Vehicle existingVehicle, Vehicle newVehicle) {
-        try {
-            existingVehicle.setNumber(newVehicle.getNumber());
-            existingVehicle.setVehicleType(newVehicle.getVehicleType());
-        } catch(Exception ex) {
-            throw new BusinessException(ex.getMessage());
-        }
+        existingVehicle.setNumber(newVehicle.getNumber());
+        existingVehicle.setVehicleType(newVehicle.getVehicleType());
     }
 
     /**
@@ -96,14 +82,10 @@ public class VehicleDaoImpl implements VehicleDao<Vehicle,Vehicle> {
      */
     @Override
     public Vehicle addVehicle(VehicleRequest request) {
-        try {
-            Vehicle newVehicle = new Vehicle();
-            newVehicle.setNumber(request.getVehicleNumber());
-            newVehicle.setVehicleType(request.getType());
-            return save(newVehicle);
-        } catch(Exception ex) {
-            throw new BusinessException(ex.getMessage());
-        }
+        Vehicle newVehicle = new Vehicle();
+        newVehicle.setNumber(request.getVehicleNumber());
+        newVehicle.setVehicleType(request.getType());
+        return save(newVehicle);
     }
 
     /**
@@ -126,10 +108,6 @@ public class VehicleDaoImpl implements VehicleDao<Vehicle,Vehicle> {
      */
     @Override
     public Boolean existsByNumber(String vehicleNumber) {
-        try {
-            return repo.existsByNumber(vehicleNumber);
-        } catch (Exception ex) {
-            throw new BusinessException(ex.getMessage());
-        }
+        return repo.existsByNumber(vehicleNumber);
     }
 }

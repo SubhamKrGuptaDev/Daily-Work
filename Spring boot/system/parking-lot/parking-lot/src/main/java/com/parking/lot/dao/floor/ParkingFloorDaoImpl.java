@@ -1,7 +1,6 @@
 package com.parking.lot.dao.floor;
 
 import com.parking.lot.entity.ParkingFloor;
-import com.parking.lot.exception.BusinessException;
 import com.parking.lot.exception.FloorNotFoundException;
 import com.parking.lot.repository.ParkingFloorRepository;
 import org.springframework.stereotype.Repository;
@@ -26,11 +25,7 @@ public class ParkingFloorDaoImpl implements ParkingFloorDao<ParkingFloor, Parkin
      */
     @Override
     public ParkingFloor save(ParkingFloor newFloor) {
-        try {
-            return repo.save(newFloor);
-        } catch(Exception ex) {
-            throw new BusinessException(ex.getMessage());
-        }
+        return repo.save(newFloor);
     }
 
     /**
@@ -53,13 +48,9 @@ public class ParkingFloorDaoImpl implements ParkingFloorDao<ParkingFloor, Parkin
      */
     @Override
     public ParkingFloor update(ParkingFloor newFloor) {
-        try {
-            ParkingFloor existingFloor = getById(newFloor.getId());
-            setParkingFloorObject(existingFloor, newFloor);
-            return save(existingFloor);
-        } catch(Exception ex) {
-            throw new BusinessException(ex.getMessage());
-        }
+        ParkingFloor existingFloor = getById(newFloor.getId());
+        setParkingFloorObject(existingFloor, newFloor);
+        return save(existingFloor);
     }
 
     /**
@@ -69,14 +60,10 @@ public class ParkingFloorDaoImpl implements ParkingFloorDao<ParkingFloor, Parkin
      * @param newFloor
      */
     private void setParkingFloorObject(ParkingFloor oldFloor, ParkingFloor newFloor) {
-        try {
-            oldFloor.setFloorNumber(newFloor.getFloorNumber());
-            oldFloor.setBikeTotalSpots(newFloor.getBikeTotalSpots());
-            oldFloor.setCarTotalSpots(newFloor.getCarTotalSpots());
-            oldFloor.setTruckTotalSpots(newFloor.getTruckTotalSpots());
-        } catch (Exception ex) {
-            throw new BusinessException(ex.getMessage());
-        }
+        oldFloor.setFloorNumber(newFloor.getFloorNumber());
+        oldFloor.setBikeTotalSpots(newFloor.getBikeTotalSpots());
+        oldFloor.setCarTotalSpots(newFloor.getCarTotalSpots());
+        oldFloor.setTruckTotalSpots(newFloor.getTruckTotalSpots());
     }
 
 }

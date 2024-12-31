@@ -4,10 +4,12 @@ import com.parking.lot.entity.ParkingSpot;
 import com.parking.lot.exception.BusinessException;
 import com.parking.lot.exception.ParkingLotNotFoundException;
 import com.parking.lot.exception.SpotNotFoundException;
+import com.parking.lot.exception.VehicleNotFoundException;
 import com.parking.lot.repository.ParkingSpotRepository;
 import org.springframework.stereotype.Repository;
 
 import static com.parking.lot.constants.ExceptionMessageConstants.ID_NOT_FOUND_EXCEPTION_MESSAGE;
+import static com.parking.lot.constants.ExceptionMessageConstants.VEHICLE_NOT_FOUND_USING_FLOOR;
 
 /**
  * Parking Spot Repository
@@ -88,7 +90,7 @@ public class ParkingSpotDaoImpl implements ParkingSpotDao<ParkingSpot, ParkingSp
     @Override
     public ParkingSpot findByVehicleId(Integer id) {
         return repository.findByVehicleId(id)
-                .orElseThrow(() -> new BusinessException("Vehicle not present in this floor"));
+                .orElseThrow(() -> new VehicleNotFoundException(VEHICLE_NOT_FOUND_USING_FLOOR));
     }
 
     /**
