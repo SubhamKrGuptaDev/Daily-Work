@@ -55,28 +55,33 @@ public class ParkingFloorServiceImpl implements ParkingFloorService {
         newFloor.setTruckTotalSpots(request.getTotalTruckSpots());
         newFloor.setParkingLot(newParkingLot);
 
-
-        // TODO
         // Parking Spot for bike
         List<ParkingSpot> listSpots = new ArrayList<>();
         Integer[] spotNumber = {1};
-        for(int i=0; i<newFloor.getBikeTotalSpots(); i++) {
-            listSpots.add(spotService.getParkingSpotObject(SpotType.SMALL, spotNumber, newFloor));
-        }
 
-        // Parking Spot for car
-        for(int i=0; i<newFloor.getCarTotalSpots(); i++) {
-            listSpots.add(spotService.getParkingSpotObject(SpotType.MEDIUM, spotNumber, newFloor));
-        }
+        // Bike Spot creation
+        createSpotsBasedOnType(newFloor, SpotType.SMALL, spotNumber, listSpots, newFloor.getBikeTotalSpots());
 
-        // Parking Spot for truck
-        for(int i=0; i<newFloor.getTruckTotalSpots(); i++) {
-            listSpots.add(spotService.getParkingSpotObject(SpotType.LARGE, spotNumber, newFloor));
-        }
+        // Car Spot creation
+        createSpotsBasedOnType(newFloor, SpotType.MEDIUM, spotNumber, listSpots, newFloor.getCarTotalSpots());
+
+        // Truck Spot creation
+        createSpotsBasedOnType(newFloor, SpotType.LARGE, spotNumber, listSpots, newFloor.getTruckTotalSpots());
 
         newFloor.setSpots(listSpots);
 
         return newFloor;
+    }
+
+    // Create Spots Based on Spot Types
+    private void createSpotsBasedOnType(ParkingFloor newFloor,
+                                        SpotType spotType,
+                                        Integer[] spotNumber,
+                                        List<ParkingSpot> listSpots,
+                                        Integer totalSpots) {
+        for(int index=0; index<totalSpots; index++) {
+            listSpots.add(spotService.getParkingSpotObject(spotType, spotNumber, newFloor));
+        }
     }
 
     /**

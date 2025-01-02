@@ -24,7 +24,7 @@ public class VehicleDaoImpl implements VehicleDao<Vehicle,Vehicle> {
     @Override
     public Vehicle getById(Integer id) {
         return repo.findById(id)
-                .orElseThrow(() -> new VehicleNotFoundException("Vehicle not found"));
+                .orElseThrow(VehicleNotFoundException::new);
     }
 
     /**
