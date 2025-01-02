@@ -11,6 +11,5 @@ public interface VehicleDao<R,T> extends CrudOperation<R,T> {
 
     Vehicle get(String vehicleNumber);
     Vehicle addVehicle(VehicleRequest request);
-    String removeVehicle(String email, VehicleRequest request);
     Boolean existsByNumber(String vehicleNumber);
 }

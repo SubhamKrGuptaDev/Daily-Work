@@ -89,18 +89,6 @@ public class VehicleDaoImpl implements VehicleDao<Vehicle,Vehicle> {
     }
 
     /**
-     * Implementation pending
-     *
-     * @param email
-     * @param request
-     * @return
-     */
-    @Override
-    public String removeVehicle(String email, VehicleRequest request) {
-        return "";
-    }
-
-    /**
      * Check vehicle existing or not
      *
      * @param vehicleNumber

@@ -10,7 +10,5 @@ public interface ParkingSpotDao<R,T> extends CrudOperation<R,T> {
 
     ParkingSpot getBySpotNumber(Integer spotNumber);
 
-    Integer findByVehicleNullOrderById(String email);
-
     ParkingSpot findByVehicleId(Integer id);
 }

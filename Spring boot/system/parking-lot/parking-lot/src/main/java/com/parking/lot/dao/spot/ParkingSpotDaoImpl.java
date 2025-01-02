@@ -71,17 +71,6 @@ public class ParkingSpotDaoImpl implements ParkingSpotDao<ParkingSpot, ParkingSp
     }
 
     /**
-     * Implementation pending
-     *
-     * @param email
-     * @return
-     */
-    @Override
-    public Integer findByVehicleNullOrderById(String email) {
-        return null;
-    }
-
-    /**
      * find parking spot using vehicle id
      *
      * @param id
@@ -91,20 +80,6 @@ public class ParkingSpotDaoImpl implements ParkingSpotDao<ParkingSpot, ParkingSp
     public ParkingSpot findByVehicleId(Integer id) {
         return repository.findByVehicleId(id)
                 .orElseThrow(() -> new VehicleNotFoundException(VEHICLE_NOT_FOUND_USING_FLOOR));
-    }
-
-    /**
-     * Set parking spot object new Spot - Existing Spot
-     *
-     * @param existingSpot
-     * @param newSpot
-     */
-    private void setParkingSpot(ParkingSpot existingSpot, ParkingSpot newSpot) {
-        existingSpot.setSpotType(newSpot.getSpotType());
-        existingSpot.setSpotNumber(newSpot.getSpotNumber());
-        existingSpot.setParkingSpotStatus(newSpot.getParkingSpotStatus());
-        existingSpot.setVehicle(newSpot.getVehicle());
-        existingSpot.setFloorNumber(newSpot.getFloorNumber());
     }
 
 }
