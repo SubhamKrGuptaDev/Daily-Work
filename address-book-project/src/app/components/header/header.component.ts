@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { HeaderItem } from 'src/app/service/service-objects/header-item.interface';
+import { HeaderItem } from 'src/app/interface/header-item.interface';
 
 @Component({
   selector: 'app-header',
