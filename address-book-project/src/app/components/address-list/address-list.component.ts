@@ -1,8 +1,16 @@
 import { Component } from '@angular/core';
+import { Address } from 'src/app/interface/address.interface';
+import { SharedService } from 'src/app/service/shared.service';
 
 @Component({
   selector: 'address-list-app',
   templateUrl: './address-list.component.html',
   styleUrls: ['./address-list.component.css'],
 })
-export class AddressListComponent {}
+export class AddressListComponent {
+  addressArray: Array<Address>;
+
+  constructor(private share: SharedService) {
+    this.addressArray = share.addressObject;
+  }
+}

@@ -6,10 +6,14 @@ import { Address } from '../interface/address.interface';
 })
 export class SharedService {
   public addressObject: Array<Address>;
+  public curSelect: Address;
   constructor() {
     // Dummy Object
     this.addressObject = [
       {
+        name: 'Subham',
+        email: 'subham@gmail.com',
+        mobileNo: '+91489887891',
         country: 'India',
         state: 'West Bengal',
         city: 'Kharagpur',
@@ -17,5 +21,15 @@ export class SharedService {
         pinCode: '721305',
       },
     ];
+    this.curSelect = {
+      name: '',
+      email: '',
+      mobileNo: '',
+      country: '',
+      state: '',
+      city: '',
+      description: '',
+      pinCode: '',
+    };
   }
 }
