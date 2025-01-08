@@ -7,6 +7,8 @@ import { AddressListComponent } from './components/address-list/address-list.com
 import { AddressDetailsComponent } from './components/address-details/address-details.component';
 import { AddressAddComponent } from './components/address-add/address-add.component';
 import { HomeComponentComponent } from './components/home-component/home-component.component';
+import { HeaderComponent } from './header/header.component';
+import { HeaderItemsComponent } from './header-items/header-items.component';
 
 @NgModule({
   declarations: [
@@ -15,6 +17,8 @@ import { HomeComponentComponent } from './components/home-component/home-compone
     AddressDetailsComponent,
     AddressAddComponent,
     HomeComponentComponent,
+    HeaderComponent,
+    HeaderItemsComponent,
   ],
   imports: [BrowserModule, AppRoutingModule],
   providers: [],
