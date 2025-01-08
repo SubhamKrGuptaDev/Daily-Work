@@ -1,1 +1,10 @@
-<p>header works!</p>
+<nav class="header">
+  <ul class="header-items">
+    <li class="item" *ngFor="let item of header_items">
+      <app-header-items
+        [title]="item.title"
+        [link]="item.link"
+      ></app-header-items>
+    </li>
+  </ul>
+</nav>
