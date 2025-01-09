@@ -1,0 +1,11 @@
+.address-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.cards {
+  display: flex;
+  flex-direction: column;
+  flex: 0.7;
+  margin: 10px 0px;
+}

@@ -1,1 +1,20 @@
-<h1>Address Details Component</h1>
+<div class="card card-style">
+  <div class="card-body card-body-style">
+    <h5 class="card-title">{{ address.name }}</h5>
+    <p class="card-text">Email: {{ address.email }}</p>
+    <p class="card-text">Mobile Number: {{ address.mobileNo }}</p>
+    <p class="card-text">Country: {{ address.country }}</p>
+    <p class="card-text">State: {{ address.state }}</p>
+    <p class="card-text">City: {{ address.city }}</p>
+    <p class="card-text">pin: {{ address.pinCode }}</p>
+    <p class="card-text">Address: {{ address.description }}</p>
+    <div class="button-group">
+      <a href="#" class="btn btn-link-style btn-warning btn-lg"
+        ><i class="bi bi-pencil"></i> Edit</a
+      >
+      <a href="#" class="btn btn-link-style btn-danger text-danger btn-lg"
+        ><i class="bi bi-trash"></i> Delete</a
+      >
+    </div>
+  </div>
+</div>

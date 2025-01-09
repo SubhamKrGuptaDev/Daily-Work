@@ -9,6 +9,7 @@ import { AddressAddComponent } from './components/address-add/address-add.compon
 import { HomeComponent } from './components/home-component/home-component.component';
 import { HeaderComponent } from './components/header/header.component';
 import { HeaderItemsComponent } from './components/header-items/header-items.component';
+import { AddressListItemComponent } from './components/address-list-item/address-list-item.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { HeaderItemsComponent } from './components/header-items/header-items.com
     HomeComponent,
     HeaderComponent,
     HeaderItemsComponent,
+    AddressListItemComponent,
   ],
   imports: [BrowserModule, AppRoutingModule],
   providers: [],

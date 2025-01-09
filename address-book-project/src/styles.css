@@ -1,4 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
+/* Import in your CSS or SCSS file */
+@import "bootstrap-icons/font/bootstrap-icons.css";
+
 * {
   box-sizing: border-box;
   margin: 0;
