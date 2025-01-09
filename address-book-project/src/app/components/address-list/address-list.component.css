@@ -8,4 +8,5 @@
   flex-direction: column;
   flex: 0.7;
   margin: 10px 0px;
+  cursor: pointer;
 }

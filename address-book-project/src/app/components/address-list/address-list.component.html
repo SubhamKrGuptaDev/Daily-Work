@@ -1,5 +1,9 @@
 <div class="address-list">
-  <div class="cards" *ngFor="let address of addressArray">
+  <div
+    class="cards"
+    *ngFor="let address of addressArray"
+    (click)="viewAddress(address)"
+  >
     <app-address-list-item [address]="address"></app-address-list-item>
   </div>
 </div>
