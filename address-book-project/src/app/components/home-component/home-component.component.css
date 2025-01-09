@@ -1,8 +1,12 @@
 .left-section {
-  border: 1px solid rebeccapurple;
-  height: 80vh; /* Full viewport height */
+  /* border: 1px solid rebeccapurple; */
+  height: 70vh; /* Full viewport height */
   overflow-y: auto;
   scrollbar-width: none;
+}
+
+.container-box {
+  overflow-y: hidden;
 }
 
 .left-section:hover {
@@ -10,9 +14,7 @@
 }
 
 .right-section {
-  display: flex;
-  /* justify-content: center; */
-  border: 1px solid blue;
+  /* border: 1px solid blue; */
 }
 
 .section-padding {

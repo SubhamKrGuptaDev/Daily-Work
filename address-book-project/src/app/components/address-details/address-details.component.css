@@ -4,14 +4,21 @@
 }
 
 .btn-link-style {
+  color: inherit;
   background-color: transparent;
 }
 
+#edit:hover {
+  background-color: var(--btn-color-warning);
+}
+
+#delete:hover {
+  color: white;
+  background-color: var(--btn-color-danger);
+}
+
 .card-style {
-  height: 100%;
   width: 100%;
-  display: flex;
-  /* border: 1px solid black; */
 }
 
 .card-body-style {

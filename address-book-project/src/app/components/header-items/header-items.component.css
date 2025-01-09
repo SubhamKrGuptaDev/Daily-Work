@@ -1,9 +1,10 @@
 .item {
   text-decoration: none;
-  font-size: 19px;
+  font-size: 20px;
+  color: var(--color-primary);
 }
 
 .item:hover {
-  color: brown;
+  color: var(--btn-color-danger);
   text-decoration: underline;
 }

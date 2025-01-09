@@ -10,6 +10,7 @@ import { HomeComponent } from './components/home-component/home-component.compon
 import { HeaderComponent } from './components/header/header.component';
 import { HeaderItemsComponent } from './components/header-items/header-items.component';
 import { AddressListItemComponent } from './components/address-list-item/address-list-item.component';
+import { LogoComponent } from './components/logo/logo.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { AddressListItemComponent } from './components/address-list-item/address
     HeaderComponent,
     HeaderItemsComponent,
     AddressListItemComponent,
+    LogoComponent,
   ],
   imports: [BrowserModule, AppRoutingModule],
   providers: [],
