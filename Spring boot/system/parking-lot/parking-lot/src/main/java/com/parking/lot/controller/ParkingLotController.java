@@ -42,8 +42,8 @@ public class ParkingLotController {
      * @return
      */
     @PostMapping
-    public Map<String, String> save(@RequestBody ParkingLotRequest lotRequest) {
-        return parkingLotService.save(lotRequest);
+    public ResponseEntity<Map<String, String>> save(@RequestBody ParkingLotRequest lotRequest) {
+        return ResponseEntity.ok(parkingLotService.save(lotRequest));
     }
 
     /**
@@ -53,8 +53,8 @@ public class ParkingLotController {
      * @return
      */
     @GetMapping(params = "name")
-    public ParkingLot getByName(@RequestParam(name = "name") String name) {
-        return parkingLotService.getByName(name);
+    public ResponseEntity<ParkingLot> getByName(@RequestParam(name = "name") String name) {
+        return ResponseEntity.ok(parkingLotService.getByName(name));
     }
 
     /**
@@ -64,8 +64,8 @@ public class ParkingLotController {
      * @return
      */
     @PutMapping
-    public ParkingLot update(@RequestBody ParkingLot lot) {
-        return parkingLotService.update(lot);
+    public ResponseEntity<ParkingLot> update(@RequestBody ParkingLot lot) {
+        return ResponseEntity.ok(parkingLotService.update(lot));
     }
 
     /**
@@ -75,8 +75,8 @@ public class ParkingLotController {
      * @return
      */
     @GetMapping(value = PARKING_LOT_API_CHECK, params = "name")
-    public Boolean isPresent(@RequestParam(name = "name") String name) {
-        return parkingLotService.isPresent(name);
+    public ResponseEntity<Boolean> isPresent(@RequestParam(name = "name") String name) {
+        return ResponseEntity.ok(parkingLotService.isPresent(name));
     }
 
 }

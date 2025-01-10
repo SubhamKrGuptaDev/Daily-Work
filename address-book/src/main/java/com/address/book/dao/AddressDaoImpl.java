@@ -3,9 +3,11 @@ package com.address.book.dao;
 import com.address.book.entity.Address;
 import com.address.book.exception.AddressNotFoundException;
 import com.address.book.repository.AddressRepository;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+@Repository
 public class AddressDaoImpl implements AddressDao {
 
     private final AddressRepository addressRepository;

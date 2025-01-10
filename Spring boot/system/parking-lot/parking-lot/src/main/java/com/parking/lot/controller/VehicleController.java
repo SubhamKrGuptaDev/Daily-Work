@@ -5,6 +5,7 @@ import com.parking.lot.dto.models.VehicleRequest;
 import com.parking.lot.dto.models.VehicleResponse;
 import com.parking.lot.entity.ParkingSpot;
 import com.parking.lot.service.vehicle.VehicleService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import static com.parking.lot.constants.ApiConstants.*;
@@ -32,9 +33,9 @@ public class VehicleController {
      * @return
      */
     @PostMapping(value = VEHICLE_PARENT_API_ADD, params = "email")
-    public VehicleResponse addVehicle(@RequestParam("email") String email, @RequestBody VehicleRequest request) {
+    public ResponseEntity<VehicleResponse> addVehicle(@RequestParam("email") String email, @RequestBody VehicleRequest request) {
         ParkingSpot parkingSpot = vehicleService.addVehicleInParkingLot(email, request);
-        return responseService.addVehicleResponse(parkingSpot);
+        return ResponseEntity.ok(responseService.addVehicleResponse(parkingSpot));
     }
 
     /**
@@ -45,8 +46,8 @@ public class VehicleController {
      * @return
      */
     @PostMapping(value = VEHICLE_PARENT_API_REMOVE, params = "email")
-    public String removeVehicle(@RequestParam("email") String email, @RequestBody VehicleRequest request) {
-        return vehicleService.removeVehicle(email, request);
+    public ResponseEntity<String> removeVehicle(@RequestParam("email") String email, @RequestBody VehicleRequest request) {
+        return ResponseEntity.ok(vehicleService.removeVehicle(email, request));
     }
 
 }
