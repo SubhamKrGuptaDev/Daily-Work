@@ -1,0 +1,21 @@
+.form-style {
+  display: flex;
+  flex-direction: column;
+  flex: 0.5;
+}
+
+.form-container {
+  display: flex;
+  justify-content: center;
+  /* border: 1px solid red; */
+}
+
+.button-group {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.btn-style {
+  flex: 0.3;
+}

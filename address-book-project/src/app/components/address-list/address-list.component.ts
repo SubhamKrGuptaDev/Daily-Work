@@ -10,16 +10,22 @@ import { SharedService } from 'src/app/service/shared.service';
 export class AddressListComponent {
   addressArray: Array<Address>;
 
-  constructor(private share: SharedService) {
-    this.addressArray = share.addressObject;
+  constructor(private shareService: SharedService) {
+    this.addressArray = shareService.addressObject;
   }
 
-  viewAddress(address: Address) {
-    this.setAddress(address);
+  ngOnInit() {}
+
+  viewAddress(address: Address, index: Number) {
+    this.setAddress(address, index);
   }
 
-  setAddress(address: Address) {
-    this.share.setCurAddress(address);
+  setArrayAddress(newAddress: Array<Address>) {
+    this.addressArray = newAddress;
+  }
+
+  setAddress(address: Address, index: Number) {
+    this.shareService.setCurAddress(address, index);
     // this.share.curSelect.name = address.name;
     // this.share.curSelect.email = address.email;
     // this.share.curSelect.mobileNo = address.mobileNo;

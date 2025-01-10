@@ -8,6 +8,6 @@ import { Address } from 'src/app/interface/address.interface';
 })
 export class AddressListItemComponent {
   @Input() address: Address | undefined;
-
+  @Input() index: Number | undefined;
   constructor() {}
 }

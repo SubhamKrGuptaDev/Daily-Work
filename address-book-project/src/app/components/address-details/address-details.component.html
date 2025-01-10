@@ -1,6 +1,6 @@
 <div class="card card-style box-shadow-style">
   <div class="card-body card-body-style">
-    <h5 class="card-title">{{ address.name }}</h5>
+    <h5 class="card-title text-danger">{{ address.name }}</h5>
     <p class="card-text">Email: {{ address.email }}</p>
     <p class="card-text">Mobile Number: {{ address.mobileNo }}</p>
     <p class="card-text">Country: {{ address.country }}</p>
@@ -9,10 +9,27 @@
     <p class="card-text">pin: {{ address.pinCode }}</p>
     <p class="card-text">Address: {{ address.description }}</p>
     <div class="button-group">
-      <a href="#" id="edit" class="btn btn-link-style btn-warning btn-lg"
+      <a
+        id="edit"
+        class="btn btn-link-style btn-warning btn-lg"
+        (click)="editElement()"
+        [routerLink]="['/add']"
+        [queryParams]="{
+          name: address.name,
+          city: address.city,
+          email: address.email,
+          mobileNo: address.mobileNo,
+          country: address.country,
+          state: address.state,
+          description: address.description,
+          pincode: address.pinCode
+        }"
         ><i class="bi bi-pencil"></i> Edit</a
       >
-      <a href="#" id="delete" class="btn btn-link-style btn-danger btn-lg"
+      <a
+        id="delete"
+        class="btn btn-link-style btn-danger btn-lg"
+        (click)="deleteElement()"
         ><i class="bi bi-trash"></i> Delete</a
       >
     </div>
