@@ -5,6 +5,8 @@ import com.parking.lot.entity.ParkingSpot;
 import com.parking.lot.exception.BusinessException;
 import org.springframework.stereotype.Service;
 
+import static com.parking.lot.constants.ExceptionMessageConstants.VEHICLE_NOT_FOUND_EXCEPTION_MESSAGE;
+
 
 /**
  * Data Response Service
@@ -22,7 +24,7 @@ public class DataResponseService {
         VehicleResponse response = new VehicleResponse();
 
         if(parkingSpot.getVehicle() == null) {
-            throw new BusinessException("Vehicle is null");
+            throw new BusinessException(VEHICLE_NOT_FOUND_EXCEPTION_MESSAGE);
         }
 
         response.setType(parkingSpot.getVehicle().getVehicleType());

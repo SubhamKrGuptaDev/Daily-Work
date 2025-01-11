@@ -1,14 +1,17 @@
 package com.parking.lot.service.vehicle;
 
+import com.parking.lot.dao.floor.ParkingFloorDao;
 import com.parking.lot.dao.lot.ParkingLotDao;
 import com.parking.lot.dao.spot.ParkingSpotDao;
 import com.parking.lot.dao.vehicle.VehicleDao;
 import com.parking.lot.dto.models.VehicleRequest;
+import com.parking.lot.entity.ParkingFloor;
 import com.parking.lot.entity.ParkingLot;
 import com.parking.lot.entity.ParkingSpot;
 import com.parking.lot.entity.Vehicle;
 import com.parking.lot.entity.enums.ParkingSpotStatus;
 import com.parking.lot.service.strategy.ParkingSpotFindStrategy;
+import com.parking.lot.service.strategy.ParkingSpotVehicleTypeMatchingService;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
@@ -24,15 +27,20 @@ public class VehicleServiceImpl implements VehicleService {
     private final VehicleDao<Vehicle,Vehicle> vehicleDao;
     private final ParkingSpotDao<ParkingSpot,ParkingSpot> spotDao;
     private final ParkingSpotFindStrategy findStrategy;
+    private final ParkingSpotVehicleTypeMatchingService parkingSpotVehicleTypeMatchingService;
+    private final ParkingFloorDao<ParkingFloor, ParkingFloor> parkingFloorDao;
 
     public VehicleServiceImpl(ParkingLotDao<ParkingLot,ParkingLot> parkingLotRepository,
                               VehicleDao<Vehicle,Vehicle> repository,
                               ParkingSpotDao<ParkingSpot,ParkingSpot> spotRepository,
-                              @Qualifier("linearParkingSpotFindingStrategy") ParkingSpotFindStrategy findStrategy) {
+                              @Qualifier("linearParkingSpotFindingStrategy") ParkingSpotFindStrategy findStrategy,
+                              ParkingSpotVehicleTypeMatchingService parkingSpotVehicleTypeMatchingService, ParkingFloorDao<ParkingFloor, ParkingFloor> parkingFloorDao) {
         this.parkingLotDao = parkingLotRepository;
         this.vehicleDao = repository;
         this.spotDao = spotRepository;
         this.findStrategy = findStrategy;
+        this.parkingSpotVehicleTypeMatchingService = parkingSpotVehicleTypeMatchingService;
+        this.parkingFloorDao = parkingFloorDao;
     }
 
     /**
@@ -83,8 +91,13 @@ public class VehicleServiceImpl implements VehicleService {
         ParkingSpot existingSpot = spotDao.findByVehicleId(existingVehicle.getId());
         existingSpot.setVehicle(null);
         existingSpot.setParkingSpotStatus(ParkingSpotStatus.AVAILABLE);
+        ParkingFloor floorObj = existingSpot.getFloor();
+
+        parkingSpotVehicleTypeMatchingService.increaseSpotInFloor(floorObj, existingVehicle.getVehicleType());
+        parkingFloorDao.save(floorObj);
 
         spotDao.save(existingSpot);
         return SUCCESSFULLY_REMOVE;
     }
+
 }

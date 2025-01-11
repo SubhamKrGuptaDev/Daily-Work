@@ -5,8 +5,6 @@ import lombok.Getter;
 import lombok.Setter;
 
 @MappedSuperclass
-@Getter
-@Setter
 public abstract class BaseModel {
     @Id
     @SequenceGenerator(
@@ -20,4 +18,12 @@ public abstract class BaseModel {
             generator = "id_sequence"
     )
     private Integer id;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 }
