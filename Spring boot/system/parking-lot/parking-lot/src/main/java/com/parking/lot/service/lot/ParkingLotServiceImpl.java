@@ -13,6 +13,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static com.parking.lot.constants.ExceptionMessageConstants.PARKING_LOT_ALREADY_PRESENT;
+
 /**
  * Parking Lot Service
  */
@@ -55,6 +57,9 @@ public class ParkingLotServiceImpl implements ParkingLotService {
 
             // ParkingLot
             newParkingLot.setName(request.getName());
+            if(parkingLotDao.isPresent(request.getEmail())) {
+                throw new BusinessException(PARKING_LOT_ALREADY_PRESENT);
+            }
             newParkingLot.setEmail(request.getEmail());
             newParkingLot.setPassword(request.getPassword());
             newParkingLot.setAddress(request.getAddress());

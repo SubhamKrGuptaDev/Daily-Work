@@ -24,6 +24,8 @@ public class ExceptionMessageConstants {
     public final static String PARKING_LOT_NOT_FOUND_USING_NAME_MESSAGE = "ParkingLot not find by name";
     public final static String PARKING_LOT_NOT_FOUND_USING_EMAIL_MESSAGE = "Parking lot not found by email";
     public final static String VEHICLE_NOT_FOUND_USING_FLOOR = "Vehicle not present in this floor";
+    public final static String PARKING_LOT_ALREADY_PRESENT = "Parking lot already present";
+
     /**
      * ID not found exception message
      */
