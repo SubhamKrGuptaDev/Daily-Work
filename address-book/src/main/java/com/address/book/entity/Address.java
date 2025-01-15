@@ -13,31 +13,14 @@ public class Address {
     private String name;
     private String email;
     private String mobileNo;
-    private String country;
-    private String state;
-    private String city;
-    private String pinCode;
-    private String description;
-
     private String landline;
+
     @Column(length = 500)
     private String website;
 
-    public String getLandline() {
-        return landline;
-    }
+    @Column(length = 1000)
+    private String address;
 
-    public void setLandline(String landline) {
-        this.landline = landline;
-    }
-
-    public String getWebsite() {
-        return website;
-    }
-
-    public void setWebsite(String website) {
-        this.website = website;
-    }
 
     public Integer getId() {
         return id;
@@ -71,43 +54,40 @@ public class Address {
         this.mobileNo = mobileNo;
     }
 
-    public String getCountry() {
-        return country;
+    public String getAddress() {
+        return address;
     }
 
-    public void setCountry(String country) {
-        this.country = country;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
-    public String getState() {
-        return state;
+    public String getLandline() {
+        return landline;
     }
 
-    public void setState(String state) {
-        this.state = state;
+    public void setLandline(String landline) {
+        this.landline = landline;
     }
 
-    public String getCity() {
-        return city;
+    public String getWebsite() {
+        return website;
     }
 
-    public void setCity(String city) {
-        this.city = city;
+    public void setWebsite(String website) {
+        this.website = website;
     }
 
-    public String getPinCode() {
-        return pinCode;
-    }
-
-    public void setPinCode(String pinCode) {
-        this.pinCode = pinCode;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
+    @Override
+    public String toString() {
+        return "Address{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                ", mobileNo='" + mobileNo + '\'' +
+                ", landline='" + landline + '\'' +
+                ", website='" + website + '\'' +
+                ", address='" + address + '\'' +
+                '}';
     }
 }
