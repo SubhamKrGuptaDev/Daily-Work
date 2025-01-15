@@ -12,13 +12,11 @@ export class AddressAddComponent {
   @Input() address: Address = {
     id: 0,
     name: '',
-    city: '',
-    country: '',
-    description: '',
+    address: '',
     email: '',
     mobileNo: '',
-    pinCode: '',
-    state: '',
+    landline: '',
+    website: '',
   };
 
   constructor(private share: SharedService, private route: ActivatedRoute) {}
@@ -29,13 +27,11 @@ export class AddressAddComponent {
       this.address = {
         id: param['id'],
         name: param['name'],
-        city: param['city'],
-        country: param['country'],
-        description: param['description'],
+        address: param['address'],
         email: param['email'],
         mobileNo: param['mobileNo'],
-        pinCode: param['pincode'],
-        state: param['state'],
+        landline: param['landline'],
+        website: param['website'],
       };
     });
   }

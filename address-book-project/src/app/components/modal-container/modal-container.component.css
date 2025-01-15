@@ -1,0 +1,33 @@
+.container {
+  padding: 15px;
+}
+.form-container {
+  height: 100%;
+  width: 100%;
+}
+
+.form-style {
+  height: 100%;
+  width: 100%;
+}
+
+.form-input-style-mobile {
+  display: flex;
+  gap: 10px;
+}
+
+.input-mobile-style {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.button-group {
+  display: flex;
+  justify-content: end;
+  margin-top: 10px;
+}
+
+.btn-style {
+  flex: 0.2;
+}

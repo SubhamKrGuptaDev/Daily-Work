@@ -1,0 +1,32 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.button-group {
+  display: flex;
+  /* margin: 0px 40px; */
+}
+
+.text-style {
+  line-height: 0.3;
+}
+
+.address-style {
+  display: flex;
+}
+
+.location-style {
+  display: flex;
+  gap: 5px;
+}
+
+.card-body-style {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.btn-link-style:hover {
+  text-decoration: underline;
+}

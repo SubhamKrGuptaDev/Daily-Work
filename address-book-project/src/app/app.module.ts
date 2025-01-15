@@ -13,6 +13,9 @@ import { AddressListItemComponent } from './components/address-list-item/address
 import { LogoComponent } from './components/logo/logo.component';
 import { FormsModule } from '@angular/forms';
 import { AddressDetailsV2Component } from './components/address-details-v2/address-details-v2.component';
+import { ModalContainerComponent } from './components/modal-container/modal-container.component';
+import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
+import { DeleteContainerComponent } from './components/delete-container/delete-container.component';
 
 @NgModule({
   declarations: [
@@ -26,9 +29,12 @@ import { AddressDetailsV2Component } from './components/address-details-v2/addre
     AddressListItemComponent,
     LogoComponent,
     AddressDetailsV2Component,
+    ModalContainerComponent,
+    DeleteContainerComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, FormsModule],
+  imports: [BrowserModule, AppRoutingModule, FormsModule, NgbModalModule],
   providers: [],
   bootstrap: [AppComponent],
+  entryComponents: [ModalContainerComponent, DeleteContainerComponent],
 })
 export class AppModule {}

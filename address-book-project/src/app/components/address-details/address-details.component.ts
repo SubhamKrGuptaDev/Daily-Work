@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Address } from 'src/app/interface/address.interface';
 import { SharedService } from 'src/app/service/shared.service';
 
@@ -10,7 +11,7 @@ import { SharedService } from 'src/app/service/shared.service';
 export class AddressDetailsComponent {
   address: Address;
 
-  constructor(private sharedService: SharedService) {
+  constructor(private sharedService: SharedService, private modal: NgbModal) {
     this.address = sharedService.curSelect;
     // console.log(this.sharedService.addressObject);
     console.log(this.sharedService.curIndex);

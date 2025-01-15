@@ -1,0 +1,29 @@
+<div class="card card-style box-shadow-style">
+  <div class="card-body card-body-style">
+    <div class="header">
+      <h2 class="card-title">{{ address.name }}</h2>
+      <div class="button-group">
+        <a id="edit" class="btn btn-link-style" (click)="editBtn()">
+          <i class="bi bi-pencil"></i> Edit</a
+        >
+        <a id="delete" class="btn btn-link-style" (click)="deleteBtn()"
+          ><i class="bi bi-trash"></i> Delete</a
+        >
+      </div>
+    </div>
+    <p class="card-text">Email: {{ address.email }}</p>
+    <div class="card-text text-style">
+      <p>Mobile: {{ address.mobileNo }}</p>
+      <p>Landline: {{ address.landline }}</p>
+    </div>
+    <p class="card-text">Website: {{ address.website }}</p>
+    <div class="card-text address-style">
+      <div class="left-text text-style">
+        <p>Address:</p>
+      </div>
+      <div class="right-text text-style">
+        <p>{{ address.address }}</p>
+      </div>
+    </div>
+  </div>
+</div>

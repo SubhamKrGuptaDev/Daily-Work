@@ -11,22 +11,18 @@ export class SharedService {
       name: 'Subham',
       email: 'subham@gmail.com',
       mobileNo: '+91489887891',
-      country: 'India',
-      state: 'West Bengal',
-      city: 'Kharagpur',
-      description: 'Inda',
-      pinCode: '721305',
+      address: 'Inda',
+      landline: '+978634324',
+      website: 'www.address.com',
     },
     {
       id: 2,
       name: 'Rahul',
       email: 'rahul@gmail.com',
       mobileNo: '+76398742354',
-      country: 'India',
-      state: 'West Bengal',
-      city: 'Kolkata',
-      description: 'new town',
-      pinCode: '700010',
+      address: 'new town',
+      landline: '+978634324',
+      website: 'www.address.com',
     },
   ];
   public curSelect: Address = {
@@ -34,11 +30,9 @@ export class SharedService {
     name: '',
     email: '',
     mobileNo: '',
-    country: '',
-    state: '',
-    city: '',
-    description: '',
-    pinCode: '',
+    address: '',
+    landline: '',
+    website: '',
   };
   public curIndex: Number | undefined;
   constructor() {}
@@ -68,11 +62,9 @@ export class SharedService {
       name: '',
       email: '',
       mobileNo: '',
-      country: '',
-      state: '',
-      city: '',
-      description: '',
-      pinCode: '',
+      address: '',
+      landline: '',
+      website: '',
     };
   }
 }
