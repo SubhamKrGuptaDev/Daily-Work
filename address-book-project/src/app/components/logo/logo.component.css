@@ -1,3 +1,8 @@
 .text-light {
   font-size: 40px;
 }
+
+.navbar-style {
+  background-color: var(--header-color);
+  padding: 10px 20px;
+}

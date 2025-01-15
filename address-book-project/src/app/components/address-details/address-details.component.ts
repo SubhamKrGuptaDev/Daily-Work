@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { Address } from 'src/app/interface/address.interface';
 import { SharedService } from 'src/app/service/shared.service';
-import { AddressListComponent } from '../address-list/address-list.component';
 
 @Component({
   selector: 'address-details-app',

@@ -12,6 +12,7 @@ import { HeaderItemsComponent } from './components/header-items/header-items.com
 import { AddressListItemComponent } from './components/address-list-item/address-list-item.component';
 import { LogoComponent } from './components/logo/logo.component';
 import { FormsModule } from '@angular/forms';
+import { AddressDetailsV2Component } from './components/address-details-v2/address-details-v2.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { FormsModule } from '@angular/forms';
     HeaderItemsComponent,
     AddressListItemComponent,
     LogoComponent,
+    AddressDetailsV2Component,
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule],
   providers: [],

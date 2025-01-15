@@ -10,6 +10,7 @@ import { SharedService } from 'src/app/service/shared.service';
 })
 export class AddressAddComponent {
   @Input() address: Address = {
+    id: 0,
     name: '',
     city: '',
     country: '',
@@ -26,6 +27,7 @@ export class AddressAddComponent {
     this.route.queryParams.subscribe((param) => {
       console.log(param);
       this.address = {
+        id: param['id'],
         name: param['name'],
         city: param['city'],
         country: param['country'],

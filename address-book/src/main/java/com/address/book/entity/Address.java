@@ -1,9 +1,6 @@
 package com.address.book.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 
 @Entity
@@ -21,6 +18,26 @@ public class Address {
     private String city;
     private String pinCode;
     private String description;
+
+    private String landline;
+    @Column(length = 500)
+    private String website;
+
+    public String getLandline() {
+        return landline;
+    }
+
+    public void setLandline(String landline) {
+        this.landline = landline;
+    }
+
+    public String getWebsite() {
+        return website;
+    }
+
+    public void setWebsite(String website) {
+        this.website = website;
+    }
 
     public Integer getId() {
         return id;

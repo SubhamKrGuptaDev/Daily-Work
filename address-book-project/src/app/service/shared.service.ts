@@ -7,6 +7,7 @@ import { Address } from '../interface/address.interface';
 export class SharedService {
   public addressObject: Array<Address> = [
     {
+      id: 1,
       name: 'Subham',
       email: 'subham@gmail.com',
       mobileNo: '+91489887891',
@@ -17,6 +18,7 @@ export class SharedService {
       pinCode: '721305',
     },
     {
+      id: 2,
       name: 'Rahul',
       email: 'rahul@gmail.com',
       mobileNo: '+76398742354',
@@ -28,6 +30,7 @@ export class SharedService {
     },
   ];
   public curSelect: Address = {
+    id: 0,
     name: '',
     email: '',
     mobileNo: '',
@@ -61,6 +64,7 @@ export class SharedService {
 
   emptyCurObject() {
     this.curSelect = {
+      id: 0,
       name: '',
       email: '',
       mobileNo: '',

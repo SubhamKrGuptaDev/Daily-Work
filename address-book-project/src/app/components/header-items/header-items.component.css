@@ -1,10 +1,11 @@
 .item {
   text-decoration: none;
   font-size: 20px;
-  color: var(--color-primary);
+  color: white;
+  font-weight: 700;
+  /* gap: 100px; */
 }
 
 .item:hover {
-  color: var(--btn-color-danger);
   text-decoration: underline;
 }

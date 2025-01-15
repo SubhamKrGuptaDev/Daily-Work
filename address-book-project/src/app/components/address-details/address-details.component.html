@@ -15,6 +15,7 @@
         (click)="editElement()"
         [routerLink]="['/add']"
         [queryParams]="{
+          id: address.id,
           name: address.name,
           city: address.city,
           email: address.email,

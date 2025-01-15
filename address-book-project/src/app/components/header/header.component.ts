@@ -8,9 +8,9 @@ import { HeaderItem } from 'src/app/interface/header-item.interface';
 })
 export class HeaderComponent {
   header_items: Array<HeaderItem> = [
-    { title: 'Home' },
+    { title: 'HOME' },
     {
-      title: 'Add +',
+      title: 'ADD+',
       link: 'add',
     },
   ];
