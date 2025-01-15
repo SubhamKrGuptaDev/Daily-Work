@@ -5,26 +5,9 @@ import { Address } from '../interface/address.interface';
   providedIn: 'root', // This makes the service available globally
 })
 export class SharedService {
-  public addressObject: Array<Address> = [
-    {
-      id: 1,
-      name: 'Subham',
-      email: 'subham@gmail.com',
-      mobileNo: '+91489887891',
-      address: 'Inda',
-      landline: '+978634324',
-      website: 'www.address.com',
-    },
-    {
-      id: 2,
-      name: 'Rahul',
-      email: 'rahul@gmail.com',
-      mobileNo: '+76398742354',
-      address: 'new town',
-      landline: '+978634324',
-      website: 'www.address.com',
-    },
-  ];
+  public addressObject: Array<Address> = [];
+  public isDataPresentInDetails: Boolean = false
+
   public curSelect: Address = {
     id: 0,
     name: '',
@@ -36,6 +19,10 @@ export class SharedService {
   };
   public curIndex: Number | undefined;
   constructor() {}
+
+  setAddressArray(addressArr: Array<Address>) {
+    this.addressObject = addressArr;
+  }
 
   setCurAddress(address: Address, index: Number) {
     Object.assign(this.curSelect, address); // (target, source)

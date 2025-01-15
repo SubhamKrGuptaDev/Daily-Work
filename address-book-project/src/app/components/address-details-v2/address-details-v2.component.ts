@@ -13,21 +13,35 @@ import { DeleteContainerComponent } from '../delete-container/delete-container.c
 export class AddressDetailsV2Component {
   address: Address;
 
-  constructor(private sharedService: SharedService, private modal: NgbModal) {
+  constructor(public sharedService: SharedService, private modal: NgbModal) {
     this.address = sharedService.curSelect;
     console.log(this.sharedService.curIndex);
   }
 
+  ngOnInit() {
+  }
+
   editBtn() {
-    const modalRef = this.modal.open(ModalContainerComponent, {
-      size: 'lg',
-    });
-    modalRef.componentInstance.address = this.address;
+    if (this.isValidData()) {
+      const modalRef = this.modal.open(ModalContainerComponent, {
+        size: 'lg',
+      });
+      modalRef.componentInstance.modalRef = modalRef;
+      modalRef.componentInstance.address = this.address;
+    }
   }
 
   deleteBtn() {
-    this.modal.open(DeleteContainerComponent, {
-      size: 'md',
-    });
+    if (this.isValidData()) {
+      const modalRef = this.modal.open(DeleteContainerComponent, {
+        size: 'md',
+      });
+      modalRef.componentInstance.modalRef = modalRef;
+      modalRef.componentInstance.id = this.address.id;
+    }
+  }
+
+  isValidData() {
+    return this.address.name.length > 0;
   }
 }

@@ -1,4 +1,12 @@
-<div class="card card-style box-shadow-style">
+<!-- <div *ngIf="isDataPresent; then card; else message"></div> -->
+<!-- <ng-template #message> -->
+  <div [hidden]="sharedService.isDataPresentInDetails">
+    <h1>Please Select Data</h1>
+  </div>
+<!-- </ng-template> -->
+
+<!-- <ng-template #card> -->
+<div class="card card-style box-shadow-style" [hidden]="!sharedService.isDataPresentInDetails" >
   <div class="card-body card-body-style">
     <div class="header">
       <h2 class="card-title">{{ address.name }}</h2>
@@ -27,3 +35,4 @@
     </div>
   </div>
 </div>
+<!-- </ng-template> -->

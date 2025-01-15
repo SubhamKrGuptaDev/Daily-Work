@@ -16,6 +16,7 @@ import { AddressDetailsV2Component } from './components/address-details-v2/addre
 import { ModalContainerComponent } from './components/modal-container/modal-container.component';
 import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 import { DeleteContainerComponent } from './components/delete-container/delete-container.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,13 @@ import { DeleteContainerComponent } from './components/delete-container/delete-c
     ModalContainerComponent,
     DeleteContainerComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, FormsModule, NgbModalModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    FormsModule,
+    NgbModalModule,
+    HttpClientModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
   entryComponents: [ModalContainerComponent, DeleteContainerComponent],

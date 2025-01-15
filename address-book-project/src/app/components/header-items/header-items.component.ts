@@ -21,6 +21,7 @@ export class HeaderItemsComponent {
       const modalRef = this.modal.open(ModalContainerComponent, {
         size: 'lg',
       });
+      modalRef.componentInstance.modalRef = modalRef;
     } else {
       this.route.navigate(['']);
     }

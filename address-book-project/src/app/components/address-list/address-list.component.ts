@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Address } from 'src/app/interface/address.interface';
+import { ApiServiceService } from 'src/app/service/api-service.service';
 import { SharedService } from 'src/app/service/shared.service';
 
 @Component({
@@ -8,24 +9,37 @@ import { SharedService } from 'src/app/service/shared.service';
   styleUrls: ['./address-list.component.css'],
 })
 export class AddressListComponent {
-  addressArray: Array<Address>;
 
-  constructor(private shareService: SharedService) {
-    this.addressArray = shareService.addressObject;
+  constructor(
+    public shareService: SharedService,
+    private api: ApiServiceService
+  ) {
+    // this.addressArray = shareService.addressObject;
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    // try {
+    //   this.addressArray = await firstValueFrom(this.api.getAll());
+    // } catch (error) {
+    //   console.error(error);
+    // }
+    this.api.getAll().subscribe(
+      (result) => {
+        this.shareService.setAddressArray(result)
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  }
 
   viewAddress(address: Address, index: Number) {
     this.setAddress(address, index);
   }
 
-  setArrayAddress(newAddress: Array<Address>) {
-    this.addressArray = newAddress;
-  }
-
   setAddress(address: Address, index: Number) {
     this.shareService.setCurAddress(address, index);
+    this.shareService.isDataPresentInDetails = true
     // this.share.curSelect.name = address.name;
     // this.share.curSelect.email = address.email;
     // this.share.curSelect.mobileNo = address.mobileNo;
