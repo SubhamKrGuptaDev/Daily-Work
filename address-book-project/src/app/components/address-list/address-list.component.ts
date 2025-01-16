@@ -38,7 +38,7 @@ export class AddressListComponent {
   }
 
   setAddress(address: Address, index: Number) {
-    this.shareService.setCurAddress(address, index);
+    // this.shareService.setCurAddress(address, index);
     this.shareService.isDataPresentInDetails = true
     // this.share.curSelect.name = address.name;
     // this.share.curSelect.email = address.email;

@@ -5,8 +5,6 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Address } from 'src/app/interface/address.interface';
 import { ApiServiceService } from 'src/app/service/api-service.service';
 import { SharedService } from 'src/app/service/shared.service';
-import { AddressListComponent } from '../address-list/address-list.component';
-import { HomeComponent } from '../home-component/home-component.component';
 
 @Component({
   selector: 'app-modal-container',

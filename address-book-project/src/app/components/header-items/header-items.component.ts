@@ -2,7 +2,6 @@ import { I18nPluralPipe } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { AddressAddComponent } from '../address-add/address-add.component';
 import { ModalContainerComponent } from '../modal-container/modal-container.component';
 
 @Component({
