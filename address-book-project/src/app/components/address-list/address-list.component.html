@@ -2,12 +2,12 @@
   <h3>CONTACTS</h3>
   <div
     class="cards"
-    *ngFor="let address of shareService.addressObject; let i = index"
-    (click)="viewAddress(address, i)"
-  >
+    *ngFor="let address of shareService.getAllAddress; let i = index"
+    >
     <app-address-list-item
       [address]="address"
       [index]="i"
+      [isSelected] = "false"
     ></app-address-list-item>
   </div>
 </div>

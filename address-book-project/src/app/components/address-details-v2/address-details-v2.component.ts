@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, signal } from '@angular/core';
+import { ChangeDetectorRef, Component } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Address } from 'src/app/interface/address.interface';
 import { SharedService } from 'src/app/service/shared.service';
@@ -13,13 +13,12 @@ import { ApiServiceService } from 'src/app/service/api-service.service';
   styleUrls: ['./address-details-v2.component.css'],
 })
   export class AddressDetailsV2Component {
-    address: Address = signal();
+    address: Address | undefined;
 
     constructor(public sharedService: SharedService, 
       private modal: NgbModal, 
       private router: ActivatedRoute, 
-      private apiService: ApiServiceService,
-      private changeRef: ChangeDetectorRef) {}
+      private apiService: ApiServiceService) {}
 
     ngOnInit() {
       this.router.paramMap.subscribe((paramMap) => {
@@ -29,8 +28,6 @@ import { ApiServiceService } from 'src/app/service/api-service.service';
             (result) => {
               this.address = result
               console.log(this.address);
-              this.changeRef.detectChanges();
-              return result
             },
             (error) => {
               console.log(error)
@@ -56,6 +53,7 @@ import { ApiServiceService } from 'src/app/service/api-service.service';
         });
         modalRef.componentInstance.modalRef = modalRef;
         modalRef.componentInstance.address = this.address;
+        modalRef.componentInstance.operationType = this.sharedService.operationMap.UPDATE
       }
     }
 

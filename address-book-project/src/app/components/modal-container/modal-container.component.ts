@@ -1,6 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Address } from 'src/app/interface/address.interface';
 import { ApiServiceService } from 'src/app/service/api-service.service';
@@ -13,6 +12,7 @@ import { SharedService } from 'src/app/service/shared.service';
 })
 export class ModalContainerComponent {
   @Input() modalRef: any;
+  @Input() operationType: string | undefined;
 
   // addressForm: FormGroup;
 
@@ -32,25 +32,42 @@ export class ModalContainerComponent {
     private modal: NgbModal,
     private router: Router
   ) {
-    // this.addressForm = new FormGroup({
-    //   name: new FormControl('', [Validators.required]),
-    //   email: new FormControl('', [Validators.email]),
-    //   mobileNo: new FormControl()
-    // });
   }
 
   ngOnInit() {}
 
   create() {
+    if(this.operationType) {
+      if(this.operationType === this.share.operationMap.CREATE) {
+        this.createApi();
+      } else if(this.operationType === this.share.operationMap.UPDATE) {
+        this.updateApi();
+      }
+    }
+    this.modalRef.close();
+  }
+
+  updateApi() {
+    this.api.update(this.address).subscribe(
+      (response) => {
+        this.share.setAllAddress()
+      }, 
+      (error) => {
+        console.log(error)
+      }
+    )
+  }
+
+  createApi() {
     this.api.create(this.address).subscribe(
       (response) => {
-        console.log(response);
+        this.share.setAllAddress()
       },
       (error) => {
         console.log(error);
       }
     );
     this.modalRef.close();
-
   }
+
 }

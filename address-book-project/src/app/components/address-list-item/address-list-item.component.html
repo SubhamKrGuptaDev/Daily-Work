@@ -1,4 +1,4 @@
-<div class="card" style="width: 18rem">
+<div class="card" [class.select-component]="checkSelect()">
   <div class="card-body box-shadow-style card-body-style" (click)="routeAddress()" >
     <h3 class="card-title title-style">{{ address?.name }}</h3>
     <div>

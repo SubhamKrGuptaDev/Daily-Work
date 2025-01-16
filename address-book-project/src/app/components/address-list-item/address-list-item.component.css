@@ -2,6 +2,10 @@
   background-color: var(--hover-color);
 }
 
+.select-component {
+  background-color: var(--hover-color);
+}
+
 .text-para {
   line-height: 0.1;
 }
