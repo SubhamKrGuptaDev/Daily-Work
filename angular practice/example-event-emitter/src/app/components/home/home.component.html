@@ -1,0 +1,17 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-2">
+      <div *ngFor="let user of userList; let index = index">
+        <app-user-item
+          [id]="user.id"
+          [name]="user.name"
+          (userObj)="onSelectUser($event)"
+        ></app-user-item>
+      </div>
+    </div>
+    <div class="col-md-1"></div>
+    <div class="col-md-9">
+      <app-user-view [user]="selectedUser"></app-user-view>
+    </div>
+  </div>
+</div>
