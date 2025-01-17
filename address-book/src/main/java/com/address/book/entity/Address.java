@@ -11,8 +11,13 @@ public class Address {
     private Integer id;
 
     private String name;
+
+    @Column(unique = true)
     private String email;
+    @Column(unique = true)
     private String mobileNo;
+
+    @Column(unique = true)
     private String landline;
 
     @Column(length = 500)

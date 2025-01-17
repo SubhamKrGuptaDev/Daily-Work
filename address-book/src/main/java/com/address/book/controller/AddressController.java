@@ -5,7 +5,9 @@ import com.address.book.service.AddressService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static com.address.book.constants.CommonConstants.DELETE_MESSAGE_SUCCESSFUL;
 
@@ -42,7 +44,8 @@ public class AddressController {
     @GetMapping(params = "id")
     public ResponseEntity<Address> getById(@RequestParam Integer id) {
         System.out.println("Get Id: " + id);
-        return ResponseEntity.ok(addressService.findById(id));
+        Address existing = addressService.findById(id);
+        return ResponseEntity.ok(existing);
     }
 
     /**
@@ -76,10 +79,13 @@ public class AddressController {
      * @return
      */
     @DeleteMapping
-    public ResponseEntity<String> delete(@RequestParam Integer id) {
+    public ResponseEntity<Map<String, String>> delete(@RequestParam Integer id) {
         System.out.println("delete data: " + id);
         addressService.delete(id);
-        return ResponseEntity.ok(DELETE_MESSAGE_SUCCESSFUL);
+        // Message Mapping
+        Map<String, String> map = new HashMap<>();
+        map.put("message", DELETE_MESSAGE_SUCCESSFUL);
+        return ResponseEntity.ok(map);
     }
 
 }

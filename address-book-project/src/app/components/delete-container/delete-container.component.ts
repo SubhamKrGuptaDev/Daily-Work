@@ -22,7 +22,7 @@ export class DeleteContainerComponent {
         console.log('Result : ', result);
         this.share.isDataPresentInDetails = false;
         this.share.setAllAddress()
-        this.router.navigate(['',this.id]);
+        this.router.navigate(['/',this.id]);
       },
       (error) => {
         console.log('Error : ', error);

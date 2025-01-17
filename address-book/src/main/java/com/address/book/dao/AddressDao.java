@@ -16,4 +16,6 @@ public interface AddressDao {
     Address update(Address address);
     void delete(Integer addressId);
 
+    Address getLastAddress();
+
 }

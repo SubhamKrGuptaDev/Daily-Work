@@ -36,7 +36,11 @@ public class AddressServiceImpl implements AddressService {
      */
     @Override
     public Address findById(Integer id) {
-        return addressDao.findById(id);
+        Address addressObj = addressDao.findById(id);
+        if(addressObj == null) {
+            return addressDao.getLastAddress();
+        }
+        return addressObj;
     }
 
     /**

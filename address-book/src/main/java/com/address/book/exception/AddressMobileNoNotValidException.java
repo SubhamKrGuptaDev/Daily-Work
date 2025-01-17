@@ -1,8 +1,8 @@
 package com.address.book.exception;
 
-public class AddressMobileNoNotValid extends RuntimeException {
+public class AddressMobileNoNotValidException extends RuntimeException {
 
-    public AddressMobileNoNotValid() {
+    public AddressMobileNoNotValidException() {
         super("Address mobile number is not valid");
     }
 

@@ -1,8 +1,8 @@
 package com.address.book.exception;
 
-public class AddressLandlineNotValid extends RuntimeException {
+public class AddressLandlineNotValidException extends RuntimeException {
 
-    public AddressLandlineNotValid() {
+    public AddressLandlineNotValidException() {
         super("Address landline not valid");
     }
 

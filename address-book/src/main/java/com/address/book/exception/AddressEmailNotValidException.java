@@ -1,8 +1,8 @@
 package com.address.book.exception;
 
-public class AddressEmailNotValid extends RuntimeException {
+public class AddressEmailNotValidException extends RuntimeException {
 
-    public AddressEmailNotValid() {
+    public AddressEmailNotValidException() {
         super("Address email not valid");
     }
 
